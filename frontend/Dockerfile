@@ -1,3 +1,5 @@
+# Source: https://vardhmanandroid2015.medium.com/beginners-guide-for-containerizing-application-deploying-a-full-stack-fastapi-and-react-app-001f2cac08a8
+
 ### STAGE 1: Build ###
 # Use a Node.js image to build the React app
 FROM node:20-alpine AS build

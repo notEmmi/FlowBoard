@@ -1,5 +1,7 @@
+# Source: https://vardhmanandroid2015.medium.com/beginners-guide-for-containerizing-application-deploying-a-full-stack-fastapi-and-react-app-001f2cac08a8
+
 # Use an official Python runtime as a parent image
-FROM python:latest-slim
+FROM python:3.12-slim
 
 # Set environment variables to prevent Python from writing .pyc files and to run in unbuffered mode
 ENV PYTHONDONTWRITEBYTECODE=1
