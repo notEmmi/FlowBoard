@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { api } from "./lib/api";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
@@ -23,7 +22,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
         </Routes>
-
       </div>
     </Router>
   );
