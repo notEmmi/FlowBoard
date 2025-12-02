@@ -26,4 +26,11 @@
   text-align: center;
 }
 
+.main {
+  background-color: var(--bg-base);
+}
 
+/* Page Title */
+h1 {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
