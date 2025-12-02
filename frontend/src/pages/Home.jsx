@@ -1,14 +1,18 @@
-function Home() {
-	
-	return(
-		<>
-		{/* if logged in, go to dashboard */}
-		<h1>Flowboard</h1>
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-		{/* else go to landing page */}
-		</>
-	);
+function Home({ isLoggedIn }) {
+	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (isLoggedIn) {
+			navigate('/');
+		} else {
+			navigate('/landing');
+		}
+	}, [isLoggedIn, navigate]);
+
+	return null;
 }
 
 export default Home;
