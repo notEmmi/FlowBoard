@@ -6,7 +6,7 @@ export default function Home({ isLoggedIn }) {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			navigate('/');
+			navigate('/dashboard');
 		} else {
 			navigate('/landing');
 		}
