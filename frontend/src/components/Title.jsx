@@ -6,7 +6,7 @@ export default function Title (){
 	return (
 		<div className="title-container">
 			<img src={FlowBoardIcon} alt="Flowboard Icon" className="flowboard-icon" />
-			<h1>Flowboard</h1>
+			<h1>FlowBoard</h1>
 		</div>
 	)
 }
