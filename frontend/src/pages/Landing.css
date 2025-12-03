@@ -1,0 +1,27 @@
+.landing-page-content{
+  text-align:center;
+  margin-top:28px;
+}
+.landing-ctas{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+.landing-page .btn-primary{ /* expect page-level buttons to inherit this */
+  background:var(--brand-accent);
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  text-decoration:none;
+}
+.landing-page .btn-ghost{
+  background:transparent;
+  color:var(--brand-accent);
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.06);
+  text-decoration:none;
+  margin-left:8px;
+}
