@@ -1,0 +1,21 @@
+/* Navbar styles */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  background:transparent;
+}
+.nav-left, .nav-right{
+  display:flex;
+  align-items:center;
+}
+.nav-item{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  text-decoration:none;
+  color:var(--text-primary);
+  margin-right:12px;
+}
+.nav-label{font-weight:600}
