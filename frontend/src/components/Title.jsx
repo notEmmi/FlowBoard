@@ -1,13 +1,11 @@
-import FlowBoardIconSrc from "../assets/flowboard.png";
+import "./Title.css"
+import FlowBoardIcon from "../assets/flowboard.png";
 
-const FlowBoardIcon = () => (
-	<img src={FlowBoardIconSrc} alt="Flowboard" className="flowboard-icon" />
-);
 
 export default function Title (){
 	return (
 		<div className="title-container">
-			<FlowBoardIcon />
+			<img src={FlowBoardIcon} alt="Flowboard Icon" className="flowboard-icon" />
 			<h1>Flowboard</h1>
 		</div>
 	)

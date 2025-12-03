@@ -19,15 +19,29 @@
   --text-muted: #6A7489;      /* secondary text */
 }
 
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+} */
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family:'Courier New', Courier, monospace;
 }
 
+h1 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+
+
+
 .main {
-  background-color: var(--bg-base);
+
 }
 
 /* Page Title */

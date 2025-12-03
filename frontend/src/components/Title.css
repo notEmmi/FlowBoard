@@ -1,0 +1,13 @@
+.title-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
+
+}
+
+.flowboard-icon {
+	width: 68px;
+	height: auto;
+	display: block;
+}
