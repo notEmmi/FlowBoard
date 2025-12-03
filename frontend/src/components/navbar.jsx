@@ -1,46 +1,26 @@
-import { House } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 export default function Navbar() {
-  return (
-	<div className="navbar">
-		<div className="expanded-nav">
-			<div class="nav-item">
-				<House /> <p className='nav-label'>Home</p>
-			</div>
-				<House /> <p className='nav-label'>Home</p>
-
-			<div class="nav-item">
-				<House /> <p className='nav-label'>Home</p>
-
-			</div>			
-			<div class="nav-item">
-				<House /> <p className='nav-label'>Home</p>
-
-			</div>			
-			<div class="nav-item">
-				
-			</div>
-		</div>
-
-		<div className="minimized-nav">
-			<div class="nav-item">
-
+	return (
+		<nav className="navbar">
+			<div className="nav-left">
+				<Link to="/" className="nav-item">
+					<span aria-hidden>🏠</span> <span className='nav-label'>Home</span>
+				</Link>
+				<Link to="/landing" className="nav-item">
+					<span aria-hidden>📌</span> <span className='nav-label'>Landing</span>
+				</Link>
 			</div>
 
-			<div class="nav-item">
-				
-			</div>			
-			<div class="nav-item">
-				
-			</div>			
-			<div class="nav-item">
-				
+			<div className="nav-right">
+				<Link to="/login" className="nav-item">
+					<span aria-hidden>🔐</span> <span className='nav-label'>Login</span>
+				</Link>
+				<Link to="/register" className="nav-item">
+					<span aria-hidden>➕</span> <span className='nav-label'>Register</span>
+				</Link>
 			</div>
-
-		</div>
-
-	</div>
-
-
-  );
+		</nav>
+	);
 }
