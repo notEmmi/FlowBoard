@@ -1,5 +1,3 @@
-function Registration () {
+export function Registration () {
 
 }
-
-export default Registration;

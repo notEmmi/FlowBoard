@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Home({ isLoggedIn }) {
+export default function Home({ isLoggedIn }) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -14,5 +14,3 @@ function Home({ isLoggedIn }) {
 
 	return null;
 }
-
-export default Home;

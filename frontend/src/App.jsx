@@ -13,18 +13,20 @@ import Registration from "./pages/Dashboard";
 
 import './App.css';
 
-function App() {
+export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
       <div className='app'>
         <Routes>
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+          <Route path="/landing" element={<Landing />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-export default App;
