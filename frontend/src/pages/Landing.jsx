@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Landing.css';
 import FlowBoardIcon from '../assets/flowboard-icon.png'
+import HeroImage from '../assets/hero.png'
 
 
 const LandingNavBar = function()  {
@@ -19,12 +20,10 @@ const LandingNavBar = function()  {
 	);
 }
 
-export default function Landing () {
-	return (
-		<div className="page-container landing-page">
-			<LandingNavBar />
-
-			<div className="landing-page-content">
+const Section1 = function() {
+	return(
+		<div className='landing-section1'>
+			<div>
 				<h1>Plan smarter. Build faster.</h1>
 				<h2>A project board built for builders.</h2>
 
@@ -32,6 +31,21 @@ export default function Landing () {
 					<Link to="/register" className="btn-primary">Get started</Link>
 					<Link to="/login" className="btn-ghost">Sign in</Link>
 				</div>
+			</div>
+			<div>
+				<img src={ HeroImage } alt="Hero" className='hero-image' />
+			</div>
+		</div>
+	);
+}
+
+export default function Landing () {
+	return (
+		<div className="page-container landing-page">
+			<LandingNavBar />
+
+			<div className="landing-page-content">
+				<Section1 />
 			</div>
 		</div>
 	)
