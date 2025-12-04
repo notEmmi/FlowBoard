@@ -39,23 +39,17 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-heading);
+  padding: 0;
 }
 
 
 .app{
   background-color: var(--bg-surface);
   margin: 20px 16px;
-  border-radius: 3%;;
+  border-radius: 20px;
 
 }
 
 .page-container {
   padding: 30px;
 }
-
-/* Page Title */
-h1 {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
-
-.muted{color:var(--text-muted)}

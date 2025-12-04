@@ -16,7 +16,8 @@ export default function App() {
   return (
     <Router>
       <div className='app'>
-        <Navbar />
+        { isLoggedIn && <Navbar /> }
+
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing />} />
