@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import './Landing.css';
 import FlowBoardIcon from '../assets/flowboard-icon.png'
 import HeroImage from '../assets/hero.png'
+import { useNavigate } from 'react-router-dom';
 
 
 const LandingNavBar = function()  {
+	const navigate = useNavigate();
 	return(
 		<div className="landing-nav-container">
 			<div className="landing-logo">
@@ -12,9 +14,8 @@ const LandingNavBar = function()  {
 				<h3>FlowBoard</h3>
 			</div>
 			<div className="landing-nav">
-				<p>Login</p>
-				<p>Register</p>
-				<p>Support</p>
+				<button onClick={() => navigate('/login')} className='btn-ghost'>Sign In</button>
+				<button onClick={() => navigate('/register')} className='btn-primary'>Get Started</button>
 			</div>
 		</div>
 	);
@@ -23,21 +24,23 @@ const LandingNavBar = function()  {
 const Section1 = function() {
 	return(
 		<div className='landing-section1'>
-			<div>
-				<h1>Plan smarter. Build faster.</h1>
+			<div className="section1-left">
+				
+				<h1>Plan smarter.<br></br>Build faster.</h1>
 				<h2>A project board built for builders.</h2>
 
 				<div className="landing-ctas">
-					<Link to="/register" className="btn-primary">Get started</Link>
-					<Link to="/login" className="btn-ghost">Sign in</Link>
+					<button onClick={() => navigate('/register')} className="btn-primary">Get started</button>
+					<button onClick={() => navigate('/login')} className="btn-ghost">Sign in</button>
 				</div>
 			</div>
-			<div>
+			<div className='section1-right'>
 				<img src={ HeroImage } alt="Hero" className='hero-image' />
 			</div>
 		</div>
 	);
 }
+
 
 export default function Landing () {
 	return (
