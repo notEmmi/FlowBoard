@@ -11,6 +11,4 @@ export default function Home({ isLoggedIn }) {
 			navigate('/landing');
 		}
 	}, [isLoggedIn, navigate]);
-
-	return null;
 }
