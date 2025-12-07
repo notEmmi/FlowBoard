@@ -4,6 +4,7 @@
   /* Backgrounds */
   --bg-base: #F2F4F8;         /* main page background */
   --bg-surface: #E3E7EF;      /* cards, panels, surfaces */
+  --bg-intermediate: #bbcfeb; /* intermediate background */
 
   /* Brand & Primary */
   --brand-primary: #4E7ADB;   /* main identity color */
