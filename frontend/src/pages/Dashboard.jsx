@@ -4,11 +4,11 @@ export default function Dashboard () {
 	return (
 		<div className="page-container dashboard">
 			<div className='top'>
-				<div className='right'>
+				<div className='left'>
 					<h1>Dashboard</h1>
 					<h2>Your projects and boards will appear here</h2>
 				</div>
-				<div className='left'>
+				<div className='right'>
 					<button className='btn-primary'>Add Project +</button>
 				</div>
 			</div>
