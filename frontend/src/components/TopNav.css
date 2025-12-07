@@ -1,4 +1,4 @@
-.top-nav-container, .top-logo, .top-nav {
+.top-nav-container, .top-logo .btn-link, .top-nav {
 	display: flex;
 	flex-direction: row;
 	color: var(--bg-surface);
@@ -19,8 +19,9 @@
 	gap: 20px;
 }
 
-.top-logo {
+.top-logo .btn-link {
 	gap: 10px;
+	color: var(--bg-surface);
 }
 
 .top-nav .btn-ghost {
@@ -31,3 +32,4 @@
 .top-nav .btn-primary {
   background-color: var(--text-primary);
 }
+

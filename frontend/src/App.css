@@ -50,7 +50,7 @@ h1 {
 
 h2 {
   font-weight: lighter;
-  font-size: 40px;
+  font-size: 30px;
   color: var(--text-muted);
 }
 
@@ -76,6 +76,7 @@ button:hover {
 
 
 .page-container {
+  margin: 0 20px;
 }
 
 
@@ -90,3 +91,8 @@ button:hover {
   color: var(--brand-accent);
   border-color: var(--brand-accent);
 }    
+
+.btn-link {
+  background-color: transparent;
+  border: none;
+}

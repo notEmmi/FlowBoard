@@ -2,9 +2,16 @@ import './Dashboard.css';
 
 export default function Dashboard () {
 	return (
-		<div className="page-container dashboard-page">
-			<h1>Dashboard</h1>
-			<p className="muted">Your projects and boards will appear here.</p>
+		<div className="page-container dashboard">
+			<div className='top'>
+				<div className='right'>
+					<h1>Dashboard</h1>
+					<h2>Your projects and boards will appear here</h2>
+				</div>
+				<div className='left'>
+					<button className='btn-primary'>Add Project +</button>
+				</div>
+			</div>
 
 			<section className="boards-grid">
 				<div className="board-card">

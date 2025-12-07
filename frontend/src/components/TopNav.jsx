@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './Navbar.css';
+import './TopNav.css'
 import FlowBoardIcon from '../assets/flowboard-icon.png'
 
 
@@ -9,8 +9,10 @@ export default function TopNav() {
 		return(
 			<div className="top-nav-container">
 				<div className="top-logo">
-					<img src={ FlowBoardIcon } alt="FlowBoard Icon" className="flowboard-icon"/>
-					<h3>FlowBoard</h3>
+					<button onClick={() => navigate('/')} className='btn-link'>
+						<img src={ FlowBoardIcon } alt="FlowBoard Icon" className="flowboard-icon"/>
+						<h3>FlowBoard</h3>
+					</button>
 				</div>
 				<div className="top-nav">
 					<button onClick={() => navigate('/login')} className='btn-ghost'>Sign In</button>

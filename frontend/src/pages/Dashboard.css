@@ -1,3 +1,18 @@
+.dashboard {
+  padding: 5px 20px;
+}
+
+.dashboard .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.dashboard .top .left {
+  margin-bottom: 25px;
+}
+
 .boards-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './Landing.css';
-import TopNav from '../components/TopNav';
 import HeroImage from '../assets/hero.png'
 import { useNavigate } from 'react-router-dom';
 
@@ -31,8 +30,6 @@ const Section1 = function() {
 export default function Landing () {
 	return (
 		<div className="page-container landing-page">
-			<TopNav />
-
 			<div className="landing-page-content">
 				<Section1 />
 			</div>
