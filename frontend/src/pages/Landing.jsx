@@ -8,18 +8,18 @@ import { useNavigate } from 'react-router-dom';
 const Section1 = function() {
 	const navigate = useNavigate();
 	return(
-		<div className='landing-section1'>
-			<div className="section1-left">
+		<div className='section1'>
+			<div className="left">
 				
 				<h1>Plan smarter.<br></br>Build faster.</h1>
 				<h2>A project board built for builders.</h2>
 
-				<div className="landing-ctas">
+				<div className="ctas">
 					<button onClick={() => navigate('/register')} className="btn-primary">Get started</button>
 					<button onClick={() => navigate('/login')} className="btn-ghost">Sign in</button>
 				</div>
 			</div>
-			<div className='section1-right'>
+			<div className='right'>
 				<img src={ HeroImage } alt="Hero" className='hero-image' />
 			</div>
 		</div>
@@ -29,8 +29,8 @@ const Section1 = function() {
 
 export default function Landing () {
 	return (
-		<div className="page-container landing-page">
-			<div className="landing-page-content">
+		<div className="page-container landing">
+			<div className="content">
 				<Section1 />
 			</div>
 		</div>

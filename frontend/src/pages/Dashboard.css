@@ -13,14 +13,17 @@
   margin-bottom: 25px;
 }
 
-.boards-grid{
+
+
+.project-board{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:16px;
   margin-top:20px;
 }
-.board-card{
-  background:white;
+
+.project-card{
+  background: var(--bg-surface);
   padding:16px;
   border-radius:8px;
   box-shadow:0 1px 6px rgba(16,24,40,0.06);
