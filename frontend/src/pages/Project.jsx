@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import './Project.css'
 import SideNav from '../components/SideNav';
 
 export default function Project() {
@@ -14,7 +15,7 @@ export default function Project() {
 				<h1>{projectName}</h1>
 				
 				<div className='project-board'>
-					
+
 				</div>
 
 			</div>

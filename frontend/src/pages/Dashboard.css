@@ -13,8 +13,6 @@
   margin-bottom: 25px;
 }
 
-
-
 .projects-board {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
