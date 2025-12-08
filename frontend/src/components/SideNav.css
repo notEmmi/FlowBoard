@@ -4,8 +4,11 @@
   flex-direction: column;
   color: var(--bg-base);
   justify-content: space-evenly;
-  border: solid red 1px;
-
+  border: solid red 2px;
+  position: fixed;
+  left: 0;
+  top: var(--top-nav-height);
+  height: calc(100vh - 150px);
 }
 
 .nav-item {
