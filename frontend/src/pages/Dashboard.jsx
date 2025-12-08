@@ -42,7 +42,7 @@ export default function Dashboard () {
 				</div>
 			</div>
 
-			<div className='project-board'>
+			<div className='projects-board'>
 				{dummy_data}
 			</div>
 

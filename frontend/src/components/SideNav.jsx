@@ -1,20 +1,32 @@
 import { useNavigate } from 'react-router-dom';
-import './Navbar.css';
+import './SideNav.css';
+import { LayoutDashboard } from 'lucide-react';
+
+
+
+const navItem = function(name, icon, route) {
+	const navigate = useNavigate();
+	const Icon = icon;
+	return(
+		<div className='nav-item'>
+			<Icon/>
+			<button onClick={() => navigate(route)}>{name}</button>
+		</div>	
+	)
+}
 
 export default function SideNav() {
-	const navigate = useNavigate();
+	const items = [
+		navItem('Dashboard', LayoutDashboard, '/dashboard'),
+		navItem('Project Board', LayoutDashboard, '/#'),
+		navItem('Timeline', LayoutDashboard, '/#'),
+		navItem('Project Setting', LayoutDashboard, '/#'),
+		nav
+	]
 
 	return (
-		<nav className="navbar">
-			<div className='nav-item'>
-				<button onClick={() => navigate('/')}>Home</button>
-			</div>
-			<div className='nav-item'>
-				<button onClick={() => navigate('/dashboard')}>DashBoard</button>
-			</div>
-			<div className='nav-item'>
-				
-			</div>
+		<nav className="side-nav-container">
+			{ items }
 		</nav>
 	);
 }
