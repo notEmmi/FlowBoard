@@ -2,11 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import './SideNav.css';
 import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-react';
 
-
-
-const navItem = function(name, icon, route) {
+function NavItem({ name, icon: Icon, route }) {
 	const navigate = useNavigate();
-	const Icon = icon;
 	return(
 		<button className='nav-item btn-link' onClick={() => navigate(route)}>
 			<Icon/>
@@ -17,16 +14,22 @@ const navItem = function(name, icon, route) {
 
 export default function SideNav() {
 	const items = [
-		navItem('All Projects', LayoutDashboard, '/dashboard'),
-		navItem('Board', KanbanSquare, '/board'),
-		navItem('Timeline', Clock, '/timeline'),
-		navItem('Settings', SlidersHorizontal, '/settings')
+		{ name: 'All Projects', icon: LayoutDashboard, route: '/dashboard' },
+		{ name: 'Board', icon: KanbanSquare, route: '/board' },
+		{ name: 'Timeline', icon: Clock, route: '/timeline' },
+		{ name: 'Settings', icon: SlidersHorizontal, route: '/settings' }
 	];
-
 
 	return (
 		<div className="side-nav-container">
-			{ items }
+			{items.map((item) => (
+				<NavItem
+					key={item.name}
+					name={item.name}
+					icon={item.icon}
+					route={item.route}
+				/>
+			))}
 		</div>
 	);
 }
