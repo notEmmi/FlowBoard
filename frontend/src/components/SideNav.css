@@ -2,15 +2,25 @@
   background-color: var(--ui-sidebar);
   display: flex;
   flex-direction: column;
-  color: var(--bg-base);
   justify-content: space-evenly;
-  border: solid red 2px;
-  position: fixed;
-  left: 0;
-  top: var(--top-nav-height);
-  height: calc(100vh - 150px);
+  color: var(--bg-base);
+  height: calc(100dvh - var(--top-nav-height));
+
 }
 
 .nav-item {
   color: var(--bg-base);
+  width: 100%;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-surface);
 }

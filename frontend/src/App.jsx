@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopNav from './components/TopNav'; // Add this import
 
@@ -13,15 +13,37 @@ import './App.css';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const topbarRef = useRef(null);
 
   useEffect (() => {
     setIsLoggedIn(true);
   }, []); // Add empty dependency array to run only once
 
+  useEffect(() => {
+    function updateTopbarHeight() {
+      if (topbarRef.current) {
+        const height = topbarRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--top-nav-height",
+          `${height}px`
+        );
+      }
+    }
+
+    // Call on mount
+    updateTopbarHeight();
+
+    // Listen for resize events
+    window.addEventListener('resize', updateTopbarHeight);
+    return () => window.removeEventListener('resize', updateTopbarHeight);
+  }, []);
+
   return (
     <Router>
       <div className='app'>
-        <TopNav isLoggedIn={isLoggedIn}/>
+        <div ref={topbarRef}>
+          <TopNav isLoggedIn={isLoggedIn}/>
+        </div>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing />} />
