@@ -1,0 +1,35 @@
+.top-nav-container, .top-logo .btn-link, .top-nav {
+	display: flex;
+	flex-direction: row;
+	color: var(--bg-surface);
+	align-items: center;
+}
+
+.top-nav-container {
+	background-color: var(--ui-sidebar);
+	justify-content: space-between;
+	padding: 10px 30px;
+}
+
+.flowboard-icon {
+	height: 50px;
+}
+
+.top-nav {
+	gap: 20px;
+}
+
+.top-logo .btn-link {
+	gap: 10px;
+	color: var(--bg-surface);
+}
+
+.top-nav .btn-ghost {
+  color: var(--bg-surface);
+  border-color: var(--bg-surface);
+}
+
+.top-nav .btn-primary {
+  background-color: var(--text-primary);
+}
+
