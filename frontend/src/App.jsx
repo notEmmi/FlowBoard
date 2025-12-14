@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TopNav from './components/TopNav'; // Add this import
+import { api } from "./api";
 
+import TopNav from './components/TopNav';
 
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
@@ -15,10 +16,21 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const topbarRef = useRef(null);
 
+  /* Test API */
   useEffect (() => {
-    setIsLoggedIn(true);
-  }, []); // Add empty dependency array to run only once
+    (async () => {
+      try {
+        const data = await api('/ping');
+        console.log('API Response:', data);
 
+      } catch (error) {
+        console.error('Ping failed:', error);
+      }
+    })();
+  }, []);
+
+
+  /* Dynamically get Top Nav's height */
   useEffect(() => {
     function updateTopbarHeight() {
       if (topbarRef.current) {
