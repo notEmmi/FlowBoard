@@ -19,9 +19,14 @@ export default function App() {
   /* Test API */
   useEffect (() => {
     (async () => {
-      const data = await api('/ping');
-      setMsg(data.message);
-    })().catch(setErr);
+      try {
+        const data = await api('/ping');
+        console.log('API Response:', data);
+
+      } catch (error) {
+        console.error('Ping failed:', error);
+      }
+    })();
   }, []);
 
 
