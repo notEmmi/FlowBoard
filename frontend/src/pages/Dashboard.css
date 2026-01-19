@@ -1,0 +1,32 @@
+.dashboard {
+  padding: 5px 20px;
+}
+
+.dashboard .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.dashboard .top .right {
+  margin-bottom: 25px;
+}
+
+.projects-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.project-card {
+  background: var(--bg-surface);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px var(--brand-primary);
+}
+
+.project-card:hover {
+  background-color: var(--bg-intermediate);
+}

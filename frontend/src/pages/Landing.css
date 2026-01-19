@@ -1,0 +1,29 @@
+.landing .content {
+  text-align: center;
+  margin-top: 28px;
+}
+
+/* Section 1 */
+
+.landing .content .section1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 30px;
+}
+
+.landing .content .section1 .left {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.landing .content .section1 .left .ctas {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

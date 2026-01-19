@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-base: #F2F4F8;         /* main page background */
+  --bg-surface: #E3E7EF;      /* cards, panels, surfaces */
+  --bg-intermediate: #bbcfeb; /* intermediate background */
+
+  /* Brand & Primary */
+  --brand-primary: #4E7ADB;   /* main identity color */
+  --brand-accent: #3D6CF5;    /* CTA, emphasis, strong buttons */
+
+  /* UI Structure */
+  --ui-sidebar: #344C8A;      /* sidebar, nav, headers */
+
+  /* Status Colors */
+  --status-success: #54D1B2;
+  --status-warning: #FFC663;
+
+  /* Text */
+  --text-primary: #1C2331;    /* main readable text */
+  --text-muted: #6A7489;      /* secondary text */
+
+  /* Fonts */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Nav Size */
+  --top-nav-height: 90px;
+}
+
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 50px;
+}
+
+h2 {
+  font-weight: lighter;
+  font-size: 30px;
+  color: var(--text-muted);
+}
+
+button {
+    padding:10px 14px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-left:8px;
+    border-style: none;
+    font-family: var(--font-body);
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+
+.app {
+  margin: 0;
+  padding: 0;
+}
+
+
+.page-container {
+  margin: 0;
+}
+
+
+.btn-primary {
+  background:var(--brand-accent);
+  color: var(--bg-surface);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+.btn-link {
+  background-color: transparent;
+  border: none;
+}
