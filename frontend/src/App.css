@@ -135,3 +135,10 @@ label {
 .auth-form button {
   width: 100%;
 }
+
+.tagline {
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: auto;
+  margin-bottom: 20px;
+}
