@@ -1,3 +1,5 @@
+import "./Divider.css";
+
 export default function Divider({ label }) {
 	
 	return (

@@ -7,7 +7,7 @@ export default function Registration ({isOpen, closeModal}) {
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="page-container registration">
 				<h2>Create an Account</h2>
-				<p>Keep your projects safe and accessible anytime</p>
+				<p className='tagline'>Keep your projects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 					<label>
 						Username
@@ -32,7 +32,7 @@ export default function Registration ({isOpen, closeModal}) {
 					<button type="submit" className="btn-primary">Create account</button>
 				</form>
 
-				<Divider />
+				<Divider label={"OR"}/>
 		</div>
 		</Modal>
 	);
