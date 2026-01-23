@@ -67,7 +67,6 @@ button {
     padding: 10px 14px;
     border-radius: 8px;
     text-decoration: none;
-    margin-left: 8px;
     border-style: none;
     font-family: var(--font-body);
     font-size: 1.5rem;
@@ -131,4 +130,8 @@ label {
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
+}
+
+.auth-form button {
+  width: 100%;
 }

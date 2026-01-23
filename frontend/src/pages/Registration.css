@@ -9,13 +9,7 @@
   align-self: flex-start;
 }
 
-.btn-primary{
-  background:var(--brand-accent);
-  color:white;
-  padding:10px 14px;
-  border-radius:8px;
-  text-decoration:none;
-}
+
 
 div {
   /* border: 1px solid; */
