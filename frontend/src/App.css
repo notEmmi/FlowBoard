@@ -114,7 +114,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .auth-form input{
