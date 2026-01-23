@@ -23,7 +23,7 @@ export default function TopNav() {
 				</div>
 				<div className="top-nav">
 					<button onClick={() => setIsLoginOpen(true)} className='btn-ghost'>Sign In</button>
-					<button onClick={() => setIsRegistrationOpen(true)} className='btn-ghost'>Register</button>
+					<button onClick={() => setIsRegistrationOpen(true)} className='btn-ghost'>Create Account</button>
 				</div>
 			</div>
 			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen}/>
