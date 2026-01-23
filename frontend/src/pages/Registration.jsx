@@ -1,6 +1,6 @@
 import './Registration.css';
 import Modal from '../components/Modal.jsx';
-import Divider from '../components/divider.jsx';
+import Divider from '../components/Divider.jsx';
 
 export default function Registration ({isOpen, closeModal}) {
 	return (
