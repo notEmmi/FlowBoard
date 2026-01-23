@@ -29,6 +29,10 @@
   --top-nav-height: 90px;
 }
 
+div {
+  /* border: solid red 1px; */
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -49,22 +53,24 @@ h1, h2, h3 {
 
 h1 {
   font-weight: bolder;
-  font-size: 50px;
+  font-size: clamp(2rem, 10vw, 5rem);
 }
 
 h2 {
+  margin-top: 0;
   font-weight: lighter;
-  font-size: 30px;
   color: var(--text-muted);
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 button {
-    padding:10px 14px;
-    border-radius:8px;
-    text-decoration:none;
-    margin-left:8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-left: 8px;
     border-style: none;
     font-family: var(--font-body);
+    font-size: 1.5rem;
 }
 
 button:hover {
@@ -102,4 +108,27 @@ button:hover {
 .btn-link {
   background-color: transparent;
   border: none;
+}
+
+.auth-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.auth-form input{
+  padding:8px 10px;
+  border-radius:6px;
+  border:1px solid var(--bg-intermediate);
+  width: 60%;
+}
+
+label {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
 }

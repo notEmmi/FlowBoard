@@ -1,29 +1,37 @@
-.landing .content {
+.landing {
   text-align: center;
-  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+
 
 /* Section 1 */
 
-.landing .content .section1 {
+.landing .section1 {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  gap: 20px;
-  padding: 30px;
+  padding: 30px 40px;
 }
 
-.landing .content .section1 .left {
+.landing .section1 .left {
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.landing .content .section1 .left .ctas {
+.landing .section1 .left .ctas {
+  width: 100%;
   margin-top: 18px;
   display: flex;
-  justify-content: center;
   gap: 12px;
+}
+
+.landing .section1 .left .ctas button {
+  width: 50%;
+  margin-left: 0;
 }

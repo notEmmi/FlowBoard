@@ -4,12 +4,12 @@ import Modal from '../components/Modal.jsx';
 export default function Registration ({isOpen, closeModal}) {
 	return (
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
-			<div className="page-container registration-page">
-				<h1>Create account</h1>
+			<div className="page-container registration">
+				<h2>Sign Up</h2>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 					<label>
-						Full name
-						<input type="text" name="name" placeholder="Your name" />
+						Username
+						<input type="text" name="name" placeholder="Create a username" />
 					</label>
 
 					<label>
@@ -20,6 +20,11 @@ export default function Registration ({isOpen, closeModal}) {
 					<label>
 						Password
 						<input type="password" name="password" placeholder="Create a password" />
+					</label>
+
+					<label>
+						Re-Type Password
+						<input type="password" name="password" placeholder='Confirm password' />
 					</label>
 
 					<button type="submit" className="btn-primary">Create account</button>
