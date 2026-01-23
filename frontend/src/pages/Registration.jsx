@@ -1,11 +1,13 @@
 import './Registration.css';
 import Modal from '../components/Modal.jsx';
+import Divider from '../components/divider.jsx';
 
 export default function Registration ({isOpen, closeModal}) {
 	return (
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="page-container registration">
-				<h2>Sign Up</h2>
+				<h2>Create an Account</h2>
+				<p>Keep your projects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 					<label>
 						Username
@@ -29,6 +31,8 @@ export default function Registration ({isOpen, closeModal}) {
 
 					<button type="submit" className="btn-primary">Create account</button>
 				</form>
+
+				<Divider />
 		</div>
 		</Modal>
 	);

@@ -5,8 +5,12 @@
   width: 100%;
 }
 
-.registration h2 {
+.registration h2, .registration p {
   align-self: flex-start;
+}
+
+.registration h2 {
+  margin-bottom: 0;
 }
 
 
