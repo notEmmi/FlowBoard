@@ -16,7 +16,7 @@ export default function Registration ({isOpen, closeModal}) {
 
 	function authenticate() {
 		navigate('/Dashboard');
-		closeModal();
+		closeModal(false);
 	}
 	
 	return (

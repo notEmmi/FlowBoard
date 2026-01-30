@@ -17,7 +17,7 @@ export default function Login ( {isOpen, closeModal}) {
 
 	function authenticate() {
 		navigate('/Dashboard');
-		closeModal();
+		closeModal(false);
 	}
 
 	return (
