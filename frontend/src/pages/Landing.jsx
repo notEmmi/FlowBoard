@@ -11,6 +11,16 @@ const Section1 = function() {
 	const navigate = useNavigate();
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+
+	function switchToRegistration() {
+		setIsLoginOpen(false);
+		setIsRegistrationOpen(true);
+	}
+
+	function switchToLogin() {
+		setIsRegistrationOpen(false);
+		setIsLoginOpen(true);
+	}
 	
 	return(
 		<>
@@ -28,8 +38,8 @@ const Section1 = function() {
 					<img src={ HeroImage } alt="Hero" className='hero-image' />
 				</div>
 			</div>
-			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} />
-			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} />
+			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration} />
+			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin} />
 		</>
 	);
 }

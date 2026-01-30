@@ -12,6 +12,17 @@ export default function TopNav() {
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 	const navigate = useNavigate();
+
+	function switchToRegistration() {
+		setIsLoginOpen(false);
+		setIsRegistrationOpen(true);
+	}
+
+	function switchToLogin() {
+		setIsRegistrationOpen(false);
+		setIsLoginOpen(true);
+	}
+
 	return(
 		<>
 			<div className="top-nav-container">
@@ -26,8 +37,8 @@ export default function TopNav() {
 					<button onClick={() => setIsRegistrationOpen(true)} className='btn-ghost'>Create Account</button>
 				</div>
 			</div>
-			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen}/>
-			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen}/>
+			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration}/>
+			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin}/>
 		</>
 	);
 }

@@ -2,15 +2,15 @@ import './Login.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import Registration from './Registration.jsx';
 
-export default function Login ( {isOpen, closeModal}) {
+export default function Login ( {isOpen, closeModal, onSwitchToRegistration}) {
 	const navigate = useNavigate();
 
 	function openRegistration(){
-		closeModal(false);
-
+		if (onSwitchToRegistration) {
+			closeModal(false);
+			onSwitchToRegistration();
+		}
 	}
 
 	function authenticate() {

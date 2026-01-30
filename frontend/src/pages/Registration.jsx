@@ -1,15 +1,21 @@
-import { useState } from 'react';
 import './Registration.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
-import Login from './Login.jsx'
+import { useNavigate } from 'react-router-dom';
 
-export default function Registration ({isOpen, closeModal}) {
-	const [isLoginOpen, setIsLoginOpen] = useState(false);
+export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
+	const navigate = useNavigate();
 
 	function openLogin() {
+		if (onSwitchToLogin) {
+			closeModal(false);
+			onSwitchToLogin();
+		}
+	}
+
+	function authenticate() {
+		navigate('/Dashboard');
 		closeModal(false);
-		setIsLoginOpen(true);
 	}
 	
 	return (
@@ -48,7 +54,6 @@ export default function Registration ({isOpen, closeModal}) {
 				</div>
 			</div>
 		</Modal>
-		<Login isOpen={isLoginOpen} closeModal={() => setIsLoginOpen(false)}/>
 		</>
 	);
 }
