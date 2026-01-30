@@ -139,6 +139,18 @@ label {
 .tagline {
   font-style: italic;
   color: var(--text-muted);
-  margin-top: auto;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.link {
+  color: var(--brand-accent);
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.link:hover {
+  color: var(--brand-primary);
+  cursor: pointer;
+  transform: scale(1.03);
 }

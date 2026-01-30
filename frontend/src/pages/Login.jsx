@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './Login.css';
 import Modal from '../components/Modal.jsx';
+import Divider from '../components/Divider.jsx';
 
 export default function Login ( {isOpen, closeModal}) {
 	return (
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
-			<div className="page-container login-page">
-					<h1>Welcome Back</h1>
-					<p>Access your saved projects.</p>
+			<div className="page-container login">
+					<h2>Welcome Back</h2>
+					<p className='tagline'>Access your saved projects.</p>
 					<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 						<label>
 							Email
@@ -18,12 +19,14 @@ export default function Login ( {isOpen, closeModal}) {
 							Password
 							<input type="password" name="password" placeholder="••••••••" />
 						</label>
-						<p>Forgot Password?<span className='link'>Click here.</span></p>
 
 						<button type="submit" className="btn-primary">Login</button>
 					</form>
 
-					<div className="half-divider"></div><h2>OR</h2><div className='half-divider'></div>
+					<Divider label={"OR"}/>
+					<div>
+						<p>Forgot Password? <span className='link'>Click here</span>.</p>
+					</div>
 			</div>
 		</Modal>
 	);

@@ -1,13 +1,23 @@
+import { useState } from 'react';
 import './Registration.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
+import Login from './Login.jsx'
 
 export default function Registration ({isOpen, closeModal}) {
+	const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+	function openLogin() {
+		closeModal(false);
+		setIsLoginOpen(true);
+	}
+	
 	return (
+		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="page-container registration">
 				<h2>Create an Account</h2>
-				<p className='tagline'>Keep your projects safe and accessible anytime</p>
+				<p className='tagline'>Keep your proj ects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 					<label>
 						Username
@@ -33,7 +43,12 @@ export default function Registration ({isOpen, closeModal}) {
 				</form>
 
 				<Divider label={"OR"}/>
-		</div>
+				<div className='other-links'>
+					<p>Have an Account? <span class="link" onClick={() => openLogin()}>Log In.</span></p>
+				</div>
+			</div>
 		</Modal>
+		<Login isOpen={isLoginOpen} closeModal={() => setIsLoginOpen(false)}/>
+		</>
 	);
 }
