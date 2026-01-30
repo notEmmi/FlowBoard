@@ -1,9 +1,16 @@
-import { useState } from 'react';
 import './Login.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login ( {isOpen, closeModal}) {
+	const navigate = useNavigate();
+
+	function authenticate() {
+		navigate('/Dashboard');
+		closeModal();
+	}
+
 	return (
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="page-container login">
@@ -20,7 +27,7 @@ export default function Login ( {isOpen, closeModal}) {
 							<input type="password" name="password" placeholder="••••••••" />
 						</label>
 
-						<button type="submit" className="btn-primary">Login</button>
+						<button type="submit" className="btn-primary" onClick={() => authenticate()}>Login</button>
 					</form>
 
 					<Divider label={"OR"}/>
