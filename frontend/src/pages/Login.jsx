@@ -2,9 +2,16 @@ import './Login.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Registration from './Registration.jsx';
 
 export default function Login ( {isOpen, closeModal}) {
 	const navigate = useNavigate();
+
+	function openRegistration(){
+		closeModal(false);
+
+	}
 
 	function authenticate() {
 		navigate('/Dashboard');
@@ -12,6 +19,7 @@ export default function Login ( {isOpen, closeModal}) {
 	}
 
 	return (
+		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="page-container login">
 					<h2>Welcome Back</h2>
@@ -32,14 +40,11 @@ export default function Login ( {isOpen, closeModal}) {
 
 					<Divider label={"OR"}/>
 					<div>
+						<p>Don't Have an Account? <span className='link' onClick={() => openRegistration() }>Register</span>.</p>
 						<p>Forgot Password? <span className='link'>Click here</span>.</p>
 					</div>
 			</div>
 		</Modal>
-<<<<<<< HEAD
-		<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen}/>
 		</>
-=======
->>>>>>> parent of e5815db (feat: enhance Login and Registration components with improved navigation and styling)
 	);
 }
