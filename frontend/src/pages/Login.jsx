@@ -47,7 +47,7 @@ export default function Login ( {isOpen, closeModal}) {
 					</div>
 			</div>
 		</Modal>
-		<Registration isOpen={isRegistrationOpen} closeModal={() => setIsRegistrationOpen()}/>
+		<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen}/>
 		</>
 	);
 }
