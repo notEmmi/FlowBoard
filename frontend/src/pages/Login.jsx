@@ -32,7 +32,7 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration}) {
 
 						<label>
 							Password
-							<input type="password" name="password" placeholder="••••••••" />
+							<input type="password" name="password" placeholder="Enter Password" />
 						</label>
 
 						<button type="submit" className="btn-primary" onClick={() => authenticate()}>Login</button>

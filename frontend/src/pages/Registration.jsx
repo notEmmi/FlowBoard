@@ -23,11 +23,11 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="page-container registration">
 				<h2>Create an Account</h2>
-				<p className='tagline'>Keep your proj ects safe and accessible anytime</p>
+				<p className='tagline'>Keep your projects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
 					<label>
 						Username
-						<input type="text" name="name" placeholder="Create a username" />
+						<input type="text" name="name" placeholder="Enter username" />
 					</label>
 
 					<label>
@@ -37,12 +37,12 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
 
 					<label>
 						Password
-						<input type="password" name="password" placeholder="Create a password" />
+						<input type="password" name="password" placeholder="Enter password" />
 					</label>
 
 					<label>
 						Re-Type Password
-						<input type="password" name="password" placeholder='Confirm password' />
+						<input type="password" name="password" placeholder='Confirm Password' />
 					</label>
 
 					<button type="submit" className="btn-primary">Create account</button>
