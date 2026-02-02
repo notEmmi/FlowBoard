@@ -15,7 +15,9 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 
 					<button type="submit" className="btn-primary">Send Reset Instructions</button>
 				</form>
-				<p className='link' onClick={() => onSwitchToLogin()}>Back to Login</p>
+				<div className='other-links'>
+					<p className='link' onClick={() => onSwitchToLogin()}>Back to Login</p>
+				</div>
 			</div>
 		</Modal>
 	);

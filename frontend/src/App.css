@@ -156,3 +156,7 @@ label {
   cursor: pointer;
   transform: scale(1.03);
 }
+
+.other-links {
+  text-align: center;
+}

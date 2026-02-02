@@ -52,7 +52,7 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration}) {
 					</form>
 
 					<Divider label={"OR"}/>
-					<div>
+					<div className='other-links'>
 						<p>Don't Have an Account? <span className='link' onClick={() => openRegistration() }>Register</span>.</p>
 						<p>Forgot Password? <span className='link' onClick={() => openForgotPassword()}>Click here</span>.</p>
 					</div>
