@@ -45,9 +45,14 @@ const Section1 = function() {
 
 
 export default function Landing () {
+	const navigate = useNavigate();
+
 	return (
 		<div className="page-container landing">
 				<Section1 />
+				<p className='link' onClick={() => navigate('/styleguide')}>Style Guide</p>
+
+
 		</div>
 	)
 

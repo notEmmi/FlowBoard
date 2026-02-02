@@ -36,17 +36,23 @@ export default function StyleGuide() {
 			<div className='section 2'>
 				<h2>Typography</h2>
 				<h1>Heading 1</h1>
-
 				<CodeBlock>
 					font-heading: 'Plus Jakarta Sans', sans-serif;<br />
 					font-size: 50px (desktop), 46px (tablet), 44px (mobile)
 				</CodeBlock>
+
+
 				<h2>Heading 2</h2>
+				<CodeBlock>
+					font-heading: 'Plus Jakarta Sans', sans-serif;<br />
+					font-size: 32px (desktop), 28px (tablet), 24px (mobile)
+				</CodeBlock>
 				<h3>Heading 3</h3>
 				<p>Paragraph/normal text.</p>
 				<p className='tagline'>Tagline</p>
 			</div>
 
+			<Divider/>
 			<div className='section 3'>
 				<h2>Color Palette</h2>
 				<div className="color-palette">
@@ -93,30 +99,37 @@ export default function StyleGuide() {
 				</div>
 			</div>
 
+			<Divider />
 			<div className='section 4'>
 				<h2>Voice</h2>
 			</div>
 
+			<Divider />
 			<div className='section 5'>
 				<h2>Iconography</h2>
 			</div>
 
+			<Divider />
 			<div className='section 6'>
 				<h2>Imagery</h2>
 			</div>
 
+			<Divider />
 			<div className='section 7'>
 				<h2>Forms</h2>
 			</div>
 
+			<Divider />
 			<div className='section 8'>
 				<h2>Buttons</h2>
 			</div>
 
+			<Divider />
 			<div className='section 9'>
 				<h2>Spacings</h2>
 			</div>
 			
+			<Divider />
 			<div className='section 10'>
 				<h2>Do's and Don'ts</h2>
 			</div>
