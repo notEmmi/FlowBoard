@@ -45,18 +45,40 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-heading);
+  line-height: 1.4;
 }
 
 h1 {
   font-weight: bolder;
-  font-size: clamp(2rem, 10vw, 5rem);
+  font-size: 50px;
 }
 
 h2 {
-  margin-top: 0;
   font-weight: lighter;
   color: var(--text-muted);
-  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 46px;
+  }
+  
+}
+
+@media (max-width: 375px) {
+  h1 {
+    font-size: 44px;
+  }
+  
 }
 
 button {
@@ -79,9 +101,20 @@ button:hover {
   padding: 0;
 }
 
-
 .page-container {
-  margin: 0;
+  margin: auto 138px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    margin: auto 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  .page-container {
+    margin: auto 16px;
+  }
 }
 
 

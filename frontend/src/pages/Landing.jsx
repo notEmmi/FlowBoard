@@ -26,7 +26,6 @@ const Section1 = function() {
 		<>
 			<div className='section1'>
 				<div className="left">
-					
 					<h1>Plan smarter.<br></br>Build faster.</h1>
 					<h2>A project board built for builders.</h2>
 
