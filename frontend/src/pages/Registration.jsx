@@ -1,27 +1,59 @@
 import './Registration.css';
+import Modal from '../components/Modal.jsx';
+import Divider from '../components/Divider.jsx';
+import { useNavigate } from 'react-router-dom';
 
-export default function Registration () {
+export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
+	const navigate = useNavigate();
+
+	function openLogin() {
+		if (onSwitchToLogin) {
+			closeModal(false);
+			onSwitchToLogin();
+		}
+	}
+
+	function authenticate() {
+		navigate('/Dashboard');
+		closeModal(false);
+	}
+	
 	return (
-		<div className="page-container registration-page">
-			<h1>Create account</h1>
-			<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
-				<label>
-					Full name
-					<input type="text" name="name" placeholder="Your name" />
-				</label>
+		<>
+		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
+			<div className="page-container registration">
+				<h2>Create an Account</h2>
+				<p className='tagline'>Keep your projects safe and accessible anytime</p>
+				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+					<label>
+						Username
+						<input type="text" name="name" placeholder="Enter username" />
+					</label>
 
-				<label>
-					Email
-					<input type="email" name="email" placeholder="you@example.com" />
-				</label>
+					<label>
+						Email
+						<input type="email" name="email" placeholder="you@example.com" />
+					</label>
 
-				<label>
-					Password
-					<input type="password" name="password" placeholder="Create a password" />
-				</label>
+					<label>
+						Password
+						<input type="password" name="password" placeholder="Enter password" />
+					</label>
 
-				<button type="submit" className="btn-primary">Create account</button>
-			</form>
-		</div>
+					<label>
+						Re-Type Password
+						<input type="password" name="password" placeholder='Confirm Password' />
+					</label>
+
+					<button type="submit" className="btn-primary" onClick={() => authenticate()}>Create account</button>
+				</form>
+
+				<Divider label={"OR"}/>
+				<div className='other-links'>
+					<p>Have an Account? <span class="link" onClick={() => openLogin()}>Log In.</span></p>
+				</div>
+			</div>
+		</Modal>
+		</>
 	);
 }
