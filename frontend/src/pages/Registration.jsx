@@ -45,7 +45,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
 						<input type="password" name="password" placeholder='Confirm Password' />
 					</label>
 
-					<button type="submit" className="btn-primary">Create account</button>
+					<button type="submit" className="btn-primary" onClick={() => authenticate()}>Create account</button>
 				</form>
 
 				<Divider label={"OR"}/>
