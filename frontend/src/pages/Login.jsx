@@ -1,16 +1,29 @@
 import './Login.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
+import ForgotPassword from './ForgotPassword.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Login ( {isOpen, closeModal, onSwitchToRegistration}) {
 	const navigate = useNavigate();
+	const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
 	function openRegistration(){
 		if (onSwitchToRegistration) {
 			closeModal(false);
 			onSwitchToRegistration();
 		}
+	}
+
+	function openForgotPassword(){
+		closeModal(false);
+		setIsForgotPasswordOpen(true);
+	}
+
+	function switchToLogin(){
+			setIsForgotPasswordOpen(false);
+			closeModal(true);
 	}
 
 	function authenticate() {
@@ -41,10 +54,11 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration}) {
 					<Divider label={"OR"}/>
 					<div>
 						<p>Don't Have an Account? <span className='link' onClick={() => openRegistration() }>Register</span>.</p>
-						<p>Forgot Password? <span className='link'>Click here</span>.</p>
+						<p>Forgot Password? <span className='link' onClick={() => openForgotPassword()}>Click here</span>.</p>
 					</div>
 			</div>
 		</Modal>
+		<ForgotPassword isOpen={isForgotPasswordOpen} closeModal={setIsForgotPasswordOpen} onSwitchToLogin={switchToLogin} />
 		</>
 	);
 }
