@@ -56,11 +56,11 @@ h1 {
 h2 {
   font-weight: lighter;
   color: var(--text-muted);
-  font-size: 36px;
+  font-size: 40px;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 36px;
 }
 
 p {
@@ -71,12 +71,32 @@ p {
   h1 {
     font-size: 46px;
   }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 16px;
+  }
   
 }
 
 @media (max-width: 375px) {
   h1 {
     font-size: 44px;
+  }
+
+  h2 {
+    font-size: 34px;
+  }
+
+  h3 {
+    font-size: 28px;
   }
   
 }
