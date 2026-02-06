@@ -45,8 +45,8 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-heading);
-  line-height: 1.4;
-  margin-bottom: auto;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -68,6 +68,15 @@ p {
   font-size: 20px;
 }
 
+.tagline {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.caption {
+  font-size: 16px;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 46px;
@@ -83,6 +92,10 @@ p {
 
   p {
     font-size: 16px;
+  }
+
+  .caption {
+    font-size: 12px;
   }
   
 }
@@ -102,6 +115,10 @@ p {
 
   p {
     font-size: 14px;
+  }
+
+  .caption {
+    font-size: 10px;
   }
   
 }
@@ -194,13 +211,6 @@ label {
 
 .auth-form button {
   width: 100%;
-}
-
-.tagline {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 10px;
-  margin-bottom: 30px;
 }
 
 .link {

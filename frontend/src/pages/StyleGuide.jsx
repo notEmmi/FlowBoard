@@ -53,13 +53,24 @@ export default function StyleGuide() {
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
 					font-size: 36px (desktop), 32px (tablet), 30px (mobile)
 				</CodeBlock>
-				
+
 				<p>Paragraph/normal text.</p>
 				<CodeBlock>
 					font-family: 'Inter', sans-serif;<br />
 					font-size: 20px (desktop), 16px (tablet), 14px (mobile)
 				</CodeBlock>
 				<p className='tagline'>Tagline</p>
+				<CodeBlock>
+					font-family: 'Inter', sans-serif;<br />
+					font-size: 20px (desktop), 16px (tablet), 14px (mobile);<br />
+					font-style: italic;
+				</CodeBlock>
+
+				<p className="caption">Caption</p>
+				<CodeBlock>
+					font-family: 'Inter', sans-serif;<br />
+					font-size: 16px (desktop), 12px (tablet), 10px (mobile);<br />
+				</CodeBlock>
 			</div>
 
 			<Divider/>
