@@ -25,7 +25,7 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 	return (
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
-			<div className="page-container forgot-password">
+			<div className="forgot-password">
 				<h2>Reset Password</h2>
 				<p className='tagline'>Enter the email associated with your account and we'll send you password reset instructions.</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>

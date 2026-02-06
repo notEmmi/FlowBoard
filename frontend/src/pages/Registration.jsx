@@ -21,7 +21,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin}) {
 	return (
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
-			<div className="page-container registration">
+			<div className="registration">
 				<h2>Create an Account</h2>
 				<p className='tagline'>Keep your projects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={(e) => e.preventDefault()}>
