@@ -5,7 +5,7 @@ import { useState } from 'react';
 function ConfirmationModal ({isOpen, closeModal}) {
 	return(
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
-			<div className='page-container forgot-password'>
+			<div className='forgot-password'>
 				<h2>Reset Password</h2>
 				<p>Check your email for reset intructions.</p>
 			</div>
