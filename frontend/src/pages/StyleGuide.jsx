@@ -126,6 +126,19 @@ export default function StyleGuide() {
 			<Divider />
 			<div className='section 7'>
 				<h2>Forms</h2>
+				<p>Forms are used across the application for user authentication and managing projects and tasks. All forms are displayed within a modal dialog.</p>
+				<CodeBlock>
+					&lt;Modal&gt;<br />
+					Form content goes here<br />
+					&lt;/Modal&gt;
+				</CodeBlock>
+				<p><b>Use cases:</b></p>
+				<ul>
+					<li>Authentication (login, registration)</li>
+					<li>Creating projects</li>
+					<li>Adding tasks</li>
+					<li>Editing projects and tasks</li>
+				</ul>
 			</div>
 
 			<Divider />
