@@ -75,6 +75,8 @@ p {
 
 .caption {
   font-size: 16px;
+  color: var(--text-muted);
+
 }
 
 @media (max-width: 768px) {
@@ -213,13 +215,13 @@ label {
   width: 100%;
 }
 
-.link {
+a, .link {
   color: var(--brand-accent);
   text-decoration: underline;
   display: inline-block;
 }
 
-.link:hover {
+a:hover, .link:hover {
   color: var(--brand-primary);
   cursor: pointer;
   transform: scale(1.03);
@@ -227,4 +229,11 @@ label {
 
 .other-links {
   text-align: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
 }

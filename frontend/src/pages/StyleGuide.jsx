@@ -1,11 +1,14 @@
 import "./StyleGuide.css";
 import Divider from "../components/Divider";
+import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-react';<br />
 
 function ColorSwatch({ name, hex, usage }) {
 	return (
 		<div className='color-swatch'>
-			
-
+			<div className="color" style={{ backgroundColor: hex }}></div>
+			<p>{name}</p>
+			<p className="caption">{hex}<br /> {usage}</p>
+		
 		</div>
 	)
 }
@@ -77,59 +80,47 @@ export default function StyleGuide() {
 			<div className='section 3'>
 				<h2>Color Palette</h2>
 				<div className="color-palette">
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#F2F4F8' }}></div>
-					<p>--bg-base</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#E3E7EF' }}></div>
-					<p>--bg-surface</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#bbcfeb' }}></div>
-					<p>--bg-intermediate</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#4E7ADB' }}></div>
-					<p>--brand-primary</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#3D6CF5' }}></div>
-					<p>--brand-accent</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#344C8A' }}></div>
-					<p>--ui-sidebar</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#54D1B2' }}></div>
-					<p>--status-success</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#FFC663' }}></div>
-					<p>--status-warning</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#1C2331' }}></div>
-					<p>--text-primary</p>
-				</div>
-				<div className="color-swatch">
-					<div style={{ backgroundColor: '#6A7489' }}></div>
-					<p>--text-muted</p>
-				</div>
+					<ColorSwatch name="Frost" hex="#F2F4F8" usage="Primary background" />
+					<ColorSwatch name="Cloud" hex="#E3E7EF" usage="Secondary background, surfaces" />
+					<ColorSwatch name="Sky" hex="#bbcfeb" usage="Tertiary background, borders" />
+					<ColorSwatch name="Primary Blue" hex="#4E7ADB" usage="Main brand color, primary actions" />
+					<ColorSwatch name="Accent Blue" hex="#3D6CF5" usage="Secondary brand, interactive elements" />
+					<ColorSwatch name="Midnight" hex="#344C8A" usage="Sidebar, dark UI elements" />
+					<ColorSwatch name="Emerald" hex="#54D1B2" usage="Success, positive feedback" />
+					<ColorSwatch name="Amber" hex="#FFC663" usage="Warning, caution states" />
+					<ColorSwatch name="Charcoal" hex="#1C2331" usage="Primary text" />
+					<ColorSwatch name="Slate" hex="#6A7489" usage="Secondary text, muted content" />
 				</div>
 			</div>
 
 			<Divider />
 			<div className='section 4'>
 				<h2>Voice</h2>
+				<p><b>Straightforward, Calm, and Minimal.</b></p>
+
+				<p>
+					We prioritize clarity over cleverness and usefulness over personality.
+					Use short sentences and labels.
+					Avoid metaphors, jokes, or marketing language.
+					Avoid aggressive language and do not shame for incomplete work.
+					Text should be action oriented, use verbs and be specific.
+				</p>
+
 			</div>
 
 			<Divider />
 			<div className='section 5'>
 				<h2>Iconography</h2>
+				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
+				<CodeBlock>
+					
+						width: 24px;
+						height: 24px;
+						display: inline-block;
+						vertical-align: middle;
+					
+				</CodeBlock>
 			</div>
-
 			<Divider />
 			<div className='section 6'>
 				<h2>Imagery</h2>

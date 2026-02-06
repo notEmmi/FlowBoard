@@ -6,7 +6,7 @@ function NavItem({ name, icon: Icon, route }) {
 	const navigate = useNavigate();
 	return(
 		<button className='nav-item btn-link' onClick={() => navigate(route)}>
-			<Icon/>
+			<Icon className="icon"/>
 			<p>{name}</p>
 		</button>	
 	)
