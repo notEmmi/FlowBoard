@@ -47,12 +47,18 @@ export default function StyleGuide() {
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
 					font-size: 40px (desktop), 36px (tablet), 34px (mobile)
 				</CodeBlock>
+
 				<h3>Heading 3</h3>
 				<CodeBlock>
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
 					font-size: 36px (desktop), 32px (tablet), 30px (mobile)
 				</CodeBlock>
+				
 				<p>Paragraph/normal text.</p>
+				<CodeBlock>
+					font-family: 'Inter', sans-serif;<br />
+					font-size: 20px (desktop), 16px (tablet), 14px (mobile)
+				</CodeBlock>
 				<p className='tagline'>Tagline</p>
 			</div>
 
