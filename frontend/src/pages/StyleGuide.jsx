@@ -114,12 +114,12 @@ export default function StyleGuide() {
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
 				<CodeBlock>
 					
-						width: 24px;
-						height: 24px;
-						display: inline-block;
-						vertical-align: middle;
+						width: 24px; <br />
+						height: 24px; 
 					
 				</CodeBlock>
+
+				
 			</div>
 			<Divider />
 			<div className='section 6'>
