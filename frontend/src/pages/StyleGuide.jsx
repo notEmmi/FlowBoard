@@ -113,13 +113,10 @@ export default function StyleGuide() {
 				<h2>Iconography</h2>
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
 				<CodeBlock>
-					
-						width: 24px; <br />
-						height: 24px; 
-					
+						width: 32px; <br />
+						height: 32px; 	
 				</CodeBlock>
 
-				
 			</div>
 			<Divider />
 			<div className='section 6'>
