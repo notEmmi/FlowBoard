@@ -128,9 +128,9 @@ export default function StyleGuide() {
 				<h2>Forms</h2>
 				<p>Forms are used across the application for user authentication and managing projects and tasks. All forms are displayed within a modal dialog.</p>
 				<CodeBlock>
-					&lt;Modal&gt;<br />
-					Form content goes here<br />
-					&lt;/Modal&gt;
+					{'<Modal isOpen={isOpen} onClose={() => closeModal(false)} >'}<br />
+					{'Form content goes here'}<br />
+					{'</Modal>'}
 				</CodeBlock>
 				<p><b>Use cases:</b></p>
 				<ul>
@@ -144,6 +144,27 @@ export default function StyleGuide() {
 			<Divider />
 			<div className='section 8'>
 				<h2>Buttons</h2>
+				<p>Button variants:</p>
+				
+				<button className="btn-primary">Primary Button</button>
+				<CodeBlock>
+					.btn-primary - Main action button with brand accent background
+				</CodeBlock>
+				
+				<button className="btn-primary" style={{opacity: 0.8}}>Primary Hover</button>
+				<CodeBlock>
+					.btn-primary:hover - Transitions to primary brand color on hover
+				</CodeBlock>
+				
+				<button className="btn-ghost">Ghost Button</button>
+				<CodeBlock>
+					.btn-ghost - Transparent background with border, used for secondary actions
+				</CodeBlock>
+				
+				<button className="btn-link">Link Button</button>
+				<CodeBlock>
+					.btn-link - Transparent button without border, styled as a text link
+				</CodeBlock>
 			</div>
 
 			<Divider />
