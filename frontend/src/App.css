@@ -64,7 +64,7 @@ h3 {
   font-size: 36px;
 }
 
-p {
+p, code, ul {
   font-size: 20px;
 }
 
@@ -92,7 +92,7 @@ p {
     font-size: 30px;
   }
 
-  p {
+  p, code, ul {
     font-size: 16px;
   }
 
@@ -115,7 +115,7 @@ p {
     font-size: 28px;
   }
 
-  p {
+  p, code, ul {
     font-size: 14px;
   }
 
@@ -215,13 +215,13 @@ label {
   width: 100%;
 }
 
-a, .link {
+.link {
   color: var(--brand-accent);
   text-decoration: underline;
   display: inline-block;
 }
 
-a:hover, .link:hover {
+.link:hover {
   color: var(--brand-primary);
   cursor: pointer;
   transform: scale(1.03);
