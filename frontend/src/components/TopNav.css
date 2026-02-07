@@ -1,4 +1,4 @@
-.top-nav-container, .top-logo .btn-link, .top-nav {
+.top-nav-container, .top-logo .btn-logo, .top-nav {
 	display: flex;
 	flex-direction: row;
 	color: var(--bg-surface);

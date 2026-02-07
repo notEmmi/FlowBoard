@@ -121,7 +121,14 @@ export default function StyleGuide() {
 			<Divider />
 			<div className='section 6'>
 				<h2>Imagery</h2>
-			</div>
+				<p>Imagery should use a minimal, clean aesthetic that aligns with the brand.</p>
+				<p><b>Imagery should incorporate at least one of these brand colors:</b></p>
+                <div className="color-palette">
+                    <ColorSwatch name="Primary Blue" hex="#4E7ADB" usage="Main brand color, primary actions" />
+                    <ColorSwatch name="Accent Blue" hex="#3D6CF5" usage="Secondary brand, interactive elements" />
+                    <ColorSwatch name="Midnight" hex="#344C8A" usage="Dark UI elements" />
+                </div>
+            </div>
 
 			<Divider />
 			<div className='section 7'>
@@ -156,10 +163,7 @@ export default function StyleGuide() {
 					.btn-ghost - Transparent background with border, used for secondary actions
 				</CodeBlock>
 				
-				<button className="btn-link">Link Button</button>
-				<CodeBlock>
-					.btn-link - Transparent button without border, styled as a text link
-				</CodeBlock>
+
 			</div>
 
 			<Divider />
