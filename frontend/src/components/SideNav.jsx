@@ -5,7 +5,7 @@ import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-
 function NavItem({ name, icon: Icon, route }) {
 	const navigate = useNavigate();
 	return(
-		<button className='nav-item btn-link' onClick={() => navigate(route)}>
+		<button className='nav-item' onClick={() => navigate(route)}>
 			<Icon className="icon"/>
 			<p>{name}</p>
 		</button>	

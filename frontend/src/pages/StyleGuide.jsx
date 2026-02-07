@@ -128,7 +128,7 @@ export default function StyleGuide() {
 				<h2>Forms</h2>
 				<p>Forms are used across the application for user authentication and managing projects and tasks. All forms are displayed within a modal dialog.</p>
 				<CodeBlock>
-					{'<Modal isOpen={isOpen} onClose={() => closeModal(false)} >'}<br />
+					{'<Modal isOpen={isOpen} onClose={() => closeModal(false)}>'}<br />
 					{'Form content goes here'}<br />
 					{'</Modal>'}
 				</CodeBlock>
@@ -149,11 +149,6 @@ export default function StyleGuide() {
 				<button className="btn-primary">Primary Button</button>
 				<CodeBlock>
 					.btn-primary - Main action button with brand accent background
-				</CodeBlock>
-				
-				<button className="btn-primary" style={{opacity: 0.8}}>Primary Hover</button>
-				<CodeBlock>
-					.btn-primary:hover - Transitions to primary brand color on hover
 				</CodeBlock>
 				
 				<button className="btn-ghost">Ghost Button</button>
