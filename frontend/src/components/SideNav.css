@@ -5,7 +5,10 @@
   justify-content: space-evenly;
   color: var(--bg-base);
   height: calc(100dvh - var(--top-nav-height));
-
+  position: fixed;
+  left: 0;
+  top: var(--top-nav-height);
+  width: 250px;
 }
 
 .nav-item {

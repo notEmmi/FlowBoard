@@ -10,3 +10,9 @@
 	background-color: var(--brand-primary);
 	flex: 1;
 }
+
+.divider .full {
+	height: 1px;
+	background-color: var(--brand-primary);
+	flex: 1;
+}

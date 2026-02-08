@@ -45,27 +45,107 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-heading);
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 h1 {
   font-weight: bolder;
-  font-size: clamp(2rem, 10vw, 5rem);
+  font-size: 50px;
 }
 
 h2 {
-  margin-top: 0;
   font-weight: lighter;
   color: var(--text-muted);
-  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 36px;
+}
+
+p, code, ul {
+  font-size: 20px;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.caption {
+  font-size: 16px;
+  color: var(--text-muted);
+
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 46px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  p, code, ul {
+    font-size: 16px;
+  }
+
+  .caption {
+    font-size: 12px;
+  }
+  
+}
+
+@media (max-width: 375px) {
+  h1 {
+    font-size: 44px;
+  }
+
+  h2 {
+    font-size: 34px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  p, code, ul {
+    font-size: 14px;
+  }
+
+  .caption {
+    font-size: 10px;
+  }
+  
 }
 
 button {
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    border-style: none;
-    font-family: var(--font-body);
-    font-size: 1.5rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 20px;
+  margin: auto;
+  width: 100%;
+  border-style: solid;
+}
+
+@media (max-width: 768px) {
+  button {
+  font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  button {
+  font-size: 12px;
+  }
 }
 
 button:hover {
@@ -73,21 +153,31 @@ button:hover {
   transform: scale(1.03);
 }
 
-
 .app {
   margin: 0;
   padding: 0;
 }
 
-
 .page-container {
-  margin: 0;
+  margin: auto 138px;
 }
 
+@media (max-width: 768px) {
+  .page-container {
+    margin: auto 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  .page-container {
+    margin: auto 16px;
+  }
+}
 
 .btn-primary {
   background:var(--brand-accent);
   color: var(--bg-surface);
+  border-color: var(--brand-accent);
 }
 
 .btn-primary:hover {
@@ -97,12 +187,8 @@ button:hover {
 .btn-ghost {
   background: transparent;
   color: var(--brand-primary);
-  border-color: var(--brand-primary);
-}
+  border-color: var(--brand-accent)
 
-.btn-link {
-  background-color: transparent;
-  border: none;
 }
 
 .auth-form{
@@ -138,13 +224,6 @@ label {
   width: 100%;
 }
 
-.tagline {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
 .link {
   color: var(--brand-accent);
   text-decoration: underline;
@@ -159,4 +238,9 @@ label {
 
 .other-links {
   text-align: center;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
 }

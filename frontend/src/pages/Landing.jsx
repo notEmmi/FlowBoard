@@ -26,7 +26,6 @@ const Section1 = function() {
 		<>
 			<div className='section1'>
 				<div className="left">
-					
 					<h1>Plan smarter.<br></br>Build faster.</h1>
 					<h2>A project board built for builders.</h2>
 
@@ -46,9 +45,12 @@ const Section1 = function() {
 
 
 export default function Landing () {
+	const navigate = useNavigate();
+
 	return (
 		<div className="page-container landing">
 				<Section1 />
+				<p className='link' onClick={() => navigate('/styleguide')}>Style Guide</p>
 		</div>
 	)
 

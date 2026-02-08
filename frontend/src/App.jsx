@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Project from "./pages/Project";
+import StyleGuide from './pages/StyleGuide';
 import './App.css';
 
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project/:projectName" element={<Project />} />
+          <Route path='/styleguide' element={<StyleGuide />} />
         </Routes>
       </div>
     </Router>
