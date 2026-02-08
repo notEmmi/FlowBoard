@@ -122,7 +122,7 @@ export default function StyleGuide() {
 			<div className='section 6'>
 				<h2>Imagery</h2>
 				<p>Imagery should use a minimal, clean aesthetic that aligns with the brand.</p>
-				<p><b>Imagery should incorporate at least one of these brand colors:</b></p>
+				<p><b>They should incorporate at least one of these brand colors:</b></p>
                 <div className="color-palette">
                     <ColorSwatch name="Primary Blue" hex="#4E7ADB" usage="Main brand color, primary actions" />
                     <ColorSwatch name="Accent Blue" hex="#3D6CF5" usage="Secondary brand, interactive elements" />
@@ -151,29 +151,60 @@ export default function StyleGuide() {
 			<Divider />
 			<div className='section 8'>
 				<h2>Buttons</h2>
-				<p>Button variants:</p>
-				
-				<button className="btn-primary">Primary Button</button>
-				<CodeBlock>
-					.btn-primary - Main action button with brand accent background
-				</CodeBlock>
-				
-				<button className="btn-ghost">Ghost Button</button>
-				<CodeBlock>
-					.btn-ghost - Transparent background with border, used for secondary actions
-				</CodeBlock>
-				
+				<div className="buttons">		
+					<div className="button-example">
+						<button className="btn-primary">Primary Button</button>
+						<p>.btn-primary</p>
+						<p className="caption">Main action button with brand accent background</p>
+					</div>
+					
+					<div className="button-example">
+						<button className="btn-ghost">Ghost Button</button>
+						<p>.btn-ghost</p>
+						<p className="caption">Transparent background with border, used for secondary actions</p>
+					</div>
+				</div>
 
 			</div>
 
 			<Divider />
 			<div className='section 9'>
 				<h2>Spacings</h2>
+			<p>FlowBoard uses a consistent spacing system based on multiples of 8px:</p>
+			<CodeBlock>
+				8px (xs) - Small gaps, tight spacing<br />
+				16px (sm) - Standard component padding<br />
+				24px (md) - Section spacing<br />
+				32px (lg) - Major section breaks<br />
+				48px (xl) - Page-level spacing
+			</CodeBlock>
+			<p><b>Usage:</b></p>
+			<ul>
+				<li>Padding: Use 16px for most components</li>
+				<li>Margins: Use 24px between sections</li>
+				<li>Gaps: Use 8px-16px between inline elements</li>
+			</ul>
 			</div>
 			
 			<Divider />
 			<div className='section 10'>
 				<h2>Do's and Don'ts</h2>
+				<p>Keep the interface clean and consistent. Use the brand palette, clear labels, and generous spacing so content feels calm and easy to scan.</p>
+				<p><b>Do:</b></p>
+				<ul>
+					<li>Use concise, action-oriented labels</li>
+					<li>Keep layouts simple and predictable</li>
+					<li>Use consistent spacing and typography</li>
+					<li>Prioritize clarity over decoration</li>
+				</ul>
+				<p><b>Don't:</b></p>
+				<ul>
+					<li>Overload screens with too many actions</li>
+					<li>Use slang, jokes, or marketing language</li>
+					<li>Mix too many colors or visual styles</li>
+					<li>Hide key actions behind unclear icons</li>
+				</ul>
+
 			</div>
 		</div>
 	);

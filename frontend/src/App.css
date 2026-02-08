@@ -126,19 +126,32 @@ p, code, ul {
 }
 
 button {
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    border-style: none;
-    font-family: var(--font-body);
-    font-size: 1.5rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 20px;
+  margin: auto;
+  width: 100%;
+  border-style: solid;
+}
+
+@media (max-width: 768px) {
+  button {
+  font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  button {
+  font-size: 12px;
+  }
 }
 
 button:hover {
   cursor: pointer;
   transform: scale(1.03);
 }
-
 
 .app {
   margin: 0;
@@ -161,10 +174,10 @@ button:hover {
   }
 }
 
-
 .btn-primary {
   background:var(--brand-accent);
   color: var(--bg-surface);
+  border-color: var(--brand-accent);
 }
 
 .btn-primary:hover {
@@ -174,9 +187,9 @@ button:hover {
 .btn-ghost {
   background: transparent;
   color: var(--brand-primary);
-  
-}
+  border-color: var(--brand-accent)
 
+}
 
 .auth-form{
   width: 100%;

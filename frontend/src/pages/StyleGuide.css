@@ -33,5 +33,24 @@
 	text-align: center;
 }
 
+.buttons {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 30px;
+}
+
+.button-example {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+}
+
+.button-example p {
+	margin-bottom: auto;
+}
+
+.button-example .caption {
+	margin-top: 0;
+}
 
 
