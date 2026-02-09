@@ -27,7 +27,7 @@ export default function Dashboard () {
 			<div className='top'>
 				<div className='left'>
 					<h1>Dashboard</h1>
-					<h2>Your projects and boards will appear here</h2>
+					<p className='tagline'>Your projects and boards will appear here</p>
 				</div>
 				<div className='right'>
 					<button className='btn-primary'>Add Project +</button>
@@ -35,16 +35,20 @@ export default function Dashboard () {
 			</div>
 
 			<div className='projects-board'>
-				{dummy_data.map((project) => (
-					<ProjectCard 
-						key={project.name}
-						projectName={project.name}
-						task_number={project.tasks}
-						progress_number={project.progress}
-						complete_number={project.completed}
-						update_time={project.updated}
-					/>
-				))}
+				{dummy_data.length > 0 ? (
+					dummy_data.map((project) => (
+						<ProjectCard 
+							key={project.name}
+							projectName={project.name}
+							task_number={project.tasks}
+							progress_number={project.progress}
+							complete_number={project.completed}
+							update_time={project.updated}
+						/>
+					))
+				) : (
+					<p><b>No projects yet. Click "Add Project" to get started!</b></p>
+				)}
 			</div>
 
 		</div>
