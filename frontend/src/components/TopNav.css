@@ -5,20 +5,35 @@
 	align-items: center;
 }
 
-div {
-	border: solid 1px red;
-}
-
 .top-nav-container {
 	background-color: var(--ui-sidebar);
 	justify-content: space-between;
-	padding: 10px 30px;
+	padding-left: 138px;
+	padding-right: 138px;
 }
+
+@media(max-width: 768px){
+	.top-nav-container {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+}
+
+@media(max-width: 375px){
+	.top-nav-container {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+
 
 .top-nav {
 	gap: 30px;
 }
 
+.top-logo h3 {
+	margin: 0;
+}
 
 .top-logo .btn-logo {
 	gap: 10px;
