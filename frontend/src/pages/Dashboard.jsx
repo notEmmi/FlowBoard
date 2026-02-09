@@ -1,25 +1,50 @@
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
-function ProjectCard({ projectName, task_number, progress_number, complete_number, update_time }) {
+function ProjectCard({ projectName, task_number, progress_number, testing_number, complete_number, update_time }) {
 	const navigate = useNavigate();
+	const totalTasks = task_number + progress_number + testing_number + complete_number;
+	const tasksPercent = totalTasks > 0 ? (task_number / totalTasks) * 100 : 0;
+	const progressPercent = totalTasks > 0 ? (progress_number / totalTasks) * 100 : 0;
+	const testingPercent = totalTasks > 0 ? (testing_number / totalTasks) * 100 : 0;
+	const completedPercent = totalTasks > 0 ? (complete_number / totalTasks) * 100 : 0;
 
 	return (
 		<button className='project-card' onClick={() => navigate(`/project/${projectName}`)}>
 			<h3>{projectName}</h3>
-			<p><span>{task_number}</span> Tasks</p>
-			<p><span>{progress_number}</span> In Progress</p>
-			<p><span>{complete_number}</span> Completed</p>
-			<p>Last updated <span>{update_time}</span></p>
+			<div className='card-tags'>
+				<div className='tag tag-tasks'>
+					<p><span>{task_number}</span> Tasks</p>
+
+				</div>
+				<div className='tag tag-progress'>
+					<p><span>{progress_number}</span> In Progress</p>
+				</div>			
+				<div className='tag tag-testing'>
+					<p><span>{testing_number}</span> Testing</p>
+
+				</div>
+				<div className='tag tag-completed'>
+					<p><span>{complete_number}</span> Completed</p>
+				</div>
+			</div>
+			<p className='caption'>Last updated <span>{update_time}</span></p>
+			<div className='progress-bar'>
+				<div className='progress-segment segment-progress' style={{ width: `${progressPercent}%` }}></div>
+				<div className='progress-segment segment-testing' style={{ width: `${testingPercent}%` }}></div>
+				<div className='progress-segment segment-completed' style={{ width: `${completedPercent}%` }}></div>
+				<div className='progress-segment segment-tasks' style={{ width: `${tasksPercent}%` }}></div>
+			</div>
 		</button>
 	)
 }
 
 export default function Dashboard () {
 	const dummy_data = [
-		{ name: 'Project Planner', tasks: 20, progress: 3, completed: 2, updated: '6:07PM' },
-		{ name: 'Budgetting App', tasks: 4, progress: 0, completed: 1, updated: '1:15AM' },
-		{ name: 'Puzzle game', tasks: 40, progress: 0, completed: 0, updated: '2:04PM' },
+		{ name: 'Project Planner', tasks: 20, progress: 3, testing: 5, completed: 3, updated: '6:07PM' },
+		{ name: 'Budgetting App', tasks: 2, progress: 1, testing: 2, completed: 5, updated: '1:15AM' },
+		{ name: 'Puzzle game', tasks: 1, progress: 0, testing: 0, completed: 9, updated: '2:04PM' },
+		{ name: 'Mobile App', tasks: 25, progress: 8, testing: 12, completed: 25, updated: '3:45PM' },
 	]
 
 	return (
@@ -42,6 +67,7 @@ export default function Dashboard () {
 							projectName={project.name}
 							task_number={project.tasks}
 							progress_number={project.progress}
+							testing_number={project.testing}
 							complete_number={project.completed}
 							update_time={project.updated}
 						/>

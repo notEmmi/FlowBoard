@@ -16,7 +16,7 @@
 .projects-board {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 16px;
+  gap: 30px;
   margin-top: 20px;
 }
 
@@ -25,8 +25,80 @@
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 1px 2px var(--brand-primary);
+	border: 1px solid var(--brand-primary);
 }
 
 .project-card:hover {
   background-color: var(--bg-intermediate);
+}
+
+.card-tags {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tag {
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  color: var(--bg-base);
+  font-weight: bold;
+}
+
+.tag-tasks {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  border: 1px solid var(--brand-primary);
+}
+
+.tag-progress {
+  background-color: #FEDBA8;
+  color: var(--text-primary);
+  border: 1px solid #D97706;
+}
+
+.tag-testing {
+  background-color: #FEF3C7;
+  color: var(--text-primary);
+  border: 1px solid #F59E0B;
+}
+
+.tag-completed {
+  background-color: #A7F3D0;
+  color: var(--text-primary);
+  border: 1px solid #10B981;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--bg-intermediate);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 12px;
+  display: flex;
+  border: 1px solid var(--brand-primary);
+}
+
+.progress-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.segment-tasks {
+  background-color: var(--bg-base);
+}
+
+.segment-progress {
+  background-color: #FEDBA8;
+}
+
+.segment-testing {
+  background-color: #FEF3C7;
+}
+
+.segment-completed {
+  background-color: #A7F3D0;
 }

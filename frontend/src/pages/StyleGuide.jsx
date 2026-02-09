@@ -91,6 +91,7 @@ export default function StyleGuide() {
 					<ColorSwatch name="Charcoal" hex="#1C2331" usage="Primary text" />
 					<ColorSwatch name="Slate" hex="#6A7489" usage="Secondary text, muted content" />
 				</div>
+				<p className="caption">Note: Tag colors may vary from the color palette</p>
 			</div>
 
 			<Divider />
