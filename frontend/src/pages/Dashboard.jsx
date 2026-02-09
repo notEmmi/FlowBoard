@@ -14,7 +14,7 @@ function ProjectCard({ projectName, task_number, progress_number, testing_number
 			<h3>{projectName}</h3>
 			<div className='card-tags'>
 				<div className='tag tag-tasks'>
-					<p><span>{task_number}</span> Tasks</p>
+					<p><span>{task_number}</span> Planned</p>
 
 				</div>
 				<div className='tag tag-progress'>
@@ -30,10 +30,10 @@ function ProjectCard({ projectName, task_number, progress_number, testing_number
 			</div>
 			<p className='caption'>Last updated <span>{update_time}</span></p>
 			<div className='progress-bar'>
+				<div className='progress-segment segment-tasks' style={{ width: `${tasksPercent}%` }}></div>
 				<div className='progress-segment segment-progress' style={{ width: `${progressPercent}%` }}></div>
 				<div className='progress-segment segment-testing' style={{ width: `${testingPercent}%` }}></div>
 				<div className='progress-segment segment-completed' style={{ width: `${completedPercent}%` }}></div>
-				<div className='progress-segment segment-tasks' style={{ width: `${tasksPercent}%` }}></div>
 			</div>
 		</button>
 	)

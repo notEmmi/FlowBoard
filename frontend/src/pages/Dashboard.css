@@ -35,12 +35,12 @@
 .card-tags {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin: 16px 0;
+  gap: 10px;
+  width: 100%;
 }
 
 .tag {
-  padding: 8px;
+  padding: auto 8px;
   border-radius: 10px;
   text-align: center;
   color: var(--bg-base);
