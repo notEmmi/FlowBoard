@@ -28,7 +28,7 @@ export default function TopNav() {
 			<div className="top-nav-container">
 				<div className="top-logo">
 					<button onClick={() => navigate('/')} className='btn-logo'>
-						<img src={ FlowBoardIcon } alt="FlowBoard Icon" className="flowboard-icon"/>
+						<img src={ FlowBoardIcon } alt="FlowBoard Icon" className="flowboard-icon icon"/>
 						<h3>FlowBoard</h3>
 					</button>
 				</div>

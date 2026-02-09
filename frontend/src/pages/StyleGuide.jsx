@@ -113,8 +113,7 @@ export default function StyleGuide() {
 				<h2>Iconography</h2>
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
 				<CodeBlock>
-						width: 32px; <br />
-						height: 32px; 	
+						size: 50px (desktop), 32px (tablet), 24px (mobile);
 				</CodeBlock>
 
 			</div>

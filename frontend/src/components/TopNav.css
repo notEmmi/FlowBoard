@@ -5,19 +5,20 @@
 	align-items: center;
 }
 
+div {
+	border: solid 1px red;
+}
+
 .top-nav-container {
 	background-color: var(--ui-sidebar);
 	justify-content: space-between;
 	padding: 10px 30px;
 }
 
-.flowboard-icon {
-	height: 50px;
+.top-nav {
+	gap: 30px;
 }
 
-.top-nav {
-	gap: 20px;
-}
 
 .top-logo .btn-logo {
 	gap: 10px;
@@ -31,7 +32,18 @@
   border-color: var(--bg-surface);
 }
 
-.top-nav .btn-primary {
-  background-color: var(--text-primary);
+
+.top-nav .btn-ghost {
+	color: var(--bg-surface);
+	border-color: var(--bg-surface);
+	width: auto;
+	white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+	.top-nav .btn-ghost {
+		white-space: normal;
+	}
+}
+
 
