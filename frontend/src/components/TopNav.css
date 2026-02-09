@@ -3,13 +3,13 @@
 	flex-direction: row;
 	color: var(--bg-surface);
 	align-items: center;
+	gap: 30px;
 }
 
 .top-nav-container {
 	background-color: var(--ui-sidebar);
 	justify-content: space-between;
-	padding-left: 138px;
-	padding-right: 138px;
+	padding: 10px 138px;
 }
 
 @media(max-width: 768px){
@@ -26,9 +26,8 @@
 	}
 }
 
-
 .top-nav {
-	gap: 30px;
+	gap: 20px;
 }
 
 .top-logo h3 {
@@ -52,13 +51,5 @@
 	color: var(--bg-surface);
 	border-color: var(--bg-surface);
 	width: auto;
-	white-space: nowrap;
 }
-
-@media (max-width: 768px) {
-	.top-nav .btn-ghost {
-		white-space: normal;
-	}
-}
-
 
