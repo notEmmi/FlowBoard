@@ -1,20 +1,16 @@
-.side-nav-container {
+.second-nav-container {
   background-color: var(--brand-primary);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   color: var(--bg-base);
-  height: calc(100dvh - var(--top-nav-height));
-  position: fixed;
-  left: 0;
   top: var(--top-nav-height);
-  width: 250px;
+  width: 100%;
 }
 
 .nav-item {
   color: var(--bg-base);
   width: 100%;
-  padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -22,7 +18,10 @@
   background: transparent;
   cursor: pointer;
   transition: background-color 0.2s;
-  border: 1px red solid;
+}
+
+.nav-item .icon {
+  color: var(--bg-base);
 }
 
 .nav-item:hover {

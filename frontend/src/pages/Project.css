@@ -1,12 +1,17 @@
-.project {
+.project-container {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	margin: 0;
+	width: 100%;
 }
+
+
 
 .project .content {
 	width: 100%;
 	padding: 0 30px;
+	border: solid .5px red;
+
 }
 
 

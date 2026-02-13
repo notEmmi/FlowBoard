@@ -1,13 +1,12 @@
 import { useParams } from 'react-router-dom';
 import './Project.css'
-import SideNav from '../components/SideNav';
+import SecondaryNav from '../components/SecondaryNav.jsx';
 
 
 function ProjectSection({ name }) {
 	return (
 		<div className='project-section'>
-			<h2>{name}</h2>
-			<hr/>
+			<h3>{name}</h3>
 
 		</div>
 	);
@@ -18,9 +17,9 @@ export default function Project() {
 	const { projectName } = useParams();
 
 	return (
-		<div className="page-container project">
-			<SideNav />
-			<div className='content'>
+		<div className="project-container">
+			<SecondaryNav />
+			<div className='container'>
 				<h1>{projectName}</h1>
 				
 				<div className='board'>

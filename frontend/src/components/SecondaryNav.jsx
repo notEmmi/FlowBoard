@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './SideNav.css';
+import './SecondaryNav.css';
 import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-react';
 
 function NavItem({ name, icon: Icon, route }) {
@@ -12,16 +12,18 @@ function NavItem({ name, icon: Icon, route }) {
 	)
 }
 
-export default function SideNav() {
+export default function SecondaryNav() {
+
 	const items = [
-		{ name: 'All Projects', icon: LayoutDashboard, route: '/dashboard' },
-		{ name: 'Board', icon: KanbanSquare, route: '/board' },
+		{ name: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
+		{ name: 'Project', icon: KanbanSquare, route: '/board' },
+		{ name: 'Backlog', icon: KanbanSquare, route: '/backlog' },
 		{ name: 'Timeline', icon: Clock, route: '/timeline' },
 		{ name: 'Settings', icon: SlidersHorizontal, route: '/settings' }
 	];
 
 	return (
-		<div className="side-nav-container">
+		<div className="second-nav-container">
 			{items.map((item) => (
 				<NavItem
 					key={item.name}
