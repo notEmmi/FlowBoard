@@ -3,20 +3,38 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from '../components/Modal';
 
-function AddProject(isOpen, closeModal) {
+function AddProject({ isOpen, closeModal }) {
+	const [projectName, setProjectName] = useState('');
+
+	const handleAddProject = (e) => {
+		e.preventDefault();
+		if (projectName.trim()) {
+			console.log('Project added:', projectName);
+			setProjectName('');
+			closeModal(false);
+		}
+	};
 
 	return (
 		<>
-			<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
-				<form>
-					<h2>New Project</h2>
-					<input
-						type="text"
-						placeholder="Enter project name"
-					/>
+		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
+			<div className="add-project">
+				<h2>New Project</h2>
+				<form onSubmit={handleAddProject}>
+					<label>
+						Project Name
+						<input
+							type="text"
+							placeholder="Enter project name"
+							value={projectName}
+							onChange={(e) => setProjectName(e.target.value)}
+							autoFocus
+						/>
+					</label>
 					<button className="btn-primary" type="submit">Create Project</button>
 				</form>
-			</Modal>
+			</div>
+		</Modal>
 		</>
 	);
 }
@@ -78,7 +96,7 @@ export default function Dashboard () {
 					<p className='tagline'>Your projects and boards will appear here</p>
 				</div>
 				<div className='right'>
-					<button className='btn-primary' onClick={ () => setIsAddProjectOpen(true)}>Add Project +</button>
+					<button className='btn-primary' onClick={() => setIsAddProjectOpen(true)}>Add Project +</button>
 				</div>
 			</div>
 
@@ -101,7 +119,8 @@ export default function Dashboard () {
 			</div>
 
 		</div>
+
 		<AddProject isOpen={isAddProjectOpen} closeModal={setIsAddProjectOpen} />
-		</>
+	</>
 	);
 }

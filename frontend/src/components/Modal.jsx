@@ -8,7 +8,7 @@ export default function Modal({ children, isOpen, onClose }) {
 		<div className="modal-overlay" onClick={onClose}>
 			<div className="modal-content" onClick={(e) => e.stopPropagation()}>
 				<button onClick={onClose} className="modal-close">
-					<CircleX className="icon" size={24} />
+					<CircleX className="close-modal icon"/>
 				</button>
 				{children}
 			</div>
