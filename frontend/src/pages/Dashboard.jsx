@@ -1,5 +1,25 @@
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from '../components/Modal';
+
+function AddProject(isOpen, closeModal) {
+
+	return (
+		<>
+			<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
+				<form>
+					<h2>New Project</h2>
+					<input
+						type="text"
+						placeholder="Enter project name"
+					/>
+					<button className="btn-primary" type="submit">Create Project</button>
+				</form>
+			</Modal>
+		</>
+	);
+}
 
 function ProjectCard({ projectName, task_number, progress_number, testing_number, complete_number, update_time }) {
 	const navigate = useNavigate();
@@ -14,21 +34,21 @@ function ProjectCard({ projectName, task_number, progress_number, testing_number
 			<h3>{projectName}</h3>
 			<div className='card-tags'>
 				<div className='tag tag-tasks'>
-					<p><span>{task_number}</span> Planned</p>
+					<p className='caption'>{task_number} Planned</p>
 
 				</div>
 				<div className='tag tag-progress'>
-					<p><span>{progress_number}</span> In Progress</p>
+					<p className='caption'>{progress_number} In Progress</p>
 				</div>			
 				<div className='tag tag-testing'>
-					<p><span>{testing_number}</span> Testing</p>
+					<p className='caption'>{testing_number} Testing</p>
 
 				</div>
 				<div className='tag tag-completed'>
-					<p><span>{complete_number}</span> Completed</p>
+					<p className='caption'>{complete_number} Completed</p>
 				</div>
 			</div>
-			<p className='caption'>Last updated <span>{update_time}</span></p>
+			<p className='caption'>Last updated {update_time}</p>
 			<div className='progress-bar'>
 				<div className='progress-segment segment-tasks' style={{ width: `${tasksPercent}%` }}></div>
 				<div className='progress-segment segment-progress' style={{ width: `${progressPercent}%` }}></div>
@@ -40,6 +60,8 @@ function ProjectCard({ projectName, task_number, progress_number, testing_number
 }
 
 export default function Dashboard () {
+	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
+
 	const dummy_data = [
 		{ name: 'Project Planner', tasks: 20, progress: 3, testing: 5, completed: 3, updated: '6:07PM' },
 		{ name: 'Budgetting App', tasks: 2, progress: 1, testing: 2, completed: 5, updated: '1:15AM' },
@@ -48,6 +70,7 @@ export default function Dashboard () {
 	]
 
 	return (
+		<>
 		<div className="page-container dashboard">
 			<div className='top'>
 				<div className='left'>
@@ -55,7 +78,7 @@ export default function Dashboard () {
 					<p className='tagline'>Your projects and boards will appear here</p>
 				</div>
 				<div className='right'>
-					<button className='btn-primary'>Add Project +</button>
+					<button className='btn-primary' onClick={ () => setIsAddProjectOpen(true)}>Add Project +</button>
 				</div>
 			</div>
 
@@ -78,5 +101,7 @@ export default function Dashboard () {
 			</div>
 
 		</div>
+		<AddProject isOpen={isAddProjectOpen} closeModal={setIsAddProjectOpen} />
+		</>
 	);
 }
