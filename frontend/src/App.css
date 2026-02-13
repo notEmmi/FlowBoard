@@ -191,7 +191,7 @@ button:hover {
 
 }
 
-.auth-form{
+form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -199,16 +199,18 @@ button:hover {
   gap: 20px;
 }
 
-.auth-form input{
+form input{
   padding:8px 10px;
   border-radius:6px;
   border:1px solid var(--bg-intermediate);
   width: 60%;
 }
 
-.auth-form button {
+form button {
   margin-top: 20px;
   margin-bottom: 10px;
+  width: 100%;
+
 }
 
 label {
@@ -218,10 +220,6 @@ label {
   justify-content: space-between;
   gap: 10px;
   text-align: left;
-}
-
-.auth-form button {
-  width: 100%;
 }
 
 .link {
@@ -241,6 +239,21 @@ label {
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
+  color: var(--brand-accent);
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 768px){
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 375px){
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
 }

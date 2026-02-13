@@ -3,20 +3,35 @@
 	flex-direction: row;
 	color: var(--bg-surface);
 	align-items: center;
+	gap: 30px;
 }
 
 .top-nav-container {
 	background-color: var(--ui-sidebar);
 	justify-content: space-between;
-	padding: 10px 30px;
+	padding: 10px 138px;
 }
 
-.flowboard-icon {
-	height: 50px;
+@media(max-width: 768px){
+	.top-nav-container {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+}
+
+@media(max-width: 375px){
+	.top-nav-container {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
 }
 
 .top-nav {
 	gap: 20px;
+}
+
+.top-logo h3 {
+	margin: 0;
 }
 
 .top-logo .btn-logo {
@@ -31,7 +46,10 @@
   border-color: var(--bg-surface);
 }
 
-.top-nav .btn-primary {
-  background-color: var(--text-primary);
+
+.top-nav .btn-ghost {
+	color: var(--bg-surface);
+	border-color: var(--bg-surface);
+	width: auto;
 }
 
