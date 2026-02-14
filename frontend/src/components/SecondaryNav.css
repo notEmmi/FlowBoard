@@ -1,11 +1,24 @@
 .second-nav-container {
   background-color: var(--brand-primary);
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  color: var(--bg-base);
-  top: var(--top-nav-height);
-  width: 100%;
+  padding: 0 64px;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .second-nav-container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  .second-nav-container {
+    padding: 0 16px;
+  }
+
+  .nav-item p {
+    display: none;
+  }
 }
 
 .nav-item {

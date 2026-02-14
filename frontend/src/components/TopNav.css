@@ -9,7 +9,7 @@
 .top-nav-container {
 	background-color: var(--ui-sidebar);
 	justify-content: space-between;
-	padding: 10px 138px;
+	padding: 10px 64px;
 }
 
 @media(max-width: 768px){

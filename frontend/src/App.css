@@ -159,7 +159,7 @@ button:hover {
 }
 
 .page-container {
-  margin: auto 138px;
+  margin: auto 64px;
 }
 
 @media (max-width: 768px) {
@@ -242,6 +242,8 @@ label {
   color: var(--brand-accent);
   width: 50px;
   height: 50px;
+	stroke-width: 1.5;
+
 }
 
 @media (max-width: 768px){

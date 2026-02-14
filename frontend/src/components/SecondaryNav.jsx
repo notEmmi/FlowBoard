@@ -15,7 +15,6 @@ function NavItem({ name, icon: Icon, route }) {
 export default function SecondaryNav() {
 
 	const items = [
-		{ name: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
 		{ name: 'Project', icon: KanbanSquare, route: '/board' },
 		{ name: 'Backlog', icon: KanbanSquare, route: '/backlog' },
 		{ name: 'Timeline', icon: Clock, route: '/timeline' },
