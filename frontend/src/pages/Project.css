@@ -17,12 +17,12 @@
 	background-color: var(--bg-base);
 	flex: 1;
 	border-radius: 8px;
-	padding: 16px;
+	/* padding: 16px; */
 	gap: 8px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.project-section p:first-child {
+.project-section .section-label {
 	color: var(--text-heading);
 	margin: 0;
 	padding: 8px 0;
@@ -45,7 +45,6 @@
 	scrollbar-width: thin;
 	scrollbar-color: var(--ui-sidebar) var(--bg-surface);
 }
-
 
 .project-card {
 	background-color: var(--bg-surface);

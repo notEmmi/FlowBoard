@@ -5,26 +5,14 @@ import SecondaryNav from '../components/SecondaryNav.jsx';
 function TaskCard({ task }) {
 	return (
 		<div className='project-card'>
-			<h4 style={{ margin: '0 0 8px 0', fontSize: '14px', color: 'var(--text-heading)' }}>
+			<p className='caption'>
 				{task.title}
-			</h4>
-			{task.description && (
-				<p style={{ margin: '0 0 12px 0', fontSize: '12px', color: 'var(--text-body)', lineHeight: '1.4' }}>
-					{task.description}
-				</p>
-			)}
-			<div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+			</p>
+			<div className='project-card-tags'>
 				{task.tags && task.tags.map((tag, index) => (
 					<span 
 						key={index}
-						style={{ 
-							fontSize: '10px', 
-							padding: '4px 8px', 
-							borderRadius: '4px',
-							backgroundColor: 'var(--ui-sidebar)',
-							color: 'var(--text-caption)',
-							fontWeight: '500'
-						}}
+						className='project-card-tag'
 					>
 						{tag}
 					</span>
@@ -37,7 +25,7 @@ function TaskCard({ task }) {
 function ProjectSection({ name, tasks }) {
 	return (
 		<div className='project-section'>
-			<p><b>{name}</b></p>
+			<p className='section-label'><b>{name}</b></p>
 			<div className='project-section-cards'>
 				{tasks.map((task) => (
 					<TaskCard key={task.id} task={task} />
