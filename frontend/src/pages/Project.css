@@ -1,15 +1,14 @@
 .project-board {
 	margin: 24px 0;
-	width: 100%;
+	max-width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: flex-start;
-	background-color: var(--bg-surface);
-	border-radius: 12px;
-	min-height: calc(100vh - var(--top-nav-height) - 150px);
+	background-color: var(--bg-intermediate);
+	border-radius: 16px;
 	padding: 16px;
-	gap: 16px;
+	gap: 8px;
 }
 
 .project-section {
@@ -17,16 +16,13 @@
 	flex-direction: column;
 	background-color: var(--bg-base);
 	flex: 1;
-	min-width: 0;
 	border-radius: 8px;
-	padding: 12px;
-	gap: 12px;
+	padding: 16px;
+	gap: 8px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .project-section p:first-child {
-	font-weight: 600;
-	font-size: 14px;
 	color: var(--text-heading);
 	margin: 0;
 	padding: 8px 0;
@@ -34,6 +30,7 @@
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 	flex-shrink: 0;
+	text-align: center;
 }
 
 .project-section-cards {
@@ -44,25 +41,11 @@
 	overflow-y: auto;
 	max-height: calc(100vh - var(--top-nav-height) - 300px);
 	padding-right: 4px;
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+	scrollbar-color: var(--ui-sidebar) var(--bg-surface);
 }
 
-.project-section-cards::-webkit-scrollbar {
-	width: 6px;
-}
-
-.project-section-cards::-webkit-scrollbar-track {
-	background: var(--bg-surface);
-	border-radius: 3px;
-}
-
-.project-section-cards::-webkit-scrollbar-thumb {
-	background: var(--ui-divider);
-	border-radius: 3px;
-}
-
-.project-section-cards::-webkit-scrollbar-thumb:hover {
-	background: var(--text-caption);
-}
 
 .project-card {
 	background-color: var(--bg-surface);

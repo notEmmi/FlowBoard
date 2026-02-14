@@ -37,7 +37,7 @@ function TaskCard({ task }) {
 function ProjectSection({ name, tasks }) {
 	return (
 		<div className='project-section'>
-			<p>{name}</p>
+			<p><b>{name}</b></p>
 			<div className='project-section-cards'>
 				{tasks.map((task) => (
 					<TaskCard key={task.id} task={task} />
@@ -126,11 +126,13 @@ export default function Project() {
 		<>
 			<SecondaryNav currentView="board" />
 
-			<div className="page-container">
-				<h1>{projectName}</h1>
-				<p className='tagline'>Project Board</p>
-				<p className='caption'>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-				
+			<div className="page-container project">
+				<div className='top'>
+					<h1>{projectName}</h1>
+					<p className='tagline'>Project Board</p>
+					<p className='caption'>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+					<button className='btn-primary'>Add Task</button>
+				</div>
 				
 				<div className='project-board'>
 					<ProjectSection name='Planned' tasks={dummyTasks.planned} />

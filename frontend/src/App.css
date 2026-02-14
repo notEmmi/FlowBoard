@@ -160,6 +160,7 @@ button:hover {
 
 .page-container {
   margin: auto 64px;
+  height: 100%;
 }
 
 @media (max-width: 768px) {
