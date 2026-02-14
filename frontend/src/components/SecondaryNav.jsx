@@ -7,7 +7,7 @@ function NavItem({ name, icon: Icon, route }) {
 	return(
 		<button className='nav-item' onClick={() => navigate(route)}>
 			<Icon className="icon"/>
-			<p>{name}</p>
+			<p className='caption'>{name}</p>
 		</button>	
 	)
 }

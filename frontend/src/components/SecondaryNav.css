@@ -15,10 +15,6 @@
   .second-nav-container {
     padding: 0 16px;
   }
-
-  .nav-item p {
-    display: none;
-  }
 }
 
 .nav-item {
@@ -40,4 +36,8 @@
 .nav-item:hover {
   background-color: var(--ui-sidebar);
 
+}
+
+.nav-item .caption {
+  color: var(--bg-base);
 }
