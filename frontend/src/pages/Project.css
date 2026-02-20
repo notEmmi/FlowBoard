@@ -55,8 +55,9 @@
 	cursor: pointer;
 	transition: transform 0.2s, box-shadow 0.2s;
 	border: 1px solid var(--ui-divider);
-	flex-shrink: 1;
-	min-height: auto;
+	flex: 0 0 auto;
+	height: auto;
+	min-height: 0;
 }
 
 .project-card-title {
@@ -68,6 +69,7 @@
 
 .project-card-description {
 	overflow: hidden;
+	margin: 0;
 }
 
 .project-card:hover {
