@@ -183,7 +183,7 @@ button:hover {
 
 .btn-primary {
   background:var(--brand-accent);
-  color: var(--bg-surface);
+  color: var(--bg-base);
   border-color: var(--brand-accent);
 }
 
