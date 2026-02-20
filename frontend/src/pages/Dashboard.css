@@ -69,20 +69,22 @@
 .card-tags {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  width: 100%;
+  gap: 8px;
 }
 
 .tag {
-	background-color: var(--brand-primary);
-  border-radius: 10px;
+	background-color: transparent;
+  border-radius: 12px;
   text-align: center;
   white-space: nowrap;
+  border: 2px solid var(--brand-primary);
+  color: var(--brand-primary);
 }
 
 .tag .caption {
-  color: var(--bg-base);
+  color: var(--brand-primary);
   font-weight: bold;
+  margin: 8px;
 }
 
 
