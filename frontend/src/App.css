@@ -134,6 +134,7 @@ button {
   margin: auto;
   width: 100%;
   border-style: solid;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {

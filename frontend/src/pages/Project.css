@@ -1,14 +1,16 @@
 .project-board {
 	margin: 24px 0;
 	max-width: 100%;
+	height: min(70vh, 720px);
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: stretch;
 	background-color: var(--bg-intermediate);
 	border-radius: 16px;
 	padding: 16px;
 	gap: 8px;
+	overflow: hidden;
 }
 
 .project-section {
@@ -17,6 +19,8 @@
 	background-color: var(--bg-base);
 	flex: 1;
 	min-width: 0;
+	min-height: 0;
+	height: 100%;
 	border-radius: 8px;
 	padding: 16px;
 	gap: 8px;
@@ -37,9 +41,12 @@
 .project-section-cards {
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	min-height: 0;
 	gap: 12px;
 	padding: 0 4px;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .project-card {
@@ -88,13 +95,13 @@
 	padding: 4px 12px;
 	border-radius: 12px;
 	font-size: 16px;
-	font-weight: 500;
 	white-space: nowrap;
 }
 
 /* Tablet view */
 @media (max-width: 768px) {
 	.project-board {
+		height: min(70vh, 900px);
 		padding: 12px;
 		gap: 12px;
 		flex-wrap: wrap;
@@ -103,10 +110,7 @@
 	.project-section {
 		flex: 1 1 calc(50% - 6px);
 		min-width: calc(50% - 6px);
-	}
-
-	.project-section-cards {
-		max-height: calc(50vh - 150px);
+		height: calc((100% - 12px) / 2);
 	}
 
 	.project-card-tag {
@@ -117,13 +121,15 @@
 /* Mobile view */
 @media (max-width: 375px) {
 	.project-board {
+		height: 70vh;
 		padding: 8px;
 		gap: 8px;
 		flex-direction: column;
+		flex-wrap: nowrap;
 	}
 
 	.project-section {
-		flex: 1 1 100%;
+		flex: 1 1 0;
 		width: 100%;
 		min-width: 100%;
 		padding: 10px;
@@ -134,7 +140,6 @@
 	}
 
 	.project-section-cards {
-		max-height: 200px;
 		gap: 8px;
 	}
 

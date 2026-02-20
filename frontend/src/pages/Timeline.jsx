@@ -11,11 +11,8 @@ export default function Timeline() {
 
 			<div className="page-container">
 				<div className='project-content'>
-					<h1>{projectName} - Timeline</h1>
-					
-					<div className='timeline-content'>
-						<p>Project timeline will be displayed here.</p>
-					</div>
+					<h1>{projectName}</h1>
+					<p className='tagline'>Project Timeline</p>
 
 				</div>
 			</div>

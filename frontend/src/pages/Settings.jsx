@@ -11,11 +11,9 @@ export default function Settings() {
 
 			<div className="page-container">
 				<div className='project-content'>
-					<h1>{projectName} - Settings</h1>
-					
-					<div className='settings-content'>
-						<p>Project-specific settings will be displayed here.</p>
-					</div>
+					<h1>{projectName}</h1>
+					<p className='tagline'>Project Settings</p>
+				
 
 				</div>
 			</div>
