@@ -85,21 +85,6 @@
   font-weight: bold;
 }
 
-.tag-tasks {
-  color: var(--text-primary);
-}
-
-.tag-progress {
-  color: var(--text-primary);
-}
-
-.tag-testing {
-  color: var(--text-primary);
-}
-
-.tag-completed {
-  color: var(--text-primary);
-}
 
 .progress-bar {
   width: 100%;
