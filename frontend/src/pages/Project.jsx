@@ -5,8 +5,11 @@ import SecondaryNav from '../components/SecondaryNav.jsx';
 function TaskCard({ task }) {
 	return (
 		<div className='project-card'>
-			<p className='caption'>
-				{task.title}
+			<p className='project-card-title'>
+				<b>{task.id}. {task.title}</b>
+			</p>
+			<p className='project-card-description caption'>
+				{task.description}
 			</p>
 			<div className='project-card-tags'>
 				{task.tags && task.tags.map((tag, index) => (
