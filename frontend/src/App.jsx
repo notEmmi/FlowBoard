@@ -7,6 +7,9 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Project from "./pages/Project";
+import Backlog from "./pages/Backlog";
+import Timeline from "./pages/Timeline";
+import Settings from "./pages/Settings";
 import StyleGuide from './pages/StyleGuide';
 import './App.css';
 
@@ -59,6 +62,9 @@ export default function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project/:projectName" element={<Project />} />
+          <Route path="/project/:projectName/backlog" element={<Backlog />} />
+          <Route path="/project/:projectName/timeline" element={<Timeline />} />
+          <Route path="/project/:projectName/settings" element={<Settings />} />
           <Route path='/styleguide' element={<StyleGuide />} />
         </Routes>
       </div>

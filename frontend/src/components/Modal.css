@@ -65,7 +65,3 @@
 .modal-close:hover {
 	color: var(--brand-primary);
 }
-
-.close-icon {
-	stroke-width: 1.5;
-}
