@@ -42,9 +42,6 @@ function AddProject({ isOpen, closeModal }) {
 function ProjectCard({ projectName, task_number, progress_number, testing_number, complete_number, update_time }) {
 	const navigate = useNavigate();
 	const totalTasks = task_number + progress_number + testing_number + complete_number;
-	const tasksPercent = totalTasks > 0 ? (task_number / totalTasks) * 100 : 0;
-	const progressPercent = totalTasks > 0 ? (progress_number / totalTasks) * 100 : 0;
-	const testingPercent = totalTasks > 0 ? (testing_number / totalTasks) * 100 : 0;
 	const completedPercent = totalTasks > 0 ? (complete_number / totalTasks) * 100 : 0;
 
 	return (
@@ -68,9 +65,6 @@ function ProjectCard({ projectName, task_number, progress_number, testing_number
 			</div>
 			<p className='caption'>Last updated {update_time}</p>
 			<div className='progress-bar'>
-				<div className='progress-segment segment-tasks' style={{ width: `${tasksPercent}%` }}></div>
-				<div className='progress-segment segment-progress' style={{ width: `${progressPercent}%` }}></div>
-				<div className='progress-segment segment-testing' style={{ width: `${testingPercent}%` }}></div>
 				<div className='progress-segment segment-completed' style={{ width: `${completedPercent}%` }}></div>
 			</div>
 		</button>

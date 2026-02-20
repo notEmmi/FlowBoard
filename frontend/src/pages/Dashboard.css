@@ -29,22 +29,36 @@
 }
 
 .projects-board {
+  background-color: var(--bg-intermediate);
+  border-radius: 16px;
+  padding: 16px;
+	height: min(70vh, 720px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
   margin-top: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	align-content: start;
 }
 
 .project-card {
-  background: var(--bg-surface);
+  background-color: var(--bg-base);
   padding: 16px;
   border-radius: 8px;
-  box-shadow: 0 1px 2px var(--brand-primary);
-	border: 1px solid var(--brand-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--bg-surface);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
 }
 
 .project-card:hover {
-  background-color: var(--bg-intermediate);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.project-card h3 {
+  margin: 0 0 12px;
 }
 
 .card-tags {
@@ -55,6 +69,8 @@
 }
 
 .tag {
+	background-color: var(--bg-surface);
+	border: 1px solid var(--brand-primary);
   border-radius: 10px;
   text-align: center;
   white-space: nowrap;
@@ -65,37 +81,30 @@
 }
 
 .tag-tasks {
-  background-color: var(--bg-base);
   color: var(--text-primary);
-  border: 1px solid var(--brand-primary);
 }
 
 .tag-progress {
-  background-color: #FEDBA8;
   color: var(--text-primary);
-  border: 1px solid #D97706;
 }
 
 .tag-testing {
-  background-color: #FEF3C7;
   color: var(--text-primary);
-  border: 1px solid #F59E0B;
 }
 
 .tag-completed {
-  background-color: #A7F3D0;
-  border: 1px solid #10B981;
+  color: var(--text-primary);
 }
 
 .progress-bar {
   width: 100%;
   height: 6px;
-  background-color: var(--bg-intermediate);
+	background-color: var(--bg-surface);
   border-radius: 2px;
   overflow: hidden;
   margin-top: 12px;
   display: flex;
-  border: 1px solid var(--brand-primary);
+	border: 1px solid var(--bg-surface);
 }
 
 .progress-segment {
@@ -103,18 +112,6 @@
   transition: width 0.3s ease;
 }
 
-.segment-tasks {
-  background-color: var(--bg-base);
-}
-
-.segment-progress {
-  background-color: #FEDBA8;
-}
-
-.segment-testing {
-  background-color: #FEF3C7;
-}
-
 .segment-completed {
-  background-color: #A7F3D0;
+  background-color: var(--status-success);
 }

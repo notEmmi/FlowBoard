@@ -49,7 +49,7 @@
 	overflow-y: auto;
 }
 
-.project-card {
+.project .project-card {
 	background-color: var(--bg-surface);
 	border-radius: 8px;
 	padding: 16px;

@@ -43,6 +43,11 @@ body {
   font-family: var(--font-body);
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-sidebar) var(--bg-base);
+}
+
 h1, h2, h3 {
   font-family: var(--font-heading);
   margin-bottom: 1rem;
