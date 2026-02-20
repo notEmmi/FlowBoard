@@ -43,6 +43,11 @@ body {
   font-family: var(--font-body);
 }
 
+h1, h2, h3, p, li, span, a, label, button {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--ui-sidebar) var(--bg-base);
