@@ -1,4 +1,21 @@
 services:
+  db:
+    image: postgres:16
+    container_name: flowboard-db
+    environment:
+      POSTGRES_DB: flowboard
+      POSTGRES_USER: flowboard
+      POSTGRES_PASSWORD: flowboard
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flowboard -d flowboard"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   backend:
     build: ./backend
     container_name: flowboard-backend
@@ -6,6 +23,11 @@ services:
       - "8000:8000"
     volumes:
       - ./backend/app:/app     # live reload for backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://flowboard:flowboard@db:5432/flowboard
+    depends_on:
+      db:
+        condition: service_healthy
 
   frontend:
     build: ./frontend
@@ -17,3 +39,6 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+
+volumes:
+  db_data:
