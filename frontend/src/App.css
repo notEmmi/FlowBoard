@@ -43,6 +43,16 @@ body {
   font-family: var(--font-body);
 }
 
+h1, h2, h3, p, li, span, a, label, button {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-sidebar) var(--bg-base);
+}
+
 h1, h2, h3 {
   font-family: var(--font-heading);
   margin-bottom: 1rem;
@@ -178,7 +188,7 @@ button:hover {
 
 .btn-primary {
   background:var(--brand-accent);
-  color: var(--bg-surface);
+  color: var(--bg-base);
   border-color: var(--brand-accent);
 }
 
