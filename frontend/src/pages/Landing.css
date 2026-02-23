@@ -1,0 +1,45 @@
+.landing {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Section 1 */
+
+.landing .section1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 40px;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .landing .section1 {
+    flex-direction: column;
+  }
+}
+
+.landing .section1 .left {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.landing .section1 .left .ctas {
+  width: 100%;
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+.landing .section1 .left .ctas button {
+  margin-left: 0;
+}
+
+.landing .section1 .right img{
+  width: 100%;
+}

@@ -1,0 +1,56 @@
+.style-guide .section {
+	margin-bottom: 50px;
+}
+
+.code-block {
+	background-color: var(--bg-surface);
+	padding: 20px;
+}
+
+.color-palette {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 30px;
+	margin-top: 20px;
+}
+
+.color-swatch {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.color-swatch .color {
+	width: 100%;
+	height: 120px;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch p {
+	margin: 0;
+	text-align: center;
+}
+
+.buttons {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 30px;
+}
+
+.button-example {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+}
+
+.button-example p {
+	margin-bottom: auto;
+}
+
+.button-example .caption {
+	margin-top: 0;
+}
+
+

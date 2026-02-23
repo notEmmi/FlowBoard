@@ -1,0 +1,55 @@
+.top-nav-container, .top-logo .btn-logo, .top-nav {
+	display: flex;
+	flex-direction: row;
+	color: var(--bg-surface);
+	align-items: center;
+	gap: 30px;
+}
+
+.top-nav-container {
+	background-color: var(--ui-sidebar);
+	justify-content: space-between;
+	padding: 10px 64px;
+}
+
+@media(max-width: 768px){
+	.top-nav-container {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+}
+
+@media(max-width: 375px){
+	.top-nav-container {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+
+.top-nav {
+	gap: 20px;
+}
+
+.top-logo h3 {
+	margin: 0;
+}
+
+.top-logo .btn-logo {
+	gap: 10px;
+	color: var(--bg-surface);
+	background-color: transparent;
+	border: none;
+}
+
+.top-nav .btn-logo {
+  color: var(--bg-surface);
+  border-color: var(--bg-surface);
+}
+
+
+.top-nav .btn-ghost {
+	color: var(--bg-surface);
+	border-color: var(--bg-surface);
+	width: auto;
+}
+

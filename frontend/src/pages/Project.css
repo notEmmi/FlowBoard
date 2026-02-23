@@ -1,0 +1,151 @@
+.project-board {
+	margin: 24px 0;
+	max-width: 100%;
+	height: min(70vh, 720px);
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	background-color: var(--bg-intermediate);
+	border-radius: 16px;
+	padding: 16px;
+	gap: 8px;
+}
+
+.project-section {
+
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-base);
+	flex: 1;
+	min-width: 0;
+	min-height: 0;
+	border-radius: 8px;
+	padding: 16px;
+	gap: 8px;
+}
+
+.project-section .section-label {
+	color: var(--text-heading);
+	margin: 0;
+	padding: 8px 0;
+	border-bottom: 2px solid var(--brand-primary);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	flex-shrink: 0;
+	text-align: center;
+}
+
+.project-section-cards {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	gap: 12px;
+	padding: 0 4px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.project .project-card {
+	background-color: var(--bg-surface);
+	border-radius: 8px;
+	padding: 16px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+	transition: transform 0.2s, box-shadow 0.2s;
+	border: 1px solid var(--ui-divider);
+	flex: 0 0 auto;
+	height: auto;
+	min-height: 0;
+}
+
+.project-card-title {
+	overflow: hidden;
+	margin: 0;
+	margin-bottom: 8px;
+	color: var(--text-primary);
+}
+
+.project-card-description {
+	overflow: hidden;
+	margin: 0;
+}
+
+.project-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.project-card-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 8px;
+	overflow: hidden;
+	color: white;
+}
+
+.project-card-tag {
+	display: inline-block;
+	background-color: var(--brand-primary);
+	color: white;
+	padding: 4px 12px;
+	border-radius: 12px;
+	font-size: 16px;
+	white-space: nowrap;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+	.project-board {
+		height: min(70vh, 900px);
+		padding: 12px;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.project-section {
+		flex: 1 1 calc(50% - 6px);
+		min-width: calc(50% - 6px);
+		height: calc((100% - 12px) / 2);
+	}
+
+	.project-card-tag {
+		font-size: 12px;
+	}
+}
+
+/* Mobile view */
+@media (max-width: 375px) {
+	.project-board {
+		height: 70vh;
+		padding: 8px;
+		gap: 8px;
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+
+	.project-section {
+		flex: 1 1 0;
+		width: 100%;
+		min-width: 100%;
+		padding: 10px;
+	}
+
+	.project-section p:first-child {
+		padding: 6px 0;
+	}
+
+	.project-section-cards {
+		gap: 8px;
+	}
+
+	.project-card {
+		padding: 12px;
+	}
+
+	.project-card-tag {
+		font-size: 10px;
+	}
+}
