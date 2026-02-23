@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from database import create_db_and_tables
+from routers.auth import router as auth_router
 from routers.items import router as items_router
 
 
@@ -28,3 +29,4 @@ def read_root():
 
 
 app.include_router(items_router)
+app.include_router(auth_router)

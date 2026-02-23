@@ -3,15 +3,19 @@ import './TopNav.css'
 import FlowBoardIcon from '../assets/flowboard-icon.png'
 import Login from '../pages/Login';
 import Registration from '../pages/Registration';
-import { LogIn } from 'lucide-react';
 import { useState } from 'react';
 
 
 
-export default function TopNav() {
+export default function TopNav({ isLoggedIn, onAuthSuccess, onLogout }) {
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 	const navigate = useNavigate();
+
+	function logout() {
+		onLogout?.();
+		navigate('/landing');
+	}
 
 	function switchToRegistration() {
 		setIsLoginOpen(false);
@@ -33,12 +37,21 @@ export default function TopNav() {
 					</button>
 				</div>
 				<div className="top-nav">
-					<button onClick={() => setIsLoginOpen(true)} className='btn-ghost'>Sign In</button>
-					<button onClick={() => setIsRegistrationOpen(true)} className='btn-ghost'>Create Account</button>
+					{isLoggedIn ? (
+						<>
+							<button onClick={() => navigate('/dashboard')} className='btn-ghost'>Dashboard</button>
+							<button onClick={logout} className='btn-ghost'>Log Out</button>
+						</>
+					) : (
+						<>
+							<button onClick={() => setIsLoginOpen(true)} className='btn-ghost'>Sign In</button>
+							<button onClick={() => setIsRegistrationOpen(true)} className='btn-ghost'>Create Account</button>
+						</>
+					)}
 				</div>
 			</div>
-			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration}/>
-			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin}/>
+			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration} onAuthSuccess={onAuthSuccess} />
+			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin} onAuthSuccess={onAuthSuccess} />
 		</>
 	);
 }
