@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { api } from "./api";
+import { api, clearAccessToken, getAccessToken } from "./api";
 
 import TopNav from './components/TopNav';
 import Home from "./pages/Home";
@@ -14,8 +14,17 @@ import StyleGuide from './pages/StyleGuide';
 import './App.css';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(getAccessToken()));
   const topbarRef = useRef(null);
+
+  function handleAuthSuccess() {
+    setIsLoggedIn(true);
+  }
+
+  function handleLogout() {
+    clearAccessToken();
+    setIsLoggedIn(false);
+  }
 
   /* Test API */
   useEffect (() => {
@@ -55,11 +64,11 @@ export default function App() {
     <Router>
       <div className='app'>
         <div ref={topbarRef}>
-          <TopNav isLoggedIn={isLoggedIn}/>
+          <TopNav isLoggedIn={isLoggedIn} onAuthSuccess={handleAuthSuccess} onLogout={handleLogout} />
         </div>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
-          <Route path="/landing" element={<Landing />} />
+          <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project/:projectName" element={<Project />} />
           <Route path="/project/:projectName/backlog" element={<Backlog />} />
