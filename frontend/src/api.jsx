@@ -57,3 +57,19 @@ export async function login(payload) {
 
   return data;
 }
+
+
+export async function requestPasswordReset(payload) {
+  return api('/api/auth/password-reset/request', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+
+export async function confirmPasswordReset(payload) {
+  return api('/api/auth/password-reset/confirm', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}

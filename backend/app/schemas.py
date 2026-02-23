@@ -46,3 +46,18 @@ class TokenOut(BaseModel):
 
     class Config:
         from_attributes = False
+
+
+class PasswordResetRequestIn(BaseModel):
+    email: EmailStr
+
+    class Config:
+        from_attributes = False
+
+
+class PasswordResetIn(BaseModel):
+    token: str
+    new_password: str
+
+    class Config:
+        from_attributes = False

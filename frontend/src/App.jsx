@@ -11,6 +11,7 @@ import Backlog from "./pages/Backlog";
 import Timeline from "./pages/Timeline";
 import Settings from "./pages/Settings";
 import StyleGuide from './pages/StyleGuide';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 export default function App() {
@@ -69,6 +70,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project/:projectName" element={<Project />} />
           <Route path="/project/:projectName/backlog" element={<Backlog />} />
