@@ -7,7 +7,7 @@ import Registration from './Registration';
 
 
 
-const Section1 = function() {
+const Section1 = function({ onAuthSuccess }) {
 	const navigate = useNavigate();
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
@@ -37,19 +37,19 @@ const Section1 = function() {
 					<img src={ HeroImage } alt="Hero" className='hero-image' />
 				</div>
 			</div>
-			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration} />
-			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin} />
+			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration} onAuthSuccess={onAuthSuccess} />
+			<Registration isOpen={isRegistrationOpen} closeModal={setIsRegistrationOpen} onSwitchToLogin={switchToLogin} onAuthSuccess={onAuthSuccess} />
 		</>
 	);
 }
 
 
-export default function Landing () {
+export default function Landing ({ onAuthSuccess }) {
 	const navigate = useNavigate();
 
 	return (
 		<div className="page-container landing">
-				<Section1 />
+				<Section1 onAuthSuccess={onAuthSuccess} />
 				<p className='link' onClick={() => navigate('/styleguide')}>Style Guide</p>
 		</div>
 	)
