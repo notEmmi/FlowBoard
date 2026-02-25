@@ -1,6 +1,6 @@
 import "./StyleGuide.css";
 import Divider from "../components/Divider";
-import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-react';<br />
+import Alert from "../components/Alerts";
 
 function ColorSwatch({ name, hex, usage }) {
 	return (
@@ -27,7 +27,7 @@ export default function StyleGuide() {
 			<h1>Style Guide</h1>
 			<p className='tagline'>Welcome to the Style Guide page. This page defines the visual and voice guidelines for Flowboard.</p>
 			
-			<div className='section 1'>
+			<div className='section brand-section'>
 				<h2>Brand</h2>
 				<p>
 				FlowBoard is a simple project planner built for developers who want to stay focused and make steady progress without overwhelm.
@@ -36,7 +36,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 2'>
+			<div className='section typography-section'>
 				<h2>Typography</h2>
 				<h1>Heading 1</h1>
 				<CodeBlock>
@@ -77,7 +77,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider/>
-			<div className='section 3'>
+			<div className='section'>
 				<h2>Color Palette</h2>
 				<div className="color-palette">
 					<ColorSwatch name="Frost" hex="#F2F4F8" usage="Primary background" />
@@ -95,7 +95,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 4'>
+			<div className='section'>
 				<h2>Voice</h2>
 				<p><b>Straightforward, Calm, and Minimal.</b></p>
 
@@ -110,16 +110,13 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 5'>
+			<div className='section'>
 				<h2>Iconography</h2>
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
-				<CodeBlock>
-						size: 50px (desktop), 32px (tablet), 24px (mobile);
-				</CodeBlock>
 
 			</div>
 			<Divider />
-			<div className='section 6'>
+			<div className='section'>
 				<h2>Imagery</h2>
 				<p>Imagery should use a minimal, clean aesthetic that aligns with the brand.</p>
 				<p><b>They should incorporate at least one of these brand colors:</b></p>
@@ -131,7 +128,7 @@ export default function StyleGuide() {
             </div>
 
 			<Divider />
-			<div className='section 7'>
+			<div className='section'>
 				<h2>Forms</h2>
 				<p>Forms are used across the application for user authentication and managing projects and tasks. All forms are displayed within a modal dialog.</p>
 				<CodeBlock>
@@ -139,17 +136,28 @@ export default function StyleGuide() {
 					{'Form content goes here'}<br />
 					{'</Modal>'}
 				</CodeBlock>
-				<p><b>Use cases:</b></p>
-				<ul>
-					<li>Authentication (login, registration)</li>
-					<li>Creating projects</li>
-					<li>Adding tasks</li>
-					<li>Editing projects and tasks</li>
-				</ul>
 			</div>
 
 			<Divider />
-			<div className='section 8'>
+			<div className='section'>
+				<h2>Alerts</h2>
+				<p>Alerts are used to give extra info to users if needed, such as success messages, warning messages, errors, and any additional info.</p>
+				<div className="alerts-example">
+					
+					<Alert type="success">This is a success message.</Alert>
+					
+					<Alert type={"warning"}>This is a warning message.</Alert>				
+					
+					<Alert type={"error"}>This is a error message.</Alert>
+					
+					<Alert type={"info"}>This is additional information.</Alert>
+				</div>
+
+			</div>
+
+
+			<Divider />
+			<div className='section'>
 				<h2>Buttons</h2>
 				<div className="buttons">		
 					<div className="button-example">
