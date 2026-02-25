@@ -224,6 +224,11 @@ form input{
   width: 60%;
 }
 
+form input:focus {
+  outline: 2px solid var(--ui-sidebar);
+
+}
+
 form button {
   margin-top: 20px;
   margin-bottom: 10px;

@@ -33,3 +33,15 @@
 	color: var(--status-error);
 	background-color: var(--status-error-muted);
 }
+
+.alert p {
+	font-size: 16px;
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
+
+	@media (max-width: 375px){
+		font-size: 10px
+	}
+}
