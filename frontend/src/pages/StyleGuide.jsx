@@ -27,7 +27,7 @@ export default function StyleGuide() {
 			<h1>Style Guide</h1>
 			<p className='tagline'>Welcome to the Style Guide page. This page defines the visual and voice guidelines for Flowboard.</p>
 			
-			<div className='section 1'>
+			<div className='section brand-section'>
 				<h2>Brand</h2>
 				<p>
 				FlowBoard is a simple project planner built for developers who want to stay focused and make steady progress without overwhelm.
@@ -36,7 +36,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 2'>
+			<div className='section typography-section'>
 				<h2>Typography</h2>
 				<h1>Heading 1</h1>
 				<CodeBlock>
@@ -77,7 +77,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider/>
-			<div className='section 3'>
+			<div className='section'>
 				<h2>Color Palette</h2>
 				<div className="color-palette">
 					<ColorSwatch name="Frost" hex="#F2F4F8" usage="Primary background" />
@@ -95,7 +95,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 4'>
+			<div className='section'>
 				<h2>Voice</h2>
 				<p><b>Straightforward, Calm, and Minimal.</b></p>
 
@@ -110,7 +110,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 5'>
+			<div className='section'>
 				<h2>Iconography</h2>
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
 				<CodeBlock>
@@ -119,7 +119,7 @@ export default function StyleGuide() {
 
 			</div>
 			<Divider />
-			<div className='section 6'>
+			<div className='section'>
 				<h2>Imagery</h2>
 				<p>Imagery should use a minimal, clean aesthetic that aligns with the brand.</p>
 				<p><b>They should incorporate at least one of these brand colors:</b></p>
@@ -131,7 +131,7 @@ export default function StyleGuide() {
             </div>
 
 			<Divider />
-			<div className='section 7'>
+			<div className='section'>
 				<h2>Forms</h2>
 				<p>Forms are used across the application for user authentication and managing projects and tasks. All forms are displayed within a modal dialog.</p>
 				<CodeBlock>
@@ -149,7 +149,7 @@ export default function StyleGuide() {
 			</div>
 
 			<Divider />
-			<div className='section 8'>
+			<div className='section'>
 				<h2>Buttons</h2>
 				<div className="buttons">		
 					<div className="button-example">
