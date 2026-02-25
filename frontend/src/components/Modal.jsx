@@ -1,4 +1,4 @@
-import { X ,SquareX, CircleX } from 'lucide-react';
+import { X } from 'lucide-react';
 import './Modal.css';
 
 export default function Modal({ children, isOpen, onClose }) {
