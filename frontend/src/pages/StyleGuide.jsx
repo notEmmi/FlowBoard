@@ -1,6 +1,6 @@
 import "./StyleGuide.css";
 import Divider from "../components/Divider";
-import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal } from 'lucide-react';<br />
+import Alert from "../components/Alerts";
 
 function ColorSwatch({ name, hex, usage }) {
 	return (
@@ -113,9 +113,6 @@ export default function StyleGuide() {
 			<div className='section'>
 				<h2>Iconography</h2>
 				<p>We use icons from the <a className="link" href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide React library</a>.</p>
-				<CodeBlock>
-						size: 50px (desktop), 32px (tablet), 24px (mobile);
-				</CodeBlock>
 
 			</div>
 			<Divider />
@@ -139,14 +136,25 @@ export default function StyleGuide() {
 					{'Form content goes here'}<br />
 					{'</Modal>'}
 				</CodeBlock>
-				<p><b>Use cases:</b></p>
-				<ul>
-					<li>Authentication (login, registration)</li>
-					<li>Creating projects</li>
-					<li>Adding tasks</li>
-					<li>Editing projects and tasks</li>
-				</ul>
 			</div>
+
+			<Divider />
+			<div className='section'>
+				<h2>Alerts</h2>
+				<p>Alerts are used to give extra info to users if needed, such as success messages, warning messages, errors, and any additional info.</p>
+				<div className="alerts-example">
+					
+					<Alert type="success">This is a success message.</Alert>
+					
+					<Alert type={"warning"}>This is a warning message.</Alert>				
+					
+					<Alert type={"error"}>This is a error message.</Alert>
+					
+					<Alert type={"info"}>This is additional information.</Alert>
+				</div>
+
+			</div>
+
 
 			<Divider />
 			<div className='section'>

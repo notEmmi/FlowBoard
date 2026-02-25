@@ -14,8 +14,14 @@
   --ui-sidebar: #344C8A;      /* sidebar, nav, headers */
 
   /* Status Colors */
-  --status-success: #54D1B2;
-  --status-warning: #FFC663;
+  --status-success: #0D8B6F;
+  --status-success-muted: rgba(212, 240, 234, 0.6);
+  --status-warning: #CC8800;
+  --status-warning-muted: rgba(255, 240, 214, 0.6);
+  --status-info: #2C4A9E;
+  --status-info-muted: rgba(232, 238, 249, 0.6);
+  --status-error: #B71C1C;
+  --status-error-muted: rgba(250, 237, 213, 0.6);
 
   /* Text */
   --text-primary: #1C2331;    /* main readable text */

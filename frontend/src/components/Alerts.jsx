@@ -1,10 +1,23 @@
-export default function Alert({ type, message }) {
+import './Alerts.css';
+import {CheckCircle, TriangleAlert, Ban, Info } from 'lucide-react';
 
-	return  (
+export default function Alert({ type, children }) {
+
+	const iconMap = {
+		success: CheckCircle,
+		warning: TriangleAlert,
+		error: Ban,
+		info: Info
+	};
+
+	const Icon = iconMap[type];
+
+	return (
 		<div className={`alert alert-${type}`}>
-			<p><b>{type}</b>: {message}</p>
+			<Icon className='' />
+			<p><b>{type}</b>: {children}</p>
 		</div>
-	)
-
+	);
+	
 
 }
