@@ -257,7 +257,6 @@ label {
 }
 
 .icon {
-  color: var(--brand-accent);
   width: 50px;
   height: 50px;
 	stroke-width: 1.5;
