@@ -19,13 +19,14 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 	async function onSend(e) {
 		e.preventDefault();
 		setError('');
+		setSuccess('');
 		
 		// Email Validation
-		if (!email.trim()) {
+		if (!email) {
 			setError('Email is required.');
 			return;
 		} else if (!validEmail(email)) {
-			setError('Please enter a valid email address. (abc@xyz.com)');
+			setError('Please check your email format. It should look like: username@domain.com');
 			return;
 		}
 		
@@ -33,7 +34,7 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 
 		try {
 			await requestPasswordReset({ email });
-			setSuccess('Check your email for reset instructions.');
+			setSuccess('Thank you for your request. If the submitted email exists, you will receive an email shortly, detailing further proceedings');
 			setEmail('');
 		} catch (err) {
 			setError(err.message || 'Request failed');
@@ -58,14 +59,11 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 							type="email"
 							name="email"
 							placeholder="you@example.com"
-							onChange={(e) => setEmail(e.target.value)
+							onChange={(e) => setEmail(e.target.value.trim())
 
 							}
 						/>
 					</label>
-
-					{error && <p className='tagline'>{error}</p>}
-
 					<button type="submit" className="btn-primary" disabled={isSubmitting}>
 						{isSubmitting ? 'Sending...' : 'Send Reset Instructions'}
 					</button>
@@ -75,7 +73,6 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 				</div>
 			</div>
 		</Modal>
-		{/* <ConfirmationModal isOpen={isConfirmationOpen} closeModal={setConfirmationOpen}/> */}
 		</>
 	);
 }
