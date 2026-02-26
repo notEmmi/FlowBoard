@@ -1,7 +1,7 @@
 # FlowBoard
 A project planner for developers to stay organized and focused while tracking progress.
 
-## Run with Docker (Backend + Frontend + PostgreSQL)
+## Run with Docker (Backend + Frontend + SQLite)
 
 From the project root:
 
@@ -13,7 +13,7 @@ Services:
 - Frontend: http://localhost:5173
 - Backend: http://localhost:8000
 - API docs: http://localhost:8000/docs
-- PostgreSQL: `localhost:5432` (`flowboard` / `flowboard` / DB: `flowboard`)
+- SQLite: `localhost:5432` (`flowboard` / `flowboard` / DB: `flowboard`)
 
 ## Database setup added
 
