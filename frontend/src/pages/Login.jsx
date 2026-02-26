@@ -1,4 +1,4 @@
-import './Login.css';
+import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import ForgotPassword from './ForgotPassword.jsx';
@@ -12,7 +12,35 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	function validEmail(value) {
+		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return pattern.test(value);
+	}
+
+	function validateForm() {
+		let isValid = true;
+		const trimmedEmail = email.trim();
+		setEmailError('');
+		setPasswordError('');
+
+		if (!trimmedEmail) {
+			setEmailError('Email is required.');
+			isValid = false;
+		} else if (!validEmail(trimmedEmail)) {
+			setEmailError('Invalid email format. (e.g., name@example.com)');
+			isValid = false;
+		}
+
+		if (!password) {
+			setPasswordError('Password is required.');
+			isValid = false;
+		}
+		return isValid;
+	}
 
 	function openRegistration(){
 		if (onSwitchToRegistration) {
@@ -34,10 +62,17 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	async function authenticate(e) {
 		e.preventDefault();
 		setError('');
+		setEmailError('');
+		setPasswordError('');
+
+		if (!validateForm()) {
+			return;
+		}
+
 		setIsSubmitting(true);
 
 		try {
-			await login({ email, password });
+			await login({ email: email.trim(), password });
 			onAuthSuccess?.();
 			navigate('/dashboard');
 			closeModal(false);
@@ -56,32 +91,54 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 			<div className="login">
 					<h2>Welcome Back</h2>
 					<p className='tagline'>Access your saved projects.</p>
-					<form className="auth-form" onSubmit={authenticate}>
+					<form className="auth-form" onSubmit={authenticate} noValidate>
 						<label>
-							Email
-							<input
-								type="email"
-								name="email"
-								placeholder="you@example.com"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
+							<span>Email</span>
+							<div className='field-control'>
+								<input
+									className={emailError ? 'input-error' : ''}
+									aria-invalid={!!emailError}
+									aria-describedby={emailError ? 'login-email-error' : undefined}
+									type="email"
+									name="email"
+									placeholder="you@example.com"
+									value={email}
+									onChange={(e) => {
+										setEmail(e.target.value);
+										if (emailError) {
+											setEmailError('');
+										}
+									}}
+									required
+								/>
+								{emailError && <p id="login-email-error" className="field-error" role="alert">{emailError}</p>}
+							</div>
 						</label>
 
 						<label>
-							Password
-							<input
-								type="password"
-								name="password"
-								placeholder="Enter Password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
+							<span>Password</span>
+							<div className='field-control'>
+								<input
+									className={passwordError ? 'input-error' : ''}
+									aria-invalid={!!passwordError}
+									aria-describedby={passwordError ? 'login-password-error' : undefined}
+									type="password"
+									name="password"
+									placeholder="Enter Password"
+									value={password}
+									onChange={(e) => {
+										setPassword(e.target.value);
+										if (passwordError) {
+											setPasswordError('');
+										}
+									}}
+									required
+								/>
+								{passwordError && <p id="login-password-error" className="field-error" role="alert">{passwordError}</p>}
+							</div>
 						</label>
 
-						{error && <p className='tagline'>{error}</p>}
+						{error && <p className="field-error" role="alert">{error}</p>}
 
 						<button type="submit" className="btn-primary" disabled={isSubmitting}>
 							{isSubmitting ? 'Logging in...' : 'Login'}

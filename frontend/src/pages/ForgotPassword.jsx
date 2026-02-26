@@ -1,6 +1,6 @@
-import './ForgotPassword.css';
+import './Auth.css';
 import Modal from '../components/Modal.jsx';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { requestPasswordReset } from '../api';
 import Alert from "../components/Alerts.jsx";
 
@@ -26,7 +26,7 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 			setError('Email is required.');
 			return;
 		} else if (!validEmail(email)) {
-			setError('Please check your email format. It should look like: username@domain.com');
+			setError('Invalid email format. (e.g., name@example.com)');
 			return;
 		}
 		
@@ -48,22 +48,28 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="forgot-password">
-				{error && <Alert type='error'>{error}</Alert>}
 				{success && <Alert type='success'>{success}</Alert>}
 				<h2>Reset Password</h2>
 				<p className='tagline'>Enter the email associated with your account and we'll send you password reset instructions.</p>
 				<form className="auth-form" onSubmit={onSend} noValidate>
 					<label>
-						Email
-						<input
-							type="email"
-							name="email"
-							placeholder="you@example.com"
-							onChange={(e) => setEmail(e.target.value.trim())
-
-							}
-						/>
+						<span>Email</span>
+						<div className='field-control'>
+							<input
+								className={error ? 'input-error' : ''}
+								aria-invalid={!!error}
+								aria-describedby={error ? 'email-error' : undefined}
+								type="email"
+								name="email"
+								placeholder="you@example.com"
+								value={email}
+								onChange={(e) => setEmail(e.target.value.trim())}
+							/>
+							{error && <p id="email-error" className="field-error" role="alert">{error}</p>}
+						</div>
 					</label>
+
+
 					<button type="submit" className="btn-primary" disabled={isSubmitting}>
 						{isSubmitting ? 'Sending...' : 'Send Reset Instructions'}
 					</button>
