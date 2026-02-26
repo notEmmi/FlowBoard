@@ -245,7 +245,7 @@ form .input-error:focus {
 
 .field-error {
   margin-top: 6px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--status-error);
   line-height: 1.35;
 }
