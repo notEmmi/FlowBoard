@@ -5,6 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { login, register } from '../api';
 
+const COMMON_PASSWORDS = [
+	'password',
+	'password123',
+	'12345678',
+	'123456789',
+	'1234567890',
+	'qwerty123',
+	'letmein',
+	'welcome123',
+	'admin123',
+	'iloveyou',
+];
+
 export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAuthSuccess}) {
 	const navigate = useNavigate();
 	const [username, setUsername] = useState('');
@@ -35,12 +48,19 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		let isValid = true;
 		const trimmedUsername = username.trim();
 		const trimmedEmail = email.trim();
+		const passwordLower = password.toLowerCase();
+		const usernameLower = trimmedUsername.toLowerCase();
+		const emailLower = trimmedEmail.toLowerCase();
+		const emailLocalPart = emailLower.split('@')[0] || '';
 
 		if (!trimmedUsername) {
 			nextErrors.username = 'Username is required.';
 			isValid = false;
 		} else if (trimmedUsername.length < 3) {
 			nextErrors.username = 'Username must be at least 3 characters.';
+			isValid = false;
+		} else if (trimmedUsername.length > 30) {
+			nextErrors.username = 'Username must be 30 characters or fewer.';
 			isValid = false;
 		}
 
@@ -55,8 +75,17 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		if (!password) {
 			nextErrors.password = 'Password is required.';
 			isValid = false;
-		} else if (password.length < 8) {
-			nextErrors.password = 'Password must be at least 8 characters.';
+		} else if (password.length < 12) {
+			nextErrors.password = 'Password must be at least 12 characters.';
+			isValid = false;
+		} else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+			nextErrors.password = 'Password must include uppercase, lowercase, number, and special character.';
+			isValid = false;
+		} else if (COMMON_PASSWORDS.includes(passwordLower)) {
+			nextErrors.password = 'This password is too common. Choose a stronger one.';
+			isValid = false;
+		} else if ((usernameLower.length >= 3 && passwordLower.includes(usernameLower)) || (emailLower && passwordLower.includes(emailLower)) || (emailLocalPart.length >= 3 && passwordLower.includes(emailLocalPart))) {
+			nextErrors.password = 'Password cannot contain your username or email.';
 			isValid = false;
 		}
 
@@ -125,6 +154,8 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 								name="name"
 								placeholder="Enter username"
 								value={username}
+								minLength={3}
+								maxLength={30}
 								onChange={(e) => {
 									setUsername(e.target.value);
 									if (fieldErrors.username) {
@@ -171,6 +202,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 								name="password"
 								placeholder="Enter password"
 								value={password}
+								minLength={12}
 								onChange={(e) => {
 									setPassword(e.target.value);
 									if (fieldErrors.password || fieldErrors.confirmPassword) {
