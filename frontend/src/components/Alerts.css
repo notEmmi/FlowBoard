@@ -3,11 +3,9 @@
 	flex-direction: row;
 	align-items: center;
 	gap: 16px;
-	padding: 8px 16px;
+	padding: 0px 16px;
 	border: solid 1px;
 	border-radius: 12px;
-	max-width: 500px;
-	margin: 8px auto;
 }
 
 .alert-success {
@@ -32,4 +30,16 @@
 	border-color: var(--status-error);
 	color: var(--status-error);
 	background-color: var(--status-error-muted);
+}
+
+.alert p {
+	font-size: 16px;
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
+
+	@media (max-width: 375px){
+		font-size: 10px
+	}
 }

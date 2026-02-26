@@ -15,7 +15,7 @@ export default function Alert({ type, children }) {
 	return (
 		<div className={`alert alert-${type}`}>
 			<Icon className='' />
-			<p><b>{type}</b>: {children}</p>
+			<p><b>{type.charAt(0).toUpperCase() + type.slice(1)}</b>: {children}</p>
 		</div>
 	);
 	

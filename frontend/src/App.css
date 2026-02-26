@@ -217,11 +217,47 @@ form {
   gap: 20px;
 }
 
-form input{
+form input {
   padding:8px 10px;
   border-radius:6px;
   border:1px solid var(--bg-intermediate);
   width: 60%;
+}
+
+form .field-control {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+form .field-control input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form .input-error {
+  border: 1px solid var(--status-error);
+}
+
+form .input-error:focus {
+  outline: 2px solid var(--status-error);
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--status-error);
+  line-height: 1.35;
+}
+
+.input-error {
+  border-color: var(--status-error);
+  background-color: var(--status-error-muted);
+}
+
+form input:focus {
+  outline: 2px solid var(--ui-sidebar);
+
 }
 
 form button {
@@ -257,7 +293,6 @@ label {
 }
 
 .icon {
-  color: var(--brand-accent);
   width: 50px;
   height: 50px;
 	stroke-width: 1.5;

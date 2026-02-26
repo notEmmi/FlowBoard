@@ -1,0 +1,30 @@
+.login,
+.registration,
+.forgot-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.login h2,
+.login p,
+.registration h2,
+.registration p,
+.forgot-password h2,
+.forgot-password p {
+  align-self: flex-start;
+}
+
+.login h2,
+.registration h2,
+.forgot-password h2 {
+  margin-bottom: 0;
+  color: var(--text-primary);
+}
+
+.forgot-password {
+  text-align: start;
+  gap: 16px;
+}

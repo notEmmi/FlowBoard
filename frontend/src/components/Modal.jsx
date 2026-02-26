@@ -1,4 +1,4 @@
-import { CircleX } from 'lucide-react';
+import { X } from 'lucide-react';
 import './Modal.css';
 
 export default function Modal({ children, isOpen, onClose }) {
@@ -8,7 +8,7 @@ export default function Modal({ children, isOpen, onClose }) {
 		<div className="modal-overlay" onClick={onClose}>
 			<div className="modal-content" onClick={(e) => e.stopPropagation()}>
 				<button onClick={onClose} className="modal-close">
-					<CircleX className="close-icon icon"/>
+					<X className="close-icon icon"/>
 				</button>
 				{children}
 			</div>

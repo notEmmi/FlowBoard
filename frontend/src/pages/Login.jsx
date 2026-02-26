@@ -1,10 +1,11 @@
-import './Login.css';
+import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import ForgotPassword from './ForgotPassword.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { login } from '../api';
+import Alert from '../components/Alerts.jsx';
 
 export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onAuthSuccess}) {
 	const navigate = useNavigate();
@@ -12,7 +13,55 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	function validEmail(value) {
+		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return pattern.test(value);
+	}
+
+	function formatErrorMessage(err) {
+		const fallbackMessage = 'Login failed';
+		const rawMessage = err?.message || fallbackMessage;
+		const apiPrefixPattern = /^API\s+\d+:\s*/i;
+		const cleanedMessage = rawMessage.replace(apiPrefixPattern, '').trim();
+
+		if (cleanedMessage.startsWith('{')) {
+			try {
+				const parsed = JSON.parse(cleanedMessage);
+				if (parsed?.detail) {
+					return parsed.detail;
+				}
+			} catch {
+				return cleanedMessage || fallbackMessage;
+			}
+		}
+
+		return cleanedMessage || fallbackMessage;
+	}
+
+	function validateForm() {
+		let isValid = true;
+		const trimmedEmail = email.trim();
+		setEmailError('');
+		setPasswordError('');
+
+		if (!trimmedEmail) {
+			setEmailError('Email is required.');
+			isValid = false;
+		} else if (!validEmail(trimmedEmail)) {
+			setEmailError('Invalid email format. (e.g., name@example.com)');
+			isValid = false;
+		}
+
+		if (!password) {
+			setPasswordError('Password is required.');
+			isValid = false;
+		}
+		return isValid;
+	}
 
 	function openRegistration(){
 		if (onSwitchToRegistration) {
@@ -34,17 +83,24 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	async function authenticate(e) {
 		e.preventDefault();
 		setError('');
+		setEmailError('');
+		setPasswordError('');
+
+		if (!validateForm()) {
+			return;
+		}
+
 		setIsSubmitting(true);
 
 		try {
-			await login({ email, password });
+			await login({ email: email.trim(), password });
 			onAuthSuccess?.();
 			navigate('/dashboard');
 			closeModal(false);
 			setEmail('');
 			setPassword('');
 		} catch (err) {
-			setError(err.message || 'Login failed');
+			setError(formatErrorMessage(err));
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -54,34 +110,58 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="login">
+					{error && <Alert type='error'>{error}</Alert>}
+
 					<h2>Welcome Back</h2>
 					<p className='tagline'>Access your saved projects.</p>
-					<form className="auth-form" onSubmit={authenticate}>
+				
+					<form className="auth-form" onSubmit={authenticate} noValidate>
 						<label>
-							Email
-							<input
-								type="email"
-								name="email"
-								placeholder="you@example.com"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
+							<span>Email</span>
+							<div className='field-control'>
+								<input
+									className={emailError ? 'input-error' : ''}
+									aria-invalid={!!emailError}
+									aria-describedby={emailError ? 'login-email-error' : undefined}
+									type="email"
+									name="email"
+									placeholder="you@example.com"
+									value={email}
+									onChange={(e) => {
+										setEmail(e.target.value);
+										if (emailError) {
+											setEmailError('');
+										}
+									}}
+									required
+								/>
+								{emailError && <p id="login-email-error" className="field-error" role="alert">{emailError}</p>}
+							</div>
 						</label>
 
 						<label>
-							Password
-							<input
-								type="password"
-								name="password"
-								placeholder="Enter Password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
+							<span>Password</span>
+							<div className='field-control'>
+								<input
+									className={passwordError ? 'input-error' : ''}
+									aria-invalid={!!passwordError}
+									aria-describedby={passwordError ? 'login-password-error' : undefined}
+									type="password"
+									name="password"
+									placeholder="Enter Password"
+									value={password}
+									onChange={(e) => {
+										setPassword(e.target.value);
+										if (passwordError) {
+											setPasswordError('');
+										}
+									}}
+									required
+								/>
+								{passwordError && <p id="login-password-error" className="field-error" role="alert">{passwordError}</p>}
+							</div>
 						</label>
 
-						{error && <p className='tagline'>{error}</p>}
 
 						<button type="submit" className="btn-primary" disabled={isSubmitting}>
 							{isSubmitting ? 'Logging in...' : 'Login'}
