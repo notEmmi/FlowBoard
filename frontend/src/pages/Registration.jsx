@@ -75,11 +75,11 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		if (!password) {
 			nextErrors.password = 'Password is required.';
 			isValid = false;
-		} else if (password.length < 12) {
-			nextErrors.password = 'Password must be at least 12 characters.';
+		} else if (password.length < 8) {
+			nextErrors.password = 'Password must be at least 8 characters.';
 			isValid = false;
-		} else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
-			nextErrors.password = 'Password must include uppercase, lowercase, number, and special character.';
+		} else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+			nextErrors.password = 'Password must include uppercase, lowercase, and number.';
 			isValid = false;
 		} else if (COMMON_PASSWORDS.includes(passwordLower)) {
 			nextErrors.password = 'This password is too common. Choose a stronger one.';
@@ -202,7 +202,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 								name="password"
 								placeholder="Enter password"
 								value={password}
-								minLength={12}
+								minLength={8}
 								onChange={(e) => {
 									setPassword(e.target.value);
 									if (fieldErrors.password || fieldErrors.confirmPassword) {
