@@ -63,6 +63,18 @@ def reset_password(payload: PasswordResetIn, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == email).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
+
+    new_password_lower = payload.new_password.lower()
+    username_lower = user.username.lower()
+    email_lower = user.email.lower()
+    email_local_part = email_lower.split("@")[0] if "@" in email_lower else ""
+
+    if (
+        (len(username_lower) >= 3 and username_lower in new_password_lower)
+        or (email_lower and email_lower in new_password_lower)
+        or (len(email_local_part) >= 3 and email_local_part in new_password_lower)
+    ):
+        raise HTTPException(status_code=422, detail="Password cannot contain your username or email")
     
     user.password_hash = hash_password(payload.new_password)
     db.commit()
