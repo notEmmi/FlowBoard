@@ -2,7 +2,7 @@ import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login, register } from '../api';
 import Alert from "../components/Alerts.jsx"
 
@@ -33,6 +33,14 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		confirmPassword: '',
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setFieldErrors({ username: '', email: '', password: '', confirmPassword: '' });
+	}, [isOpen]);
 
 	function validEmail(value) {
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

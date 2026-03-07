@@ -1,6 +1,6 @@
 import './Auth.css';
 import Modal from '../components/Modal.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { requestPasswordReset } from '../api';
 import Alert from "../components/Alerts.jsx";
 
@@ -10,6 +10,14 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setSuccess('');
+	}, [isOpen]);
 
 	const validEmail = function(email) {    
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

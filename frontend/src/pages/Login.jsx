@@ -3,7 +3,7 @@ import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import ForgotPassword from './ForgotPassword.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login } from '../api';
 import Alert from '../components/Alerts.jsx';
 
@@ -16,6 +16,15 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setEmailError('');
+		setPasswordError('');
+	}, [isOpen]);
 
 	function validEmail(value) {
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
