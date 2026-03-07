@@ -90,11 +90,10 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="login">
-					{error && <Alert type='error'>{error}</Alert>}
 
 					<h2>Welcome Back</h2>
 					<p className='tagline'>Access your saved projects.</p>
-				
+					{error && <Alert type='error'>{error}</Alert>}				
 					<form className="auth-form" onSubmit={authenticate} noValidate>
 						<label>
 							<span>Email</span>

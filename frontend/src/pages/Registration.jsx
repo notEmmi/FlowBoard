@@ -141,9 +141,10 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="registration">
-				{error && <Alert type='error'>{error}</Alert>}
 				<h2>Create an Account</h2>
 				<p className='tagline'>Keep your projects safe and accessible anytime</p>
+				{error && <Alert type='error'>{error}</Alert>}
+
 				<form className="auth-form" onSubmit={authenticate} noValidate>
 					<label>
 						<span>Username</span>

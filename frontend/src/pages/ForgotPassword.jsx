@@ -48,9 +48,11 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="forgot-password">
-				{success && <Alert type='success'>{success}</Alert>}
 				<h2>Reset Password</h2>
+
 				<p className='tagline'>Enter the email associated with your account and we'll send you password reset instructions.</p>
+				{success && <Alert type='success'>{success}</Alert>}
+
 				<form className="auth-form" onSubmit={onSend} noValidate>
 					<label>
 						<span>Email</span>
