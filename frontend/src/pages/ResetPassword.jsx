@@ -100,7 +100,7 @@ export default function ResetPassword() {
 			await confirmPasswordReset({ token, new_password: newPassword });
 			navigate('/landing?login=1');
 		} catch (err) {
-			setError(err.message || 'Reset failed. Token may be expired.');
+			setError(err?.userMessage || err?.message || 'Reset failed. Token may be expired.');
 		} finally {
 			setIsSubmitting(false);
 		}

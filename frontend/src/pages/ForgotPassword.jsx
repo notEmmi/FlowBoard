@@ -37,7 +37,7 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 			setSuccess('Thank you for your request. If the submitted email exists, you will receive an email shortly, detailing further proceedings');
 			setEmail('');
 		} catch (err) {
-			setError(err.message || 'Request failed');
+			setError(err?.userMessage || err?.message || 'Request failed');
 		} finally {
 			setIsSubmitting(false);
 		}

@@ -131,7 +131,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 			setPassword('');
 			setConfirmPassword('');
 		} catch (err) {
-			setError(err.message || 'Registration failed');
+			setError(err?.userMessage || err?.message || 'Registration failed');
 		} finally {
 			setIsSubmitting(false);
 		}
