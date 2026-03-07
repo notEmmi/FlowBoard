@@ -22,26 +22,6 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 		return pattern.test(value);
 	}
 
-	function formatErrorMessage(err) {
-		const fallbackMessage = 'Login failed';
-		const rawMessage = err?.message || fallbackMessage;
-		const apiPrefixPattern = /^API\s+\d+:\s*/i;
-		const cleanedMessage = rawMessage.replace(apiPrefixPattern, '').trim();
-
-		if (cleanedMessage.startsWith('{')) {
-			try {
-				const parsed = JSON.parse(cleanedMessage);
-				if (parsed?.detail) {
-					return parsed.detail;
-				}
-			} catch {
-				return cleanedMessage || fallbackMessage;
-			}
-		}
-
-		return cleanedMessage || fallbackMessage;
-	}
-
 	function validateForm() {
 		let isValid = true;
 		const trimmedEmail = email.trim();
@@ -100,7 +80,7 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 			setEmail('');
 			setPassword('');
 		} catch (err) {
-			setError(formatErrorMessage(err));
+			setError(err?.userMessage || err?.message || 'Login failed');
 		} finally {
 			setIsSubmitting(false);
 		}

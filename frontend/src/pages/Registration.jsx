@@ -4,6 +4,7 @@ import Divider from '../components/Divider.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { login, register } from '../api';
+import Alert from "../components/Alerts.jsx"
 
 const COMMON_PASSWORDS = [
 	'password',
@@ -140,6 +141,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="registration">
+				{error && <Alert type='error'>{error}</Alert>}
 				<h2>Create an Account</h2>
 				<p className='tagline'>Keep your projects safe and accessible anytime</p>
 				<form className="auth-form" onSubmit={authenticate} noValidate>
@@ -237,8 +239,6 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 							{fieldErrors.confirmPassword && <p id="registration-confirm-password-error" className="field-error" role="alert">{fieldErrors.confirmPassword}</p>}
 						</div>
 					</label>
-
-					{error && <p className="field-error" role="alert">{error}</p>}
 
 					<button type="submit" className="btn-primary" disabled={isSubmitting}>
 						{isSubmitting ? 'Creating...' : 'Create account'}
