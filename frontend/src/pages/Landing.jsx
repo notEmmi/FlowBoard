@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Landing.css';
 import HeroImage from '../assets/hero.png'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 
 
 
-const Section1 = function({ onAuthSuccess }) {
+const Section1 = function({ onAuthSuccess, openLoginOnLoad }) {
 	const navigate = useNavigate();
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+
+	useEffect(() => {
+		if (openLoginOnLoad) {
+			setIsLoginOpen(true);
+		}
+	}, [openLoginOnLoad]);
 
 	function switchToRegistration() {
 		setIsLoginOpen(false);
@@ -46,10 +52,12 @@ const Section1 = function({ onAuthSuccess }) {
 
 export default function Landing ({ onAuthSuccess }) {
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
+	const openLoginOnLoad = searchParams.get('login') === '1';
 
 	return (
 		<div className="page-container landing">
-				<Section1 onAuthSuccess={onAuthSuccess} />
+				<Section1 onAuthSuccess={onAuthSuccess} openLoginOnLoad={openLoginOnLoad} />
 				<p className='link' onClick={() => navigate('/styleguide')}>Style Guide</p>
 		</div>
 	)

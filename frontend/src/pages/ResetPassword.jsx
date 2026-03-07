@@ -4,6 +4,7 @@ import { confirmPasswordReset } from '../api';
 import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Landing from './Landing';
+import Alert from '../components/Alerts.jsx';
 
 const COMMON_PASSWORDS = [
 	'password',
@@ -28,6 +29,7 @@ export default function ResetPassword() {
 	const [passwordError, setPasswordError] = useState('');
 	const [confirmPasswordError, setConfirmPasswordError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isResetSuccessful, setIsResetSuccessful] = useState(false);
 
 	useEffect(() => {
 		const tokenFromUrl = searchParams.get('token');
@@ -38,54 +40,51 @@ export default function ResetPassword() {
 		}
 	}, [searchParams]);
 
-	function validatePasswordPolicy(passwordValue) {
-		const passwordLower = passwordValue.toLowerCase();
-		const usernameHint = (searchParams.get('username') || '').trim().toLowerCase();
-		const emailHint = (searchParams.get('email') || '').trim().toLowerCase();
-		const emailLocalPart = emailHint.split('@')[0] || '';
-
-		if (!passwordValue) {
-			return 'Password is required.';
-		}
-
-		if (passwordValue.length < 8) {
-			return 'Password must be at least 8 characters.';
-		}
-
-		if (!/[A-Z]/.test(passwordValue) || !/[a-z]/.test(passwordValue) || !/[0-9]/.test(passwordValue)) {
-			return 'Password must include uppercase, lowercase, and number.';
-		}
-
-		if (COMMON_PASSWORDS.includes(passwordLower)) {
-			return 'This password is too common. Choose a stronger one.';
-		}
-
-		if ((usernameHint.length >= 3 && passwordLower.includes(usernameHint)) || (emailHint && passwordLower.includes(emailHint)) || (emailLocalPart.length >= 3 && passwordLower.includes(emailLocalPart))) {
-			return 'Password cannot contain your username or email.';
-		}
-
-		return '';
-	}
-
 	async function handleSubmit(e) {
 		e.preventDefault();
 		setError('');
 		setPasswordError('');
 		setConfirmPasswordError('');
 
-		const nextPasswordError = validatePasswordPolicy(newPassword);
-		if (nextPasswordError) {
-			setPasswordError(nextPasswordError);
-			return;
+		const nextErrors = {
+			password: '',
+			confirmPassword: '',
+		};
+		let isValid = true;
+		const password = newPassword;
+		const passwordLower = password.toLowerCase();
+		const usernameLower = (searchParams.get('username') || '').trim().toLowerCase();
+		const emailLower = (searchParams.get('email') || '').trim().toLowerCase();
+		const emailLocalPart = emailLower.split('@')[0] || '';
+
+		if (!password) {
+			nextErrors.password = 'Password is required.';
+			isValid = false;
+		} else if (password.length < 8) {
+			nextErrors.password = 'Password must be at least 8 characters.';
+			isValid = false;
+		} else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+			nextErrors.password = 'Password must include uppercase, lowercase, and number.';
+			isValid = false;
+		} else if (COMMON_PASSWORDS.includes(passwordLower)) {
+			nextErrors.password = 'This password is too common. Choose a stronger one.';
+			isValid = false;
+		} else if ((usernameLower.length >= 3 && passwordLower.includes(usernameLower)) || (emailLower && passwordLower.includes(emailLower)) || (emailLocalPart.length >= 3 && passwordLower.includes(emailLocalPart))) {
+			nextErrors.password = 'Password cannot contain your username or email.';
+			isValid = false;
 		}
 
 		if (!confirmPassword) {
-			setConfirmPasswordError('Please confirm your password.');
-			return;
+			nextErrors.confirmPassword = 'Please confirm your password.';
+			isValid = false;
+		} else if (password !== confirmPassword) {
+			nextErrors.confirmPassword = 'Passwords do not match.';
+			isValid = false;
 		}
 
-		if (newPassword !== confirmPassword) {
-			setConfirmPasswordError('Passwords do not match.');
+		if (!isValid) {
+			setPasswordError(nextErrors.password);
+			setConfirmPasswordError(nextErrors.confirmPassword);
 			return;
 		}
 
@@ -97,13 +96,19 @@ export default function ResetPassword() {
 		setIsSubmitting(true);
 
 		try {
-			await confirmPasswordReset({ token, new_password: newPassword });
-			navigate('/landing?login=1');
+			await confirmPasswordReset({ token, new_password: password });
+			setIsResetSuccessful(true);
+			setNewPassword('');
+			setConfirmPassword('');
 		} catch (err) {
 			setError(err?.userMessage || err?.message || 'Reset failed. Token may be expired.');
 		} finally {
 			setIsSubmitting(false);
 		}
+	}
+
+	function openLoginModal() {
+		navigate('/landing?login=1');
 	}
 
 	return (
@@ -112,8 +117,18 @@ export default function ResetPassword() {
 			<Modal isOpen={true} onClose={() => navigate('/landing')}>
 				<div className="forgot-password">
 					<h2>Reset Your Password</h2>
-					<p className='tagline'>Enter your new password below.</p>
-					<form className="auth-form" onSubmit={handleSubmit} noValidate>
+					{isResetSuccessful ? (
+						<>
+							<p className='tagline'>You can now sign in with your new password.</p>
+							<Alert type='success'>Password successfully reset.</Alert>							
+							<button type="button" className="btn-primary" onClick={openLoginModal}>
+								Click to Sign In
+							</button>
+						</>
+					) : (
+						<>
+							<p className='tagline'>Enter your new password below.</p>
+							<form className="auth-form" onSubmit={handleSubmit} noValidate>
 						<label>
 							<span>New Password</span>
 							<div className='field-control'>
@@ -167,7 +182,9 @@ export default function ResetPassword() {
 						<button type="submit" className="btn-primary" disabled={isSubmitting || !token}>
 							{isSubmitting ? 'Resetting...' : 'Reset Password'}
 						</button>
-					</form>
+							</form>
+						</>
+					)}
 				</div>
 			</Modal>
 		</>
