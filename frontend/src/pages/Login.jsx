@@ -3,7 +3,7 @@ import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import ForgotPassword from './ForgotPassword.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login } from '../api';
 import Alert from '../components/Alerts.jsx';
 
@@ -17,29 +17,18 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 	const [passwordError, setPasswordError] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setEmailError('');
+		setPasswordError('');
+	}, [isOpen]);
+
 	function validEmail(value) {
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		return pattern.test(value);
-	}
-
-	function formatErrorMessage(err) {
-		const fallbackMessage = 'Login failed';
-		const rawMessage = err?.message || fallbackMessage;
-		const apiPrefixPattern = /^API\s+\d+:\s*/i;
-		const cleanedMessage = rawMessage.replace(apiPrefixPattern, '').trim();
-
-		if (cleanedMessage.startsWith('{')) {
-			try {
-				const parsed = JSON.parse(cleanedMessage);
-				if (parsed?.detail) {
-					return parsed.detail;
-				}
-			} catch {
-				return cleanedMessage || fallbackMessage;
-			}
-		}
-
-		return cleanedMessage || fallbackMessage;
 	}
 
 	function validateForm() {
@@ -100,7 +89,7 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 			setEmail('');
 			setPassword('');
 		} catch (err) {
-			setError(formatErrorMessage(err));
+			setError(err?.userMessage || err?.message || 'Login failed');
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -110,11 +99,10 @@ export default function Login ( {isOpen, closeModal, onSwitchToRegistration, onA
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="login">
-					{error && <Alert type='error'>{error}</Alert>}
 
 					<h2>Welcome Back</h2>
 					<p className='tagline'>Access your saved projects.</p>
-				
+					{error && <Alert type='error'>{error}</Alert>}				
 					<form className="auth-form" onSubmit={authenticate} noValidate>
 						<label>
 							<span>Email</span>

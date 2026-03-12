@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  gap: 16px;
 }
 
 .login h2,
@@ -28,3 +29,26 @@
   text-align: start;
   gap: 16px;
 }
+
+.login .tagline,
+.registration .tagline,
+.forgot-password .tagline {
+  margin-bottom: 0;
+}
+
+.login .alert,
+.registration .alert,
+.forgot-password .alert {
+  width: 100%;
+  align-self: stretch;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.login .alert p,
+.registration .alert p,
+.forgot-password .alert p {
+  text-align: center;
+}
+
+

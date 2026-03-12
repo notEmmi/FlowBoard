@@ -2,8 +2,9 @@ import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login, register } from '../api';
+import Alert from "../components/Alerts.jsx"
 
 const COMMON_PASSWORDS = [
 	'password',
@@ -32,6 +33,14 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		confirmPassword: '',
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setFieldErrors({ username: '', email: '', password: '', confirmPassword: '' });
+	}, [isOpen]);
 
 	function validEmail(value) {
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -130,7 +139,7 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 			setPassword('');
 			setConfirmPassword('');
 		} catch (err) {
-			setError(err.message || 'Registration failed');
+			setError(err?.userMessage || err?.message || 'Registration failed');
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -142,6 +151,8 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 			<div className="registration">
 				<h2>Create an Account</h2>
 				<p className='tagline'>Keep your projects safe and accessible anytime</p>
+				{error && <Alert type='error'>{error}</Alert>}
+
 				<form className="auth-form" onSubmit={authenticate} noValidate>
 					<label>
 						<span>Username</span>
@@ -237,8 +248,6 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 							{fieldErrors.confirmPassword && <p id="registration-confirm-password-error" className="field-error" role="alert">{fieldErrors.confirmPassword}</p>}
 						</div>
 					</label>
-
-					{error && <p className="field-error" role="alert">{error}</p>}
 
 					<button type="submit" className="btn-primary" disabled={isSubmitting}>
 						{isSubmitting ? 'Creating...' : 'Create account'}

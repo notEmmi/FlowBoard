@@ -1,6 +1,6 @@
 import './Auth.css';
 import Modal from '../components/Modal.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { requestPasswordReset } from '../api';
 import Alert from "../components/Alerts.jsx";
 
@@ -10,6 +10,14 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setError('');
+		setSuccess('');
+	}, [isOpen]);
 
 	const validEmail = function(email) {    
 		const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,7 +45,7 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 			setSuccess('Thank you for your request. If the submitted email exists, you will receive an email shortly, detailing further proceedings');
 			setEmail('');
 		} catch (err) {
-			setError(err.message || 'Request failed');
+			setError(err?.userMessage || err?.message || 'Request failed');
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -48,9 +56,11 @@ export default function ForgotPassword ({ isOpen, closeModal, onSwitchToLogin })
 		<>
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)} >
 			<div className="forgot-password">
-				{success && <Alert type='success'>{success}</Alert>}
 				<h2>Reset Password</h2>
+
 				<p className='tagline'>Enter the email associated with your account and we'll send you password reset instructions.</p>
+				{success && <Alert type='success'>{success}</Alert>}
+
 				<form className="auth-form" onSubmit={onSend} noValidate>
 					<label>
 						<span>Email</span>
