@@ -7,6 +7,7 @@ from contextlib import asynccontextmanager
 
 from database import create_db_and_tables
 from routers.auth import router as auth_router
+from routers.projects import router as projects_router
 
 logger = logging.getLogger(__name__)
 
@@ -44,3 +45,4 @@ def read_root():
 
 
 app.include_router(auth_router)
+app.include_router(projects_router)
