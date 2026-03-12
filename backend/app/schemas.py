@@ -78,6 +78,14 @@ class LoginIn(BaseModel):
     email: EmailStr
     password: str
 
+    @field_validator("email")
+    @classmethod
+    def validate_email_not_empty(cls, value: str) -> str:
+        email = value.strip()
+        if not email:
+            raise ValueError("Email is required")
+        return email
+
     @field_validator("password")
     @classmethod
     def validate_password_not_empty(cls, value: str) -> str:

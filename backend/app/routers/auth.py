@@ -3,10 +3,10 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from database import get_db
-from backend.app.services.email_service import send_password_reset_email
+from services.email_service import send_password_reset_email
 from models import User
 from schemas import LoginIn, PasswordResetIn, PasswordResetRequestIn, RegisterIn, TokenOut, UserRead
-from backend.app.services.security import create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token
+from services.security import create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token
 
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
