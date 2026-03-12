@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import { createProject } from '../api.jsx';
+import Alert from '../components/Alerts.jsx';
 
 function AddProject({ isOpen, closeModal }) {
 	const [projectName, setProjectName] = useState('');
@@ -62,17 +63,22 @@ function AddProject({ isOpen, closeModal }) {
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="add-project">
 				<h2>New Project</h2>
+				{error && <Alert type="error" message={error} />}
 				<form onSubmit={handleAddProject}>
 					<label>
 						Project Name
-						<input
-							className={nameError ? 'input-error' : ''}
-							type="text"
-							placeholder="Enter project name"
-							value={projectName}
-							onChange={(e) => setProjectName(e.target.value)}
-							autoFocus
-						/>
+						<div className='field-control'>
+
+							<input
+								className={nameError ? 'input-error' : ''}
+								type="text"
+								placeholder="Enter project name"
+								value={projectName}
+								onChange={(e) => setProjectName(e.target.value)}
+								autoFocus
+							/>
+							{nameError && <p className="field-error" role="alert">{nameError}</p>}
+						</div>
 					</label>
 					<button className="btn-primary" type="submit" disabled={isCreating}>
 						{isCreating ? 'Creating...' : 'Create Project'}
