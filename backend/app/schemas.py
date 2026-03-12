@@ -32,19 +32,6 @@ def validate_password_strength(password: str) -> str:
     return password
 
 
-class ItemCreate(BaseModel):
-    name: str
-    description: str | None = None
-
-
-class ItemRead(BaseModel):
-    id: int
-    name: str
-    description: str | None = None
-
-    class Config:
-        from_attributes = True
-
 class RegisterIn(BaseModel):
     email: EmailStr
     username: str
@@ -145,3 +132,22 @@ class PasswordResetIn(BaseModel):
 
     class Config:
         from_attributes = False
+
+class ProjectCreate(BaseModel):
+    name: str
+    description: str | None = None
+
+class ProjectRead(BaseModel):
+    id: int
+    owner_id: int
+    name: str
+    description: str | None = None
+    created_at: str
+    updated_at: str
+
+    class Config:
+        from_attributes = True
+
+class ProjectUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
