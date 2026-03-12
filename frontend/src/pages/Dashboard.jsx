@@ -1,17 +1,59 @@
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
+import { createProject } from '../api.jsx';
 
 function AddProject({ isOpen, closeModal }) {
 	const [projectName, setProjectName] = useState('');
+	const [nameError, setNameError] = useState('');
+	const [error, setError] = useState('');
+	const [isCreating, setIsCreating] = useState(false);
 
-	const handleAddProject = (e) => {
+	useEffect(() => {
+		if (!isOpen) {
+			return;
+		}
+		setProjectName('');
+		setNameError('');
+		setError('');
+	}, [isOpen]);
+
+	function validateProjectName(name)  {
+		const isValid = true;
+
+		const trimmedName = name.trim();
+		if (!trimmedName) {
+			setNameError('Project name is required.');
+			isValid = false;
+		}
+		if (trimmedName.length > 50) {
+			setNameError('Project name must be 50 characters or fewer.');
+			isValid = false;
+		}
+
+		return isValid;
+	};
+
+	async function handleAddProject(e) {
 		e.preventDefault();
-		if (projectName.trim()) {
-			console.log('Project added:', projectName);
+		setError('');
+		setNameError('');
+
+		if (!validateProjectName(projectName)) {
+			return;
+		}
+
+		setIsCreating(true);
+
+		try {
+			await createProject({ name: projectName });
 			setProjectName('');
 			closeModal(false);
+		} catch (error) {
+			setError('Failed to create project.');
+		} finally {
+			setIsCreating(false);
 		}
 	};
 
@@ -24,6 +66,7 @@ function AddProject({ isOpen, closeModal }) {
 					<label>
 						Project Name
 						<input
+							className={nameError ? 'input-error' : ''}
 							type="text"
 							placeholder="Enter project name"
 							value={projectName}
@@ -31,7 +74,9 @@ function AddProject({ isOpen, closeModal }) {
 							autoFocus
 						/>
 					</label>
-					<button className="btn-primary" type="submit">Create Project</button>
+					<button className="btn-primary" type="submit" disabled={isCreating}>
+						{isCreating ? 'Creating...' : 'Create Project'}
+					</button>
 				</form>
 			</div>
 		</Modal>

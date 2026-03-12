@@ -164,7 +164,6 @@ class PasswordResetIn(BaseModel):
 
 class ProjectCreate(BaseModel):
     name: str
-    description: str | None = None
 
     @field_validator("name")
     @classmethod
@@ -172,17 +171,10 @@ class ProjectCreate(BaseModel):
         name = value.strip()
         if not name:
             raise ValueError("Project name is required")
-        if len(name) > 120:
-            raise ValueError("Project name must be 120 characters or fewer")
+        if len(name) > 50:
+            raise ValueError("Project name must be 50 characters or fewer")
         return name
     
-    @field_validator("description")
-    @classmethod
-    def validate_description(cls, value: str | None) -> str | None:
-        if value is not None and len(value) > 1000:
-            raise ValueError("Project description must be 1000 characters or fewer")
-        return value
-
 class ProjectRead(BaseModel):
     id: int
     owner_id: int
