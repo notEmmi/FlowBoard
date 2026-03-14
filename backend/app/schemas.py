@@ -14,7 +14,6 @@ COMMON_PASSWORDS = {
     "iloveyou",
 }
 
-
 def validate_password_strength(password: str) -> str:
     if not password:
         raise ValueError("Password is required")
