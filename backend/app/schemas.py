@@ -14,8 +14,10 @@ COMMON_PASSWORDS = {
     "iloveyou",
 }
 
-
 def validate_password_strength(password: str) -> str:
+    if not password:
+        raise ValueError("Password is required")
+    
     if len(password) < 8:
         raise ValueError("Password must be at least 8 characters")
 
@@ -37,10 +39,20 @@ class RegisterIn(BaseModel):
     username: str
     password: str
 
+    @field_validator("email")
+    @classmethod
+    def validate_email_not_empty(cls, value: str) -> str:
+        email = value.strip()
+        if not email:
+            raise ValueError("Email is required")
+        return email
+
     @field_validator("username")
     @classmethod
     def validate_username(cls, value: str) -> str:
         username = value.strip()
+        if not username:
+            raise ValueError("Username is required")
         if len(username) < 3:
             raise ValueError("Username must be at least 3 characters")
         if len(username) > 30:
@@ -50,7 +62,7 @@ class RegisterIn(BaseModel):
     @field_validator("password")
     @classmethod
     def validate_password(cls, value: str) -> str:
-        return validate_password_strength(value)
+        return validate_password_strength(value.strip())
 
     @model_validator(mode="after")
     def validate_password_not_personal(self):
@@ -117,6 +129,14 @@ class TokenOut(BaseModel):
 class PasswordResetRequestIn(BaseModel):
     email: EmailStr
 
+    @field_validator("email")
+    @classmethod
+    def validate_email_not_empty(cls, value: str) -> str:
+        email = value.strip()
+        if not email:
+            raise ValueError("Email is required")
+        return email
+    
     class Config:
         from_attributes = False
 
@@ -143,8 +163,17 @@ class PasswordResetIn(BaseModel):
 
 class ProjectCreate(BaseModel):
     name: str
-    description: str | None = None
 
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value: str) -> str:
+        name = value.strip()
+        if not name:
+            raise ValueError("Project name is required")
+        if len(name) > 50:
+            raise ValueError("Project name must be 50 characters or fewer")
+        return name
+    
 class ProjectRead(BaseModel):
     id: int
     owner_id: int
@@ -152,7 +181,6 @@ class ProjectRead(BaseModel):
     description: str | None = None
     created_at: str
     updated_at: str
-
     class Config:
         from_attributes = True
 

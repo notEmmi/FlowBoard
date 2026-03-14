@@ -88,14 +88,12 @@ export function api(path, options = {}) {
   });
 }
 
-
 export async function register(payload) {
   return api('/api/auth/register', {
     method: 'POST',
     body: JSON.stringify(payload),
   });
 }
-
 
 export async function login(payload) {
   const data = await api('/api/auth/login', {
@@ -110,7 +108,6 @@ export async function login(payload) {
   return data;
 }
 
-
 export async function requestPasswordReset(payload) {
   return api('/api/auth/password-reset/request', {
     method: 'POST',
@@ -118,9 +115,19 @@ export async function requestPasswordReset(payload) {
   });
 }
 
-
 export async function confirmPasswordReset(payload) {
   return api('/api/auth/password-reset/confirm', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function getProjects() {
+  return api('/api/projects');
+}
+
+export async function createProject(payload) {
+  return api('/api/projects', {
     method: 'POST',
     body: JSON.stringify(payload),
   });

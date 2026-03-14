@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
 
+from fastapi import Header, HTTPException
 from jose import jwt
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -40,3 +41,27 @@ def verify_reset_token(token: str) -> str | None:
         return payload.get("sub")
     except jwt.JWTError:
         return None
+
+
+def get_token_subject(authorization: str | None = Header(default=None)) -> int:
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    scheme, _, token = authorization.partition(" ")
+    if scheme.lower() != "bearer" or not token:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+    except jwt.JWTError as exc:
+        raise HTTPException(status_code=401, detail="Invalid or expired authentication token") from exc
+
+    subject = payload.get("sub")
+    if not subject:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+
+    try:
+        return int(subject)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=401, detail="Invalid authentication token") from exc
+
