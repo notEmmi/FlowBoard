@@ -23,7 +23,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-# Utility function to create database tables based on the defined ORM models. It imports the models to ensure they are registered with SQLAlchemy's metadata before creating the tables.
+# imports models so SQLAlchemy registers them before create_all runs
 def create_db_and_tables() -> None:
     import models  # noqa: F401
 
