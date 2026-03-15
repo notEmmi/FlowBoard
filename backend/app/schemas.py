@@ -1,6 +1,8 @@
+# Pydantic schemas for request validation and response serialization across all API routes.
 from pydantic import BaseModel, EmailStr, field_validator, model_validator
 
 
+# passwords to reject regardless of other strength rules
 COMMON_PASSWORDS = {
     "password",
     "password123",
@@ -14,6 +16,7 @@ COMMON_PASSWORDS = {
     "iloveyou",
 }
 
+# shared password strength check used by both register and password-reset flows
 def validate_password_strength(password: str) -> str:
     if not password:
         raise ValueError("Password is required")
@@ -32,6 +35,9 @@ def validate_password_strength(password: str) -> str:
         raise ValueError("This password is too common. Choose a stronger one")
 
     return password
+
+
+# --- request schemas --- 
 
 
 class RegisterIn(BaseModel):
@@ -109,6 +115,9 @@ class LoginIn(BaseModel):
         from_attributes = False
 
 
+# --- response schemas ---
+
+
 class UserRead(BaseModel):
     id: int
     email: EmailStr
@@ -161,6 +170,9 @@ class PasswordResetIn(BaseModel):
     class Config:
         from_attributes = False
 
+# --- project schemas ---
+
+
 class ProjectCreate(BaseModel):
     name: str
 
@@ -179,8 +191,8 @@ class ProjectRead(BaseModel):
     owner_id: int
     name: str
     description: str | None = None
-    created_at: str
-    updated_at: str
+    created_at: str  # ISO 8601 string serialized by FastAPI
+    updated_at: str  # ISO 8601 string serialized by FastAPI
     class Config:
         from_attributes = True
 

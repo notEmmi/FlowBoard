@@ -1,6 +1,8 @@
+/* API client module: centralizes frontend HTTP calls, access-token storage, and user-friendly error handling. */
 const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const TOKEN_KEY = 'flowboard_token';
 
+// parses error responses that may or may not be JSON, returning null if parsing fails
 function parseErrorPayload(rawPayload) {
   if (!rawPayload) {
     return null;
@@ -13,6 +15,7 @@ function parseErrorPayload(rawPayload) {
   }
 }
 
+// formats error messages, preferring server detail over generic fallbacks; 5xx errors are kept vague intentionally
 function formatErrorMessage({ status, payload, fallbackMessage }) {
   const serverMessage =
     payload?.detail ||
@@ -24,7 +27,7 @@ function formatErrorMessage({ status, payload, fallbackMessage }) {
     return serverMessage.trim();
   }
 
-  // Keep 5xx responses generic to avoid exposing internal details in the UI.
+  // keep 5xx vague — avoid leaking internal server details to the UI
   if (status >= 500) {
     return 'Something went wrong. Please try again.';
   }
@@ -47,6 +50,7 @@ export function clearAccessToken() {
   localStorage.removeItem(TOKEN_KEY);
 }
 
+// base fetch wrapper — attaches auth header, parses errors, and throws typed ApiError on failure
 export function api(path, options = {}) {
   const url = new URL(path, API).toString();
   const accessToken = getAccessToken();
@@ -87,6 +91,9 @@ export function api(path, options = {}) {
     return res.json();
   });
 }
+
+/* --- endpoint helpers --- */
+
 
 export async function register(payload) {
   return api('/api/auth/register', {

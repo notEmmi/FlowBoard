@@ -1,3 +1,4 @@
+# Security helpers: password hashing, JWT creation/verification, and FastAPI auth dependency.
 import os
 from datetime import datetime, timedelta, timezone
 

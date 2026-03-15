@@ -1,3 +1,4 @@
+// Root app component: owns auth state, defines all client-side routes, and renders the top nav.
 import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { api, clearAccessToken, getAccessToken } from "./api";

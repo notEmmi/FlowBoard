@@ -1,3 +1,4 @@
+# Projects router: CRUD endpoints for projects, scoped to the authenticated user.
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -9,10 +10,7 @@ from services.security import get_token_subject
 
 router = APIRouter(prefix="/api/projects", tags=["projects"])
 
-def get_current_user(
-	user_id: int = Depends(get_token_subject),
-	db: Session = Depends(get_db),
-) -> User:
+def get_current_user(user_id: int = Depends(get_token_subject), db: Session = Depends(get_db)) -> User:
 	user = db.get(User, user_id)
 	if not user:
 		raise HTTPException(status_code=401, detail="User not found")

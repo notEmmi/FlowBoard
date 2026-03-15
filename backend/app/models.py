@@ -1,3 +1,4 @@
+# SQLAlchemy ORM models defining the database schema for users, projects, tasks, statuses, and timeline events.
 from datetime import datetime
 
 from sqlalchemy import (

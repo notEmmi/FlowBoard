@@ -1,3 +1,4 @@
+# FastAPI application entry point: configures middleware, lifespan, global error handling, and mounts routers.
 import logging
 from fastapi import FastAPI
 from fastapi import Request
@@ -12,6 +13,7 @@ from routers.projects import router as projects_router
 logger = logging.getLogger(__name__)
 
 
+# creates tables on startup; runs once before the app begins serving requests
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     create_db_and_tables()
@@ -20,6 +22,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+# allow all origins in dev; tighten allow_origins before deploying to production
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
