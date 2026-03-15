@@ -5,7 +5,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-
+# Database connection URL, with a default to a local SQLite file for development.
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./flowboard.db")
 
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
