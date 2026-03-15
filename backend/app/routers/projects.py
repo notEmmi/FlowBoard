@@ -1,5 +1,5 @@
+# Projects router: CRUD endpoints for projects, scoped to the authenticated user.
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 
 from database import get_db
 from models import Project, User

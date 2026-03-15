@@ -1,5 +1,5 @@
+# Auth router: handles registration, login, and password-reset endpoints.
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from database import get_db
