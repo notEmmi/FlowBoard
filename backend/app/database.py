@@ -1,14 +1,6 @@
 
+# Database setup: engine, session factory, ORM base, and FastAPI dependency helpers.
 import os
-
-"""
-
-This module sets up the database connection and session management for the FlowBoard backend application.
-It uses SQLAlchemy to define the database engine, session factory, and declarative base for ORM models.
-The module provides utility functions to create database tables and to yield a database session for use in
-dependency injection (e.g., with FastAPI routes).
-
-"""
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
