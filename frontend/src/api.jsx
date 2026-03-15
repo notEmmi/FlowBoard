@@ -1,6 +1,8 @@
+// API client module: centralizes frontend HTTP calls, access-token storage, and user-friendly error handling.
 const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const TOKEN_KEY = 'flowboard_token';
 
+// parses error responses that may or may not be JSON, returning null if parsing fails or if no payload is present
 function parseErrorPayload(rawPayload) {
   if (!rawPayload) {
     return null;
@@ -13,6 +15,7 @@ function parseErrorPayload(rawPayload) {
   }
 }
 
+// formats error messages for display in the UI, prioritizing user-friendly messages from the server but falling back to generic messages for unexpected formats or server errors
 function formatErrorMessage({ status, payload, fallbackMessage }) {
   const serverMessage =
     payload?.detail ||
