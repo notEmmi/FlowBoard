@@ -9,7 +9,7 @@ from database import get_db
 from services.email_service import send_password_reset_email
 from models import User
 from schemas import LoginIn, PasswordResetIn, PasswordResetRequestIn, RegisterIn, TokenOut, UserRead
-from services.security import create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token
+from services.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token
 
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -50,14 +50,15 @@ def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
             raise HTTPException(status_code=401, detail="Invalid credentials")
 
         token = create_access_token(subject=str(user.id))
-        response.set_cookie(
-            key="session",
-            value=token,
-            httponly=True,
-            secure=COOKIE_SECURE,
-            samesite=COOKIE_SAMESITE,
-        )
-        return TokenOut(access_token=token)
+        # response.set_cookie(
+        #     key="session",
+        #     value=token,
+        #     httponly=True,
+        #     secure=COOKIE_SECURE,
+        #     samesite=COOKIE_SAMESITE,
+        #     max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        # )
+        # return TokenOut(access_token=token)
     except HTTPException:
         raise
     except Exception as exc:
