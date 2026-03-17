@@ -58,7 +58,7 @@ def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
         #     samesite=COOKIE_SAMESITE,
         #     max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
         # )
-        # return TokenOut(access_token=token)
+        return TokenOut(access_token=token)
     except HTTPException:
         raise
     except Exception as exc:
