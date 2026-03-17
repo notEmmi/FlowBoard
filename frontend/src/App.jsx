@@ -1,7 +1,7 @@
 // Root app component: owns auth state, defines all client-side routes, and renders the top nav.
 import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { api, clearAccessToken, getAccessToken } from "./api";
+import { api, clearAccessToken, getAccessToken, onAuthExpired } from "./api";
 
 import TopNav from './components/TopNav';
 import Home from "./pages/Home";
@@ -39,6 +39,18 @@ export default function App() {
         console.error('Ping failed:', error);
       }
     })();
+  }, []);
+
+  // Keep UI auth state in sync when API detects an expired/invalid token.
+  useEffect(() => {
+    const unsubscribe = onAuthExpired(() => {
+      setIsLoggedIn(false);
+      if (window.location.pathname !== '/landing') {
+        window.location.assign('/landing');
+      }
+    });
+
+    return unsubscribe;
   }, []);
 
 
