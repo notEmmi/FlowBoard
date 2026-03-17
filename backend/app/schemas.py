@@ -1,4 +1,6 @@
 # Pydantic schemas for request validation and response serialization across all API routes.
+from datetime import datetime
+
 from pydantic import BaseModel, EmailStr, field_validator, model_validator
 
 
@@ -191,8 +193,8 @@ class ProjectRead(BaseModel):
     owner_id: int
     name: str
     description: str | None = None
-    created_at: str  # ISO 8601 string serialized by FastAPI
-    updated_at: str  # ISO 8601 string serialized by FastAPI
+    created_at: datetime
+    updated_at: datetime
     class Config:
         from_attributes = True
 
