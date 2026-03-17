@@ -29,11 +29,11 @@ def create_project(
 @router.get("/", response_model=list[ProjectRead], include_in_schema=False)
 def list_projects(
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_current_user_id),
 ):
 	return (
 		db.query(Project)
-		.filter(Project.owner_id == current_user.id)
+		.filter(Project.owner_id == current_user_id)
 		.order_by(Project.created_at.desc())
 		.all()
 	)
@@ -42,11 +42,11 @@ def list_projects(
 def get_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_current_user_id),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
 	if not project:
@@ -58,11 +58,11 @@ def update_project(
 	project_id: int,
 	payload: ProjectUpdate,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_current_user_id),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
 	if not project:
@@ -79,11 +79,11 @@ def update_project(
 def delete_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_current_user_id),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
 	if not project:
