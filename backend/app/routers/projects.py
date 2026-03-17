@@ -5,16 +5,10 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Project, User
 from schemas import ProjectCreate, ProjectRead, ProjectUpdate
-from services.security import get_token_subject
+from services.security import get_current_user_id
 
 
 router = APIRouter(prefix="/api/projects", tags=["projects"])
-
-def get_current_user(user_id: int = Depends(get_token_subject), db: Session = Depends(get_db)) -> User:
-	user = db.get(User, user_id)
-	if not user:
-		raise HTTPException(status_code=401, detail="User not found")
-	return user
 
 
 @router.post("", response_model=ProjectRead, status_code=201)
@@ -22,9 +16,9 @@ def get_current_user(user_id: int = Depends(get_token_subject), db: Session = De
 def create_project(
 	payload: ProjectCreate,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_current_user_id),
 ):
-	project = Project(name=payload.name, owner_id=current_user.id)
+	project = Project(name=payload.name, owner_id=current_user_id)
 	
 	db.add(project)
 	db.commit()
