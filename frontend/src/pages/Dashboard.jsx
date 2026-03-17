@@ -64,7 +64,7 @@ function AddProject({ isOpen, closeModal, onCreated }) {
 		<Modal isOpen={isOpen} onClose={() => closeModal(false)}>
 			<div className="add-project">
 				<h2>New Project</h2>
-				{error && <Alert type="error" message={error} />}
+				{error && <Alert type="error">{error}</Alert>}
 				<form onSubmit={handleAddProject}>
 					<label>
 						Project Name
@@ -198,7 +198,7 @@ export default function Dashboard () {
 
 			<div className='projects-board'>
 				{loadError ? (
-					<Alert type="error" message={loadError} />
+					<Alert type="error">{loadError}</Alert>
 				) : isLoading ? (
 					<p><b>Loading projects...</b></p>
 				) : projects.length > 0 ? (
