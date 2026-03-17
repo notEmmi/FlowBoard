@@ -1,4 +1,6 @@
 # Auth router: handles registration, login, and password-reset endpoints.
+from operator import or_
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -12,34 +14,40 @@ from services.security import create_access_token, create_reset_token, hash_pass
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
-@router.post("/register", response_model=UserRead, status_code=201)
+@router.post("/register", response_model=UserRead)
 def register(payload: RegisterIn, db: Session = Depends(get_db)):
-    existing_user = db.query(User).filter(
-        or_(User.email == payload.email, User.username == payload.username)
-    ).first()
+    try:
+        existing_user = db.query(User).filter(
+            or_(User.email == payload.email, User.username == payload.username)
+        ).first()
 
-    if existing_user:
-        raise HTTPException(status_code=409, detail="Email or username already exists")
+        if existing_user:
+            raise HTTPException(status_code=409, detail="Email or username already exists")
 
-    new_user = User(
-        email=payload.email,
-        username=payload.username,
-        password_hash=hash_password(payload.password),
-    )
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
+        new_user = User(
+            email=payload.email,
+            username=payload.username,
+            password_hash=hash_password(payload.password),
+        )
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        return new_user
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="Registration failed") from exc
 
 
 @router.post("/login", response_model=TokenOut)
 def login(payload: LoginIn, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == payload.email).first()
-    if not user or not verify_password(payload.password, user.password_hash):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+    try:
+        user = db.query(User).filter(User.email == payload.email).first()
+        if not user or not verify_password(payload.password, user.password_hash):
+            raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token(subject=str(user.id))
-    return TokenOut(access_token=token)
+        token = create_access_token(subject=str(user.id))
+        return TokenOut(access_token=token)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="Login failed") from exc
 
 
 @router.post("/password-reset/request")
