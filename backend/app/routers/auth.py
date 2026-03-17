@@ -1,7 +1,8 @@
 # Auth router: handles registration, login, and password-reset endpoints.
+import os
 from operator import or_
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
 from database import get_db
@@ -12,6 +13,8 @@ from services.security import create_access_token, create_reset_token, hash_pass
 
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
+COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() == "true"
+COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")
 
 
 @router.post("/register", response_model=UserRead)
@@ -33,19 +36,30 @@ def register(payload: RegisterIn, db: Session = Depends(get_db)):
         db.commit()
         db.refresh(new_user)
         return new_user
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=500, detail="Registration failed") from exc
 
 
 @router.post("/login", response_model=TokenOut)
-def login(payload: LoginIn, db: Session = Depends(get_db)):
+def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
     try:
         user = db.query(User).filter(User.email == payload.email).first()
         if not user or not verify_password(payload.password, user.password_hash):
             raise HTTPException(status_code=401, detail="Invalid credentials")
 
         token = create_access_token(subject=str(user.id))
+        response.set_cookie(
+            key="session",
+            value=token,
+            httponly=True,
+            secure=COOKIE_SECURE,
+            samesite=COOKIE_SAMESITE,
+        )
         return TokenOut(access_token=token)
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=500, detail="Login failed") from exc
 

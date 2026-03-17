@@ -57,6 +57,7 @@ export function api(path, options = {}) {
   const fallbackMessage = options.errorMessage || 'Request failed';
 
   return fetch(url, {
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
       ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
