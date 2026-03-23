@@ -161,3 +161,7 @@ export async function createProject(payload) {
     }),
   });
 }
+
+export async function getProjectById(projectId) {
+  return api(`/api/projects/${projectId}`);
+}
