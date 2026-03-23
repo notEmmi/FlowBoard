@@ -1,4 +1,6 @@
 /* API client module: centralizes frontend HTTP calls, access-token storage, and user-friendly error handling. */
+import { getTokenExpiresIn, getTokenExpirationTime, isTokenExpired } from './utils/jwt';
+
 const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const TOKEN_KEY = 'flowboard_token';
 const AUTH_EXPIRED_EVENT = 'flowboard:auth-expired';
@@ -173,4 +175,38 @@ export async function getProjectById(projectId) {
   }
 
   return api(`/api/projects/${projectId}`);
+}
+
+/* Session Management Functions */
+
+export function getTokenExpirationTimeMs() {
+  const token = getAccessToken();
+  return token ? getTokenExpirationTime(token) : null;
+}
+
+export function getTokenExpiresInMs() {
+  const token = getAccessToken();
+  return token ? getTokenExpiresIn(token) : null;
+}
+
+export function isCurrentTokenExpired() {
+  const token = getAccessToken();
+  return token ? isTokenExpired(token) : true;
+}
+
+export async function refreshAccessToken() {
+  try {
+    const data = await api('/api/auth/refresh', {
+      method: 'POST',
+    });
+    if (data?.access_token) {
+      setAccessToken(data.access_token);
+      return data.access_token;
+    }
+    return null;
+  } catch (error) {
+    clearAccessToken();
+    emitAuthExpired();
+    throw error;
+  }
 }

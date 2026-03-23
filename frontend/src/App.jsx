@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { api, clearAccessToken, getAccessToken, onAuthExpired } from "./api";
 
 import TopNav from './components/TopNav';
+import SessionManager from './components/SessionManager';
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -80,6 +81,7 @@ export default function App() {
         <div ref={topbarRef}>
           <TopNav isLoggedIn={isLoggedIn} onAuthSuccess={handleAuthSuccess} onLogout={handleLogout} />
         </div>
+        {isLoggedIn && <SessionManager onLogout={handleLogout} />}
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />

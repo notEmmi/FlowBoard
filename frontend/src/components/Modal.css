@@ -70,3 +70,42 @@
 	color: var(--text-muted);
 
 }
+
+/* Session Management Dialogs */
+
+.session-warning,
+.session-expired {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.session-warning h2,
+.session-expired h2 {
+	margin: 0;
+	font-size: 1.5rem;
+	color: var(--text-primary);
+}
+
+.session-warning p,
+.session-expired p {
+	margin: 0;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+.session-warning .caption {
+	color: var(--text-muted);
+	font-size: 0.875rem;
+}
+
+.modal-actions {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.modal-actions button {
+	flex: 1;
+	border-color: var(--brand-primary);
+}
