@@ -16,7 +16,7 @@ function NavItem({ name, icon: Icon, route, isActive }) {
 }
 
 export default function SecondaryNav({ currentView }) {
-	const { projectName } = useParams();
+	const { projectId } = useParams();
 	const location = useLocation();
 
 	// Determine current view from location if not provided
@@ -28,10 +28,10 @@ export default function SecondaryNav({ currentView }) {
 	})();
 
 	const items = [
-		{ name: 'Project', icon: KanbanSquare, route: `/project/${projectName}`, view: 'board' },
-		{ name: 'Backlog', icon: List, route: `/project/${projectName}/backlog`, view: 'backlog' },
-		{ name: 'Timeline', icon: Clock, route: `/project/${projectName}/timeline`, view: 'timeline' },
-		{ name: 'Settings', icon: SlidersHorizontal, route: `/project/${projectName}/settings`, view: 'settings' }
+		{ name: 'Project', icon: KanbanSquare, route: `/project/${projectId}`, view: 'board' },
+		{ name: 'Backlog', icon: List, route: `/project/${projectId}/backlog`, view: 'backlog' },
+		{ name: 'Timeline', icon: Clock, route: `/project/${projectId}/timeline`, view: 'timeline' },
+		{ name: 'Settings', icon: SlidersHorizontal, route: `/project/${projectId}/settings`, view: 'settings' }
 	];
 
 	return (

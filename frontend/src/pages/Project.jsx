@@ -47,8 +47,14 @@ export default function Project() {
 	const [projectData, setProjectData] = useState(null);
 
 	useEffect(() => {
+		if (!projectId || Number.isNaN(Number(projectId))) {
+			console.error('Invalid project ID in route:', projectId);
+			return;
+		}
+
 		const fetchProject = async () => {
 			try {
+				console.log('Fetching project with ID:', projectId);
 				const data = await getProjectById(projectId);
 				setProjectData(data);
 			} catch (error) {

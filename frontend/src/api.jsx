@@ -163,5 +163,14 @@ export async function createProject(payload) {
 }
 
 export async function getProjectById(projectId) {
+  const numericProjectId = Number(projectId);
+  if (!Number.isInteger(numericProjectId) || numericProjectId <= 0) {
+    const error = new Error('Invalid project id.');
+    error.name = 'ApiError';
+    error.status = 400;
+    error.userMessage = 'Invalid project id.';
+    throw error;
+  }
+
   return api(`/api/projects/${projectId}`);
 }

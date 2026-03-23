@@ -85,10 +85,10 @@ export default function App() {
           <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/project/:projectName" element={<Project />} />
-          <Route path="/project/:projectName/backlog" element={<Backlog />} />
-          <Route path="/project/:projectName/timeline" element={<Timeline />} />
-          <Route path="/project/:projectName/settings" element={<Settings />} />
+          <Route path="/project/:projectId" element={<Project />} />
+          <Route path="/project/:projectId/backlog" element={<Backlog />} />
+          <Route path="/project/:projectId/timeline" element={<Timeline />} />
+          <Route path="/project/:projectId/settings" element={<Settings />} />
           <Route path='/styleguide' element={<StyleGuide />} />
         </Routes>
       </div>

@@ -79,12 +79,14 @@ def update_project(
 		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
+
 	if not project:
 		raise HTTPException(status_code=404, detail="Project not found")
 	if payload.name is not None:
 		project.name = payload.name
 	if payload.description is not None:
 		project.description = payload.description
+		
 	db.commit()
 	db.refresh(project)
 	return project

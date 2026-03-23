@@ -3,7 +3,7 @@ import SecondaryNav from '../components/SecondaryNav.jsx';
 import './Project.css';
 
 export default function Timeline() {
-	const { projectName } = useParams();
+	const { projectId } = useParams();
 
 	return (
 		<>
@@ -11,7 +11,7 @@ export default function Timeline() {
 
 			<div className="page-container">
 				<div className='project-content'>
-					<h1>{projectName}</h1>
+					<h1>{projectId}</h1>
 					<p className='tagline'>Project Timeline</p>
 
 				</div>
