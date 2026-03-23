@@ -102,10 +102,10 @@
 .modal-actions {
 	display: flex;
 	gap: 1rem;
-	margin-top: 1rem;
 }
 
 .modal-actions button {
 	flex: 1;
 	border-color: var(--brand-primary);
 }
+

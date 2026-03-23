@@ -154,7 +154,7 @@ export default function SessionManager({ onLogout }) {
               {isExtending ? 'Extending...' : 'Extend Session'}
             </button>
             <button
-              className="btn-secondary"
+              className="btn-ghost"
               onClick={handleWarningClose}
               disabled={isExtending}
             >
