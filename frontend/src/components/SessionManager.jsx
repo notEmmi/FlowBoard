@@ -2,12 +2,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-getTokenExpiresInMs,
-isCurrentTokenExpired,
-refreshAccessToken,
-clearAccessToken,
-onAuthExpired,
-} from '../api';
+		getTokenExpiresInMs,
+		isCurrentTokenExpired,
+		refreshAccessToken,
+		clearAccessToken,
+		onAuthExpired,
+	} from '../api';
+	
 import Modal from './Modal';
 import Alert from './Alerts';
 
