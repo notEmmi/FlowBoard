@@ -151,8 +151,13 @@ export async function getProjects() {
 }
 
 export async function createProject(payload) {
+  const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
   return api('/api/projects', {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...payload,
+      timezone: browserTimeZone,
+    }),
   });
 }

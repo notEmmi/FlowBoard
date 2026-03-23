@@ -1,4 +1,7 @@
 # Projects router: CRUD endpoints for projects, scoped to the authenticated user.
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -18,7 +21,18 @@ def create_project(
 	db: Session = Depends(get_db),
 	current_user_id: int = Depends(get_current_user_id),
 ):
-	project = Project(name=payload.name, owner_id=current_user_id)
+	now_utc = datetime.now(timezone.utc)
+	try:
+		now_local = now_utc.astimezone(ZoneInfo(payload.timezone))
+	except ZoneInfoNotFoundError:
+		now_local = now_utc
+
+	project = Project(
+		name=payload.name,
+		owner_id=current_user_id,
+		created_at=now_local.replace(tzinfo=None),
+		updated_at=now_local.replace(tzinfo=None),
+	)
 	
 	db.add(project)
 	db.commit()

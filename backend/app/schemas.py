@@ -177,6 +177,7 @@ class PasswordResetIn(BaseModel):
 
 class ProjectCreate(BaseModel):
     name: str
+    timezone: str = "UTC"
 
     @field_validator("name")
     @classmethod
@@ -187,6 +188,15 @@ class ProjectCreate(BaseModel):
         if len(name) > 50:
             raise ValueError("Project name must be 50 characters or fewer")
         return name
+
+    @field_validator("timezone")
+    @classmethod
+    def validate_timezone(cls, value: str) -> str:
+        timezone = (value or "").strip()
+        if not timezone:
+            return "UTC"
+
+        return timezone
     
 class ProjectRead(BaseModel):
     id: int
