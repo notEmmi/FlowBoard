@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Project, User
 from schemas import ProjectCreate, ProjectRead, ProjectUpdate
-from services.security import get_current_user_id
+from services.security import get_token_subject
 
 
 router = APIRouter(prefix="/api/projects", tags=["projects"])
@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/projects", tags=["projects"])
 def create_project(
 	payload: ProjectCreate,
 	db: Session = Depends(get_db),
-	current_user_id: int = Depends(get_current_user_id),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	now_utc = datetime.now(timezone.utc)
 	try:
@@ -43,7 +43,7 @@ def create_project(
 @router.get("/", response_model=list[ProjectRead], include_in_schema=False)
 def list_projects(
 	db: Session = Depends(get_db),
-	current_user_id: int = Depends(get_current_user_id),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	return (
 		db.query(Project)
@@ -56,7 +56,7 @@ def list_projects(
 def get_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user_id: int = Depends(get_current_user_id),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
@@ -72,7 +72,7 @@ def update_project(
 	project_id: int,
 	payload: ProjectUpdate,
 	db: Session = Depends(get_db),
-	current_user_id: int = Depends(get_current_user_id),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
@@ -95,7 +95,7 @@ def update_project(
 def delete_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user_id: int = Depends(get_current_user_id),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
