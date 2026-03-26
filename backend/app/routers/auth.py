@@ -19,60 +19,49 @@ COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")
 
 @router.post("/register", response_model=UserRead)
 def register(payload: RegisterIn, db: Session = Depends(get_db)):
-    try:
-        existing_user = db.query(User).filter(
-            or_(User.email == payload.email, User.username == payload.username)
-        ).first()
+    existing_user = db.query(User).filter(
+        or_(User.email == payload.email, User.username == payload.username)
+    ).first()
 
-        if existing_user:
-            raise HTTPException(status_code=409, detail="Email or username already exists")
+    if existing_user:
+        raise HTTPException(status_code=409, detail="Email or username already exists")
 
-        new_user = User(
-            email=payload.email,
-            username=payload.username,
-            password_hash=hash_password(payload.password),
-        )
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        return new_user
-    except HTTPException:
-        raise
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail="Registration failed") from exc
+    new_user = User(
+        email=payload.email,
+        username=payload.username,
+        password_hash=hash_password(payload.password),
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
 
 
 @router.post("/login", response_model=TokenOut)
 def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
-    try:
-        user = db.query(User).filter(User.email == payload.email).first()
-        if not user or not verify_password(payload.password, user.password_hash):
-            raise HTTPException(status_code=401, detail="Invalid credentials")
+    user = db.query(User).filter(User.email == payload.email).first()
+    if not user or not verify_password(payload.password, user.password_hash):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
-        token = create_access_token(subject=str(user.id))
-        # response.set_cookie(
-        #     key="session",
-        #     value=token,
-        #     httponly=True,
-        #     secure=COOKIE_SECURE,
-        #     samesite=COOKIE_SAMESITE,
-        #     max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
-        # )
-        return TokenOut(access_token=token)
-    except HTTPException:
-        raise
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail="Login failed") from exc
+    token = create_access_token(subject=str(user.id))
+    # response.set_cookie(
+    #     key="session",
+    #     value=token,
+    #     httponly=True,
+    #     secure=COOKIE_SECURE,
+    #     samesite=COOKIE_SAMESITE,
+    #     max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+    # )
+    return TokenOut(access_token=token)
 
 
 @router.post("/refresh", response_model=TokenOut)
 def refresh_access_token(current_user_id: int = Depends(get_current_user_id)):
     """Issue a new access token with extended expiration for current user."""
-    try:
-        new_token = create_access_token(subject=str(current_user_id))
-        return TokenOut(access_token=new_token)
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail="Token refresh failed") from exc
+    new_token = create_access_token(subject=str(current_user_id))
+    if not new_token:
+        raise HTTPException(status_code=500, detail="Failed to refresh access token")
+    return TokenOut(access_token=new_token)
 
 
 @router.post("/password-reset/request")
