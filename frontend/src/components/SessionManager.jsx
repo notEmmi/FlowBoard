@@ -142,14 +142,6 @@ export default function SessionManager({ onLogout }) {
 	return (
 	<>
 		{/* Session Expiring Soon Warning */}
-		{/* show counter */}
-		<div className="session-timer">
-			{  (
-				<span className="session-timer-text">
-					Session expires in {formatTimeRemaining(timeRemaining)}
-				</span>
-			)}
-		</div>
 		<Modal isOpen={showWarning} onClose={handleWarningClose} clickOutsideClosable={false}>
 			<div className="session-warning">
 				<h2>Session Expiring Soon</h2>
@@ -181,7 +173,7 @@ export default function SessionManager({ onLogout }) {
 				<h2>Session Expired</h2>
 				<p>Your session has expired due to inactivity. Please log in again to continue.</p>
 				<button className="btn-primary" onClick={handleExpiredLogout}>
-				Return to Login
+				Okay
 				</button>
 			</div>
 		</Modal>
