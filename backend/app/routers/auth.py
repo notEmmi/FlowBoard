@@ -9,7 +9,7 @@ from database import get_db
 from services.email_service import send_password_reset_email
 from models import User
 from schemas import LoginIn, PasswordResetIn, PasswordResetRequestIn, RegisterIn, TokenOut, UserRead
-from services.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token, get_current_user_id
+from services.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token, get_token_subject
 
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -70,7 +70,7 @@ def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
 
 
 @router.post("/refresh", response_model=TokenOut)
-def refresh_access_token(current_user_id: int = Depends(get_current_user_id)):
+def refresh_access_token(current_user_id: int = Depends(get_token_subject)):
     """Issue a new access token with extended expiration for current user."""
     new_token = create_access_token(subject=str(current_user_id))
     if not new_token:
