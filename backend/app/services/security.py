@@ -12,28 +12,6 @@ JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "6"))
 RESET_TOKEN_EXPIRE_MINUTES = int(os.getenv("RESET_TOKEN_EXPIRE_MINUTES", "15"))
 
-def get_current_user_id(authorization: str | None = Header(default=None)) -> int:
-    if not authorization:
-        raise HTTPException(status_code=401, detail="Authentication required")
-
-    scheme, _, token = authorization.partition(" ")
-    if scheme.lower() != "bearer" or not token:
-        raise HTTPException(status_code=401, detail="Invalid authentication token")
-
-    try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-    except jwt.JWTError as exc:
-        raise HTTPException(status_code=401, detail="Invalid or expired authentication token") from exc
-
-    subject = payload.get("sub")
-    if not subject:
-        raise HTTPException(status_code=401, detail="Invalid authentication token")
-
-    try:
-        return int(subject)
-    except (TypeError, ValueError) as exc:
-        raise HTTPException(status_code=401, detail="Invalid authentication token") from exc
-
 
 def hash_password(password: str) -> str:
     return generate_password_hash(password)
