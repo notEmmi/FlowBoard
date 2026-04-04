@@ -1,6 +1,7 @@
 # Ignore all environment files
-.env
-.env.*
+**/.env
+**/.env.*
+
 !.env.example
 
 # Ignore Python bytecode and cache
