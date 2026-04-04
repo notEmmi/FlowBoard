@@ -87,6 +87,9 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		if (!password) {
 			nextErrors.password = 'Password is required.';
 			isValid = false;
+		} else if (/\s/.test(password)) {
+			nextErrors.password = 'Password cannot contain spaces.';
+			isValid = false;
 		} else if (password.length < 8) {
 			nextErrors.password = 'Password must be at least 8 characters.';
 			isValid = false;
