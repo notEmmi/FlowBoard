@@ -1,4 +1,11 @@
-# Keep root environment secrets out of source control
-/.env
-/.env.*
-!/.env.example
+# Ignore all environment files
+.env
+.env.*
+!.env.example
+
+# Ignore Python bytecode and cache
+__pycache__/
+*.pyc
+
+# Ignore database files
+*.db
