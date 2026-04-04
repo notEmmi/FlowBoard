@@ -21,6 +21,8 @@ COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")
 def register(payload: RegisterIn, db: Session = Depends(get_db)):
     print(f"DEBUG: Registration attempt for email: {payload.email}, username: {payload.username}")
     
+
+    # Check if email or username already exists
     existing_user = db.query(User).filter(
         or_(User.email == payload.email, User.username == payload.username)
     ).first()
@@ -29,11 +31,14 @@ def register(payload: RegisterIn, db: Session = Depends(get_db)):
         print(f"DEBUG: Registration failed - email or username already exists")
         raise HTTPException(status_code=409, detail="Email or username already exists")
 
+    # Create new user
     new_user = User(
         email=payload.email,
         username=payload.username,
         password_hash=hash_password(payload.password),
     )
+
+    # Add to DB
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
@@ -45,6 +50,7 @@ def register(payload: RegisterIn, db: Session = Depends(get_db)):
 def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
     print(f"DEBUG: Login attempt for email: {payload.email}")
     
+    # Fetch user by email
     user = db.query(User).filter(User.email == payload.email).first()
     if not user:
         print(f"DEBUG: User not found for email: {payload.email}")
