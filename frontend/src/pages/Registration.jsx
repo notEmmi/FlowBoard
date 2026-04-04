@@ -65,6 +65,9 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		if (!trimmedUsername) {
 			nextErrors.username = 'Username is required.';
 			isValid = false;
+		} else if (/\s/.test(trimmedUsername)) {
+			nextErrors.username = 'Username cannot contain spaces.';
+			isValid = false;
 		} else if (trimmedUsername.length < 3) {
 			nextErrors.username = 'Username must be at least 3 characters.';
 			isValid = false;
@@ -83,6 +86,9 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 
 		if (!password) {
 			nextErrors.password = 'Password is required.';
+			isValid = false;
+		} else if (/\s/.test(password)) {
+			nextErrors.password = 'Password cannot contain spaces.';
 			isValid = false;
 		} else if (password.length < 8) {
 			nextErrors.password = 'Password must be at least 8 characters.';

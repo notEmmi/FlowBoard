@@ -1,4 +1,6 @@
 # Pydantic schemas for request validation and response serialization across all API routes.
+from datetime import datetime
+
 from pydantic import BaseModel, EmailStr, field_validator, model_validator
 
 
@@ -175,6 +177,7 @@ class PasswordResetIn(BaseModel):
 
 class ProjectCreate(BaseModel):
     name: str
+    timezone: str = "UTC"
 
     @field_validator("name")
     @classmethod
@@ -185,14 +188,23 @@ class ProjectCreate(BaseModel):
         if len(name) > 50:
             raise ValueError("Project name must be 50 characters or fewer")
         return name
+
+    @field_validator("timezone")
+    @classmethod
+    def validate_timezone(cls, value: str) -> str:
+        timezone = (value or "").strip()
+        if not timezone:
+            return "UTC"
+
+        return timezone
     
 class ProjectRead(BaseModel):
     id: int
     owner_id: int
     name: str
     description: str | None = None
-    created_at: str  # ISO 8601 string serialized by FastAPI
-    updated_at: str  # ISO 8601 string serialized by FastAPI
+    created_at: datetime
+    updated_at: datetime
     class Config:
         from_attributes = True
 

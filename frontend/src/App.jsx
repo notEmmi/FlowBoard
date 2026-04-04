@@ -1,9 +1,10 @@
 // Root app component: owns auth state, defines all client-side routes, and renders the top nav.
 import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { api, clearAccessToken, getAccessToken } from "./api";
+import { api, clearAccessToken, getAccessToken, onAuthExpired } from "./api";
 
 import TopNav from './components/TopNav';
+import SessionManager from './components/SessionManager';
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -41,6 +42,18 @@ export default function App() {
     })();
   }, []);
 
+  // Keep UI auth state in sync when API detects an expired/invalid token.
+  useEffect(() => {
+    const unsubscribe = onAuthExpired(() => {
+      setIsLoggedIn(false);
+      if (window.location.pathname !== '/landing') {
+        window.location.assign('/landing');
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
 
   /* Dynamically get Top Nav's height */
   useEffect(() => {
@@ -68,15 +81,16 @@ export default function App() {
         <div ref={topbarRef}>
           <TopNav isLoggedIn={isLoggedIn} onAuthSuccess={handleAuthSuccess} onLogout={handleLogout} />
         </div>
+        {isLoggedIn && <SessionManager onLogout={handleLogout} />}
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/project/:projectName" element={<Project />} />
-          <Route path="/project/:projectName/backlog" element={<Backlog />} />
-          <Route path="/project/:projectName/timeline" element={<Timeline />} />
-          <Route path="/project/:projectName/settings" element={<Settings />} />
+          <Route path="/project/:projectId" element={<Project />} />
+          <Route path="/project/:projectId/backlog" element={<Backlog />} />
+          <Route path="/project/:projectId/timeline" element={<Timeline />} />
+          <Route path="/project/:projectId/settings" element={<Settings />} />
           <Route path='/styleguide' element={<StyleGuide />} />
         </Routes>
       </div>

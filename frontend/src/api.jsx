@@ -1,6 +1,9 @@
 /* API client module: centralizes frontend HTTP calls, access-token storage, and user-friendly error handling. */
+import { getTokenExpiresIn, getTokenExpirationTime, isTokenExpired } from './utils/jwt';
+
 const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const TOKEN_KEY = 'flowboard_token';
+const AUTH_EXPIRED_EVENT = 'flowboard:auth-expired';
 
 // parses error responses that may or may not be JSON, returning null if parsing fails
 function parseErrorPayload(rawPayload) {
@@ -50,10 +53,20 @@ export function clearAccessToken() {
   localStorage.removeItem(TOKEN_KEY);
 }
 
+function emitAuthExpired() {
+  window.dispatchEvent(new CustomEvent(AUTH_EXPIRED_EVENT));
+}
+
+export function onAuthExpired(handler) {
+  window.addEventListener(AUTH_EXPIRED_EVENT, handler);
+  return () => window.removeEventListener(AUTH_EXPIRED_EVENT, handler);
+}
+
 // base fetch wrapper — attaches auth header, parses errors, and throws typed ApiError on failure
 export function api(path, options = {}) {
   const url = new URL(path, API).toString();
   const accessToken = getAccessToken();
+  const hasAuthToken = Boolean(accessToken);
   const fallbackMessage = options.errorMessage || 'Request failed';
 
   return fetch(url, {
@@ -65,6 +78,12 @@ export function api(path, options = {}) {
     ...options,
   }).then(async (res) => {
     if (!res.ok) {
+      // Treat 401 with an existing bearer token as an expired/invalid session.
+      if (res.status === 401 && hasAuthToken) {
+        clearAccessToken();
+        emitAuthExpired();
+      }
+
       const rawResponse = await res.text().catch(() => '');
       const payload = parseErrorPayload(rawResponse);
       const userMessage = formatErrorMessage({
@@ -134,8 +153,60 @@ export async function getProjects() {
 }
 
 export async function createProject(payload) {
+  const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
   return api('/api/projects', {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...payload,
+      timezone: browserTimeZone,
+    }),
   });
+}
+
+export async function getProjectById(projectId) {
+  const numericProjectId = Number(projectId);
+  if (!Number.isInteger(numericProjectId) || numericProjectId <= 0) {
+    const error = new Error('Invalid project id.');
+    error.name = 'ApiError';
+    error.status = 400;
+    error.userMessage = 'Invalid project id.';
+    throw error;
+  }
+
+  return api(`/api/projects/${projectId}`);
+}
+
+/* Session Management Functions */
+
+export function getTokenExpirationTimeMs() {
+  const token = getAccessToken();
+  return token ? getTokenExpirationTime(token) : null;
+}
+
+export function getTokenExpiresInMs() {
+  const token = getAccessToken();
+  return token ? getTokenExpiresIn(token) : null;
+}
+
+export function isCurrentTokenExpired() {
+  const token = getAccessToken();
+  return token ? isTokenExpired(token) : true;
+}
+
+export async function refreshAccessToken() {
+  try {
+    const data = await api('/api/auth/refresh', {
+      method: 'POST',
+    });
+    if (data?.access_token) {
+      setAccessToken(data.access_token);
+      return data.access_token;
+    }
+    return null;
+  } catch (error) {
+    clearAccessToken();
+    emitAuthExpired();
+    throw error;
+  }
 }

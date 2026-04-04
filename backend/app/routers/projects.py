@@ -1,4 +1,7 @@
 # Projects router: CRUD endpoints for projects, scoped to the authenticated user.
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -10,21 +13,26 @@ from services.security import get_token_subject
 
 router = APIRouter(prefix="/api/projects", tags=["projects"])
 
-def get_current_user(user_id: int = Depends(get_token_subject), db: Session = Depends(get_db)) -> User:
-	user = db.get(User, user_id)
-	if not user:
-		raise HTTPException(status_code=401, detail="User not found")
-	return user
-
 
 @router.post("", response_model=ProjectRead, status_code=201)
 @router.post("/", response_model=ProjectRead, status_code=201, include_in_schema=False)
 def create_project(
 	payload: ProjectCreate,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_token_subject),
 ):
-	project = Project(name=payload.name, owner_id=current_user.id)
+	now_utc = datetime.now(timezone.utc)
+	try:
+		now_local = now_utc.astimezone(ZoneInfo(payload.timezone))
+	except ZoneInfoNotFoundError:
+		now_local = now_utc
+
+	project = Project(
+		name=payload.name,
+		owner_id=current_user_id,
+		created_at=now_local.replace(tzinfo=None),
+		updated_at=now_local.replace(tzinfo=None),
+	)
 	
 	db.add(project)
 	db.commit()
@@ -35,11 +43,11 @@ def create_project(
 @router.get("/", response_model=list[ProjectRead], include_in_schema=False)
 def list_projects(
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	return (
 		db.query(Project)
-		.filter(Project.owner_id == current_user.id)
+		.filter(Project.owner_id == current_user_id)
 		.order_by(Project.created_at.desc())
 		.all()
 	)
@@ -48,11 +56,11 @@ def list_projects(
 def get_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
 	if not project:
@@ -64,19 +72,21 @@ def update_project(
 	project_id: int,
 	payload: ProjectUpdate,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
+
 	if not project:
 		raise HTTPException(status_code=404, detail="Project not found")
 	if payload.name is not None:
 		project.name = payload.name
 	if payload.description is not None:
 		project.description = payload.description
+		
 	db.commit()
 	db.refresh(project)
 	return project
@@ -85,11 +95,11 @@ def update_project(
 def delete_project(
 	project_id: int,
 	db: Session = Depends(get_db),
-	current_user: User = Depends(get_current_user),
+	current_user_id: int = Depends(get_token_subject),
 ):
 	project = (
 		db.query(Project)
-		.filter(Project.id == project_id, Project.owner_id == current_user.id)
+		.filter(Project.id == project_id, Project.owner_id == current_user_id)
 		.first()
 	)
 	if not project:

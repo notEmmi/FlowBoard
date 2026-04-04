@@ -118,3 +118,5 @@ class TimelineEvent(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
 
     project: Mapped["Project"] = relationship(back_populates="timeline_events")
+
+ 

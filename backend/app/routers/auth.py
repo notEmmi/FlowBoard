@@ -1,45 +1,87 @@
 # Auth router: handles registration, login, and password-reset endpoints.
-from fastapi import APIRouter, Depends, HTTPException
+import os
+from operator import or_
+
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
 from database import get_db
 from services.email_service import send_password_reset_email
 from models import User
 from schemas import LoginIn, PasswordResetIn, PasswordResetRequestIn, RegisterIn, TokenOut, UserRead
-from services.security import create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token
+from services.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, create_reset_token, hash_password, verify_password, verify_reset_token, get_token_subject
 
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
+COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() == "true"
+COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")
 
 
-@router.post("/register", response_model=UserRead, status_code=201)
+@router.post("/register", response_model=UserRead)
 def register(payload: RegisterIn, db: Session = Depends(get_db)):
+    print(f"DEBUG: Registration attempt for email: {payload.email}, username: {payload.username}")
+    
+
+    # Check if email or username already exists
     existing_user = db.query(User).filter(
         or_(User.email == payload.email, User.username == payload.username)
     ).first()
 
     if existing_user:
+        print(f"DEBUG: Registration failed - email or username already exists")
         raise HTTPException(status_code=409, detail="Email or username already exists")
 
+    # Create new user
     new_user = User(
         email=payload.email,
         username=payload.username,
         password_hash=hash_password(payload.password),
     )
+
+    # Add to DB
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
+    print(f"DEBUG: User registered successfully with id: {new_user.id}")
     return new_user
 
 
 @router.post("/login", response_model=TokenOut)
-def login(payload: LoginIn, db: Session = Depends(get_db)):
+def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)):
+    print(f"DEBUG: Login attempt for email: {payload.email}")
+    
+    # Fetch user by email
     user = db.query(User).filter(User.email == payload.email).first()
-    if not user or not verify_password(payload.password, user.password_hash):
+    if not user:
+        print(f"DEBUG: User not found for email: {payload.email}")
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if not verify_password(payload.password, user.password_hash):
+        print(f"DEBUG: Password verification failed for user: {user.id}")
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
+    print(f"DEBUG: Password verified for user: {user.id}")
     token = create_access_token(subject=str(user.id))
+    print(f"DEBUG: Access token created for user: {user.id}")
+    
+    # response.set_cookie(
+    #     key="session",
+    #     value=token,
+    #     httponly=True,
+    #     secure=COOKIE_SECURE,
+    #     samesite=COOKIE_SAMESITE,
+    #     max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+    # )
     return TokenOut(access_token=token)
+
+
+@router.post("/refresh", response_model=TokenOut)
+def refresh_access_token(current_user_id: int = Depends(get_token_subject)):
+    """Issue a new access token with extended expiration for current user."""
+    new_token = create_access_token(subject=str(current_user_id))
+    if not new_token:
+        raise HTTPException(status_code=500, detail="Failed to refresh access token")
+    return TokenOut(access_token=new_token)
 
 
 @router.post("/password-reset/request")

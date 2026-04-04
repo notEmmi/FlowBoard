@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './Project.css'
 import SecondaryNav from '../components/SecondaryNav.jsx';
+import { getProjectById } from '../api.jsx';
 
 function TaskCard({ task }) {
 	return (
@@ -39,7 +41,31 @@ function ProjectSection({ name, tasks }) {
 }
 
 export default function Project() {
-	const { projectName } = useParams();
+	const { projectId } = useParams();
+	
+	// get project data based on projectId
+	const [projectData, setProjectData] = useState(null);
+
+	useEffect(() => {
+		if (!projectId || Number.isNaN(Number(projectId))) {
+			console.error('Invalid project ID in route:', projectId);
+			return;
+		}
+
+		const fetchProject = async () => {
+			try {
+				console.log('Fetching project with ID:', projectId);
+				const data = await getProjectById(projectId);
+				setProjectData(data);
+			} catch (error) {
+				console.error('Failed to fetch project:', error);
+			}
+		};
+		
+		fetchProject();
+	}, [projectId]);
+
+	const projectName = projectData?.name || 'Project';
 
 	// Dummy task data
 	const dummyTasks = {
