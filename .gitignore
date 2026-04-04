@@ -1,12 +1,46 @@
-# Ignore all environment files
+# Environment variables
 **/.env
 **/.env.*
-
 !.env.example
 
-# Ignore Python bytecode and cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Ignore database files
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Database and logs
 *.db
+*.log
+logs/
+
+# OS files
+.DS_Store
+.env.local
+.env.*.local
+
+# Build and dist
+dist/
+build/
+.next/
+
+# Dependencies
+venv/
+env/
