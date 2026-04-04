@@ -65,6 +65,9 @@ export default function Registration ({isOpen, closeModal, onSwitchToLogin, onAu
 		if (!trimmedUsername) {
 			nextErrors.username = 'Username is required.';
 			isValid = false;
+		} else if (/\s/.test(trimmedUsername)) {
+			nextErrors.username = 'Username cannot contain spaces.';
+			isValid = false;
 		} else if (trimmedUsername.length < 3) {
 			nextErrors.username = 'Username must be at least 3 characters.';
 			isValid = false;
