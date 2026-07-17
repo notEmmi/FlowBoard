@@ -4,7 +4,9 @@
   /* Backgrounds */
   --bg-base: #F2F4F8;         /* main page background */
   --bg-surface: #E3E7EF;      /* cards, panels, surfaces */
-  --bg-intermediate: #bbcfeb; /* intermediate background */
+
+  /* Borders */
+  --border-default: #bbcfeb;
 
   /* Brand & Primary */
   --brand-primary: #4E7ADB;   /* main identity color */
@@ -13,15 +15,15 @@
   /* UI Structure */
   --ui-sidebar: #344C8A;      /* sidebar, nav, headers */
 
-  /* Status Colors */
+  /* Status Colors (base + auto-derived muted tint) */
   --status-success: #0D8B6F;
-  --status-success-muted: rgba(212, 240, 234, 0.6);
+  --status-success-muted: color-mix(in srgb, var(--status-success) 18%, white);
   --status-warning: #CC8800;
-  --status-warning-muted: rgba(255, 240, 214, 0.6);
+  --status-warning-muted: color-mix(in srgb, var(--status-warning) 18%, white);
   --status-info: #2C4A9E;
-  --status-info-muted: rgba(232, 238, 249, 0.6);
+  --status-info-muted: color-mix(in srgb, var(--status-info) 18%, white);
   --status-error: #B71C1C;
-  --status-error-muted: rgba(250, 237, 213, 0.6);
+  --status-error-muted: color-mix(in srgb, var(--status-error) 18%, white);
 
   /* Text */
   --text-primary: #1C2331;    /* main readable text */
@@ -34,12 +36,6 @@
   /* Nav Size */
   --top-nav-height: 90px;
 }
-
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
-} */
 
 body {
   margin: 0;
@@ -66,21 +62,21 @@ h1, h2, h3 {
 
 h1 {
   font-weight: bolder;
-  font-size: 50px;
+  font-size: clamp(44px, 6vw, 50px);
 }
 
 h2 {
   font-weight: lighter;
   color: var(--text-muted);
-  font-size: 40px;
+  font-size: clamp(34px, 5vw, 40px);
 }
 
 h3 {
-  font-size: 36px;
+  font-size: clamp(28px, 4vw, 36px);
 }
 
 p, code, ul {
-  font-size: 20px;
+  font-size: clamp(14px, 2vw, 20px);
 }
 
 .tagline {
@@ -90,55 +86,8 @@ p, code, ul {
 }
 
 .caption {
-  font-size: 16px;
+  font-size: clamp(10px, 1.2vw, 16px);
   color: var(--text-muted);
-
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 46px;
-  }
-
-  h2 {
-    font-size: 36px;
-  }
-
-  h3 {
-    font-size: 30px;
-  }
-
-  p, code, ul {
-    font-size: 16px;
-  }
-
-  .caption {
-    font-size: 12px;
-  }
-  
-}
-
-@media (max-width: 375px) {
-  h1 {
-    font-size: 44px;
-  }
-
-  h2 {
-    font-size: 34px;
-  }
-
-  h3 {
-    font-size: 28px;
-  }
-
-  p, code, ul {
-    font-size: 14px;
-  }
-
-  .caption {
-    font-size: 10px;
-  }
-  
 }
 
 button {
@@ -146,26 +95,14 @@ button {
   border-radius: 8px;
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: clamp(12px, 1.8vw, 20px);
   margin: auto;
   width: 100%;
   border-style: solid;
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  button {
-  font-size: 16px;
-  }
-}
-
-@media (max-width: 375px) {
-  button {
-  font-size: 12px;
-  }
-}
-
-button:hover {
+.hover-scale:hover, button:hover, .link:hover {
   cursor: pointer;
   transform: scale(1.03);
 }
@@ -176,24 +113,20 @@ button:hover {
 }
 
 .page-container {
-  margin: auto 64px;
+  padding-inline: 64px;
   height: 100%;
 }
 
 @media (max-width: 768px) {
-  .page-container {
-    margin: auto 32px;
-  }
+  .page-container { padding-inline: 32px; }
 }
 
 @media (max-width: 375px) {
-  .page-container {
-    margin: auto 16px;
-  }
+  .page-container { padding-inline: 16px; }
 }
 
 .btn-primary {
-  background:var(--brand-accent);
+  background: var(--brand-accent);
   color: var(--bg-base);
   border-color: var(--brand-accent);
 }
@@ -205,8 +138,7 @@ button:hover {
 .btn-ghost {
   background: transparent;
   color: var(--brand-primary);
-  border-color: var(--brand-accent)
-
+  border-color: var(--brand-accent);
 }
 
 form {
@@ -218,9 +150,9 @@ form {
 }
 
 form input {
-  padding:8px 10px;
-  border-radius:6px;
-  border:1px solid var(--bg-intermediate);
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
   width: 60%;
 }
 
@@ -235,8 +167,14 @@ form .field-control input {
   box-sizing: border-box;
 }
 
-form .input-error {
-  border: 1px solid var(--status-error);
+form input:focus {
+  outline: 2px solid var(--ui-sidebar);
+}
+
+form .input-error,
+.input-error {
+  border-color: var(--status-error);
+  background-color: var(--status-error-muted);
 }
 
 form .input-error:focus {
@@ -250,26 +188,15 @@ form .input-error:focus {
   line-height: 1.35;
 }
 
-.input-error {
-  border-color: var(--status-error);
-  background-color: var(--status-error-muted);
-}
-
-form input:focus {
-  outline: 2px solid var(--ui-sidebar);
-
-}
-
 form button {
   margin-top: 20px;
   margin-bottom: 10px;
   width: 100%;
-
 }
 
 label {
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
@@ -284,8 +211,6 @@ label {
 
 .link:hover {
   color: var(--brand-primary);
-  cursor: pointer;
-  transform: scale(1.03);
 }
 
 .other-links {
@@ -293,22 +218,7 @@ label {
 }
 
 .icon {
-  width: 50px;
-  height: 50px;
-	stroke-width: 1.5;
-
-}
-
-@media (max-width: 768px){
-  .icon {
-    width: 32px;
-    height: 32px;
-  }
-}
-
-@media (max-width: 375px){
-  .icon {
-    width: 24px;
-    height: 24px;
-  }
+  width: clamp(24px, 4vw, 50px);
+  height: clamp(24px, 4vw, 50px);
+  stroke-width: 1.5;
 }

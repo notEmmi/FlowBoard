@@ -29,7 +29,7 @@
 }
 
 .projects-board {
-  background-color: var(--bg-intermediate);
+  background-color: var(--border-default);
   border-radius: 16px;
   padding: 16px;
 	height: min(70vh, 720px);

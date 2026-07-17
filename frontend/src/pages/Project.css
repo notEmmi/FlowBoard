@@ -6,7 +6,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: stretch;
-	background-color: var(--bg-intermediate);
+	background-color: var(--border-default);
 	border-radius: 16px;
 	padding: 16px;
 	gap: 8px;
