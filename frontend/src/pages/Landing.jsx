@@ -32,8 +32,8 @@ const Section1 = function({ onAuthSuccess, openLoginOnLoad }) {
 		<>
 			<div className='section1'>
 				<div className="left">
-					<h1>Plan smarter.<br></br>Build faster.</h1>
-					<h2>A project board built for builders.</h2>
+					<h1>A simple board<br></br>For getting things<br></br>done.</h1>
+					<h2>No clutter, in one clear view — get stuff done.</h2>
 
 					<div className="ctas">
 						<button onClick={() => setIsRegistrationOpen(true)} className="btn-primary">Get Started</button>
