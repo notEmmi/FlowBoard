@@ -21,9 +21,31 @@ function CodeBlock({children}) {
 	)
 }
 
+function StyleGuideNav() {
+	return (
+		<nav className="style-guide-nav">
+			<p>ON THIS PAGE</p>
+			<ul>
+				<li><a href="#brand">Brand</a></li>
+				<li><a href="#typography">Typography</a></li>
+				<li><a href="#color-palette">Color Palette</a></li>
+				<li><a href="#voice">Voice</a></li>
+				<li><a href="#iconography">Iconography</a></li>
+				<li><a href="#imagery">Imagery</a></li>
+				<li><a href="#forms">Forms</a></li>
+				<li><a href="#alerts">Alerts</a></li>
+				<li><a href="#buttons">Buttons</a></li>
+				<li><a href="#spacings">Spacings</a></li>
+				<li><a href="#dos-and-donts">Do's and Don'ts</a></li>
+			</ul>
+		</nav>
+	)
+}
+
 export default function StyleGuide() {
 	return (
 		<div className="page-container style-guide">
+			<StyleGuideNav />
 			<h1>Style Guide</h1>
 			<p className='tagline'>Welcome to the Style Guide page. This page defines the visual and voice guidelines for Flowboard.</p>
 			
@@ -41,38 +63,38 @@ export default function StyleGuide() {
 				<h1>Heading 1</h1>
 				<CodeBlock>
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: 50px (desktop), 46px (tablet), 44px (mobile)
+					font-size: clamp(44px, 6vw, 50px)
 				</CodeBlock>
 
 
 				<h2>Heading 2</h2>
 				<CodeBlock>
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: 40px (desktop), 36px (tablet), 34px (mobile)
+					font-size: clamp(34px, 5vw, 40px)
 				</CodeBlock>
 
 				<h3>Heading 3</h3>
 				<CodeBlock>
 					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: 36px (desktop), 32px (tablet), 30px (mobile)
+					font-size: clamp(28px, 4vw, 36px)
 				</CodeBlock>
 
 				<p>Paragraph/normal text.</p>
 				<CodeBlock>
 					font-family: 'Inter', sans-serif;<br />
-					font-size: 20px (desktop), 16px (tablet), 14px (mobile)
+					font-size: clamp(14px, 2vw, 20px)
 				</CodeBlock>
 				<p className='tagline'>Tagline</p>
 				<CodeBlock>
 					font-family: 'Inter', sans-serif;<br />
-					font-size: 20px (desktop), 16px (tablet), 14px (mobile);<br />
+					font-size: clamp(14px, 2vw, 20px);
 					font-style: italic;
 				</CodeBlock>
 
 				<p className="caption">Caption</p>
 				<CodeBlock>
 					font-family: 'Inter', sans-serif;<br />
-					font-size: 16px (desktop), 12px (tablet), 10px (mobile);<br />
+					font-size: clamp(10px, 1.2vw, 16px);
 				</CodeBlock>
 			</div>
 
