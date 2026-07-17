@@ -1,9 +1,35 @@
 import { useEffect, useState } from 'react';
 import './Landing.css';
-import HeroImage from '../assets/hero.png'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
+
+
+// Miniature, non-interactive preview of a real board — shows the actual
+// Planned / In Progress / Review / Complete structure instead of a placeholder graphic.
+const BoardPreview = function () {
+	return (
+		<div className="board-preview" aria-hidden="true">
+			<div className="board-preview-col">
+				<div className="board-preview-label planned">Planned</div>
+				<div className="board-preview-card" />
+				<div className="board-preview-card" />
+			</div>
+			<div className="board-preview-col">
+				<div className="board-preview-label in-progress">In Progress</div>
+				<div className="board-preview-card active" />
+			</div>
+			<div className="board-preview-col">
+				<div className="board-preview-label review">Review</div>
+				<div className="board-preview-card" />
+			</div>
+			<div className="board-preview-col">
+				<div className="board-preview-label complete">Complete</div>
+				<div className="board-preview-card done" />
+			</div>
+		</div>
+	);
+}
 
 
 
@@ -40,7 +66,7 @@ const Section1 = function({ onAuthSuccess, openLoginOnLoad }) {
 					</div>
 				</div>
 				<div className='right'>
-					<img src={ HeroImage } alt="Hero" className='hero-image' />
+					<BoardPreview />
 				</div>
 			</div>
 			<Login isOpen={isLoginOpen} closeModal={setIsLoginOpen} onSwitchToRegistration={switchToRegistration} onAuthSuccess={onAuthSuccess} />

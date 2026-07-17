@@ -43,3 +43,54 @@
 .landing .section1 .right img{
   width: 100%;
 }
+
+/* Mini board preview — replaces the placeholder hero graphic with the real
+   4-column status structure in miniature. Purely decorative (aria-hidden). */
+.landing .board-preview {
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(28, 35, 49, 0.08);
+}
+
+.landing .board-preview-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.landing .board-preview-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(8px, 1.1vw, 10px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.landing .board-preview-label.planned { color: var(--text-muted); }
+.landing .board-preview-label.in-progress { color: var(--brand-accent); }
+.landing .board-preview-label.review { color: #FFC663; }     /* gold accent */
+.landing .board-preview-label.complete { color: #54D1B2; }   /* teal accent */
+
+.landing .board-preview-card {
+  height: 34px;
+  border-radius: 6px;
+  background: var(--bg-surface);
+}
+
+/* In-progress card is highlighted to draw the eye, matching the real board. */
+.landing .board-preview-card.active {
+  background: #fff;
+  border: 1.5px solid var(--brand-accent);
+}
+
+/* Complete cards drop back, mirroring the 60% opacity on the real board. */
+.landing .board-preview-card.done {
+  opacity: 0.6;
+}
