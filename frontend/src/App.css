@@ -2,18 +2,18 @@
 
 :root {
   /* Backgrounds */
-  --bg-base: #F2F4F8;         /* main page background */
-  --bg-surface: #E3E7EF;      /* cards, panels, surfaces */
+  --bg-base: #F2F4F8;
+  --bg-surface: #E3E7EF;
 
   /* Borders */
   --border-default: #bbcfeb;
 
-  /* Brand & Primary */
-  --brand-primary: #4E7ADB;   /* main identity color */
-  --brand-accent: #3D6CF5;    /* CTA, emphasis, strong buttons */
+  /* Brand & Primary — accent = CTA/emphasis, primary = hover/secondary state */
+  --brand-accent: #3D6CF5;
+  --brand-primary: #4E7ADB;
 
   /* UI Structure */
-  --ui-sidebar: #344C8A;      /* sidebar, nav, headers */
+  --ui-sidebar: #344C8A;
 
   /* Status Colors (base + auto-derived muted tint) */
   --status-success: #0D8B6F;
@@ -26,8 +26,8 @@
   --status-error-muted: color-mix(in srgb, var(--status-error) 18%, white);
 
   /* Text */
-  --text-primary: #1C2331;    /* main readable text */
-  --text-muted: #6A7489;      /* secondary text */
+  --text-primary: #1C2331;
+  --text-muted: #6A7489;
 
   /* Fonts */
   --font-heading: 'Plus Jakarta Sans', sans-serif;
