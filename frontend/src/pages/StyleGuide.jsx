@@ -60,30 +60,34 @@ export default function StyleGuide() {
 			<Divider />
 			<div className='section typography-section'>
 				<h2>Typography</h2>
-				<h1>Heading 1</h1>
-				<CodeBlock>
-					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: clamp(44px, 6vw, 50px)
-				</CodeBlock>
+				<p>FlowBoard uses <b>Plus Jakarta Sans</b> for headings and <b>Inter</b> for body text. All text is responsive using the <a className="link" href="https://developer.mozilla.org/en-US/docs/Web/CSS/clamp" target="_blank" rel="noreferrer">CSS clamp() function</a> to scale with screen size, left aligned, with each page containing an h1 element followed by a tagline.</p>
+				<div className="typography-example row">
+					<h1>Heading 1</h1>
+					<CodeBlock>
+						font-size: clamp(44px, 6vw, 50px);
+						font-weight: 700;
+					</CodeBlock>
+				</div>
 
 
 				<h2>Heading 2</h2>
 				<CodeBlock>
-					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: clamp(34px, 5vw, 40px)
+					font-size: clamp(34px, 5vw, 40px);
+					font-weight: 600;
 				</CodeBlock>
 
 				<h3>Heading 3</h3>
 				<CodeBlock>
-					font-family: 'Plus Jakarta Sans', sans-serif;<br />
-					font-size: clamp(28px, 4vw, 36px)
+					font-size: clamp(28px, 4vw, 36px);
+					font-weight: 500;
 				</CodeBlock>
 
 				<p>Paragraph/normal text.</p>
 				<CodeBlock>
-					font-family: 'Inter', sans-serif;<br />
 					font-size: clamp(14px, 2vw, 20px)
+					f
 				</CodeBlock>
+
 				<p className='tagline'>Tagline</p>
 				<CodeBlock>
 					font-family: 'Inter', sans-serif;<br />
@@ -91,11 +95,6 @@ export default function StyleGuide() {
 					font-style: italic;
 				</CodeBlock>
 
-				<p className="caption">Caption</p>
-				<CodeBlock>
-					font-family: 'Inter', sans-serif;<br />
-					font-size: clamp(10px, 1.2vw, 16px);
-				</CodeBlock>
 			</div>
 
 			<Divider/>

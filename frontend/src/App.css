@@ -29,10 +29,6 @@
   --text-primary: #1C2331;
   --text-muted: #6A7489;
 
-  /* Fonts */
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
   /* Nav Size */
   --top-nav-height: 90px;
 }
@@ -42,7 +38,19 @@ body {
   padding: 0;
   background-color: var(--bg-base);
   color: var(--text-primary);
-  font-family: var(--font-body);
+  font-family: 'Inter', sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 h1, h2, h3, p, li, span, a, label, button {
@@ -56,23 +64,24 @@ h1, h2, h3, p, li, span, a, label, button {
 }
 
 h1, h2, h3 {
-  font-family: var(--font-heading);
-  margin-bottom: 1rem;
+  font-family: 'Plus Jakarta Sans',sans-serif;
+  margin-bottom: 8px;
 }
 
 h1 {
-  font-weight: bolder;
+  font-weight: 700;
+  line-height: 1.2;
   font-size: clamp(44px, 6vw, 50px);
 }
 
 h2 {
-  font-weight: lighter;
-  color: var(--text-muted);
+  font-weight: 600;
   font-size: clamp(34px, 5vw, 40px);
 }
 
 h3 {
   font-size: clamp(28px, 4vw, 36px);
+  font-weight: 500;
 }
 
 p, code, ul {
@@ -83,11 +92,7 @@ p, code, ul {
   margin-top: 0;
   font-style: italic;
   color: var(--text-muted);
-}
-
-.caption {
-  font-size: clamp(10px, 1.2vw, 16px);
-  color: var(--text-muted);
+  margin-bottom: 36px;
 }
 
 button {
