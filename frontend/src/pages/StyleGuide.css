@@ -5,6 +5,7 @@
 .code-block {
 	background-color: var(--bg-surface);
 	padding: 20px;
+	border-radius: 8px;
 }
 
 .color-palette {
@@ -59,4 +60,44 @@
 
 .style-guide .typography-section .typography-example {
 	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.style-guide {
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+}
+
+.style-guide-nav {
+	width: 250px;
+	flex-shrink: 0;
+	align-items: flex-start;
+	position: sticky;
+	top: 20px;
+	align-self: flex-start;
+}
+
+.style-guide-nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  	font-size: clamp(14px, 2vw, 20px);
+
+}
+
+.style-guide-nav li {
+	margin-bottom: 10px;
+}
+
+.style-guide-nav a {
+	text-decoration: none;
+	color: var(--text-primary);
+	transition: color 0.3s ease;
+}
+
+.style-guide-nav a:hover {
+	color: var(--brand-accent);
 }

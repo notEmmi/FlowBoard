@@ -41,17 +41,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-}
 
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 
 h1, h2, h3, p, li, span, a, label, button {
   overflow-wrap: break-word;
