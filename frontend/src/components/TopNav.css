@@ -8,8 +8,33 @@
 
 .top-nav-container {
 	background-color: var(--ui-sidebar);
+	padding: 20px 48px;
+	align-items: center;
 	justify-content: space-between;
-	padding: 10px 64px;
+}
+
+.flowboard-icon {
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	background: #3D6CF5;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.flowboard-icon .square-white, .flowboard-icon .square-orange {
+	border-radius: 2px;
+}
+
+.flowboard-icon .square-white {
+	background-color: var(--bg-base);
+}
+
+.flowboard-icon .square-orange {
+	background-color: var(--status-warning);
 }
 
 @media(max-width: 768px){

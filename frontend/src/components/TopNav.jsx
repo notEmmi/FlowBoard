@@ -1,10 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import './TopNav.css'
-import FlowBoardIcon from '../assets/flowboard-icon.png'
 import Login from '../pages/Login';
 import Registration from '../pages/Registration';
 import { useState } from 'react';
 
+
+function FlowBoardIcon () {
+	return (
+		<div className="flowboard-icon">
+			<div className="square-white"></div>
+			<div className="square-white"></div>
+			<div className="square-white"></div>
+			<div className="square-orange"></div>
+		</div>
+	);
+}
 
 
 export default function TopNav({ isLoggedIn, onAuthSuccess, onLogout }) {
@@ -15,7 +25,7 @@ export default function TopNav({ isLoggedIn, onAuthSuccess, onLogout }) {
 	function logout() {
 		onLogout?.();
 		navigate('/landing');
-	}
+	} 
 
 	function switchToRegistration() {
 		setIsLoginOpen(false);
@@ -32,7 +42,7 @@ export default function TopNav({ isLoggedIn, onAuthSuccess, onLogout }) {
 			<div className="top-nav-container">
 				<div className="top-logo">
 					<button onClick={() => navigate('/')} className='btn-logo'>
-						<img src={ FlowBoardIcon } alt="FlowBoard Icon" className="flowboard-icon icon"/>
+						<FlowBoardIcon />
 						<h3>FlowBoard</h3>
 					</button>
 				</div>
