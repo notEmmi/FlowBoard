@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { confirmPasswordReset } from '../api';
-import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Landing from './Landing';
 import Alert from '../components/Alerts.jsx';

@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-base: #F2F4F8;
+  --bg-surface: #E3E7EF;
+
+  /* Borders */
+  --border-default: #bbcfeb;
+
+  /* Brand & Primary — accent = CTA/emphasis, primary = hover/secondary state */
+  --brand-accent: #3D6CF5;
+  --brand-primary: #4E7ADB;
+
+  /* UI Structure */
+  --ui-sidebar: #344C8A;
+
+  /* Status Colors (base + auto-derived muted tint) */
+  --status-success: #0D8B6F;
+  --status-success-muted: color-mix(in srgb, var(--status-success) 18%, white);
+  --status-warning: #CC8800;
+  --status-warning-muted: color-mix(in srgb, var(--status-warning) 18%, white);
+  --status-info: #2C4A9E;
+  --status-info-muted: color-mix(in srgb, var(--status-info) 18%, white);
+  --status-error: #B71C1C;
+  --status-error-muted: color-mix(in srgb, var(--status-error) 18%, white);
+
+  /* Text */
+  --text-primary: #1C2331;
+  --text-muted: #6A7489;
+
+  /* Nav Size */
+  --top-nav-height: 90px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+h1, h2, h3, p, li, span, a, label, button {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-sidebar) var(--bg-base);
+}
+
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans',sans-serif;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(44px, 6vw, 50px);
+}
+
+h2 {
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 40px);
+}
+
+h3 {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 500;
+}
+
+p, code, ul {
+  font-size: clamp(14px, 2vw, 20px);
+}
+
+.tagline {
+  margin-top: 0;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+
+button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.8vw, 20px);
+  margin: auto;
+  width: 100%;
+  border-style: solid;
+  font-weight: bold;
+}
+
+.hover-scale:hover, button:hover, .link:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.app {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding: 72px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;}
+
+@media (max-width: 768px) {
+  .page-container { padding-inline: 32px; }
+}
+
+@media (max-width: 375px) {
+  .page-container { padding-inline: 16px; }
+}
+
+.btn-primary {
+  background: var(--brand-accent);
+  color: var(--bg-base);
+  border-color: var(--brand-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-primary);
+  border-color: var(--brand-accent);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  width: 60%;
+}
+
+form .field-control {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+form .field-control input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form input:focus {
+  outline: 2px solid var(--ui-sidebar);
+}
+
+form .input-error,
+.input-error {
+  border-color: var(--status-error);
+  background-color: var(--status-error-muted);
+}
+
+form .input-error:focus {
+  outline: 2px solid var(--status-error);
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--status-error);
+  line-height: 1.35;
+}
+
+form button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+
+.link {
+  color: var(--brand-accent);
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.link:hover {
+  color: var(--brand-primary);
+}
+
+.other-links {
+  text-align: center;
+}
+
+.icon {
+  width: clamp(24px, 4vw, 50px);
+  height: clamp(24px, 4vw, 50px);
+  stroke-width: 1.5;
+}

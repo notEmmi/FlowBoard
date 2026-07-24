@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import SecondaryNav from '../components/SecondaryNav.jsx';
-import './Project.css';
 
 export default function Settings() {
 	const { projectId } = useParams();

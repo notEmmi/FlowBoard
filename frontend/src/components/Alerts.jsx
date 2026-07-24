@@ -1,4 +1,3 @@
-import './Alerts.css';
 import {CheckCircle, TriangleAlert, Ban, Info } from 'lucide-react';
 
 export default function Alert({ type, children }) {

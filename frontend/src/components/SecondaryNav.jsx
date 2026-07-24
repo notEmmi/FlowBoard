@@ -1,5 +1,4 @@
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import './SecondaryNav.css';
 import { LayoutDashboard, KanbanSquare, Clock, SlidersHorizontal, List } from 'lucide-react';
 
 function NavItem({ name, icon: Icon, route, isActive }) {

@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import './TopNav.css'
 import Login from '../pages/Login';
 import Registration from '../pages/Registration';
 import { useState } from 'react';

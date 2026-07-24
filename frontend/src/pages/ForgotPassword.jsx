@@ -1,4 +1,3 @@
-import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import { useEffect, useState } from 'react';
 import { requestPasswordReset } from '../api';

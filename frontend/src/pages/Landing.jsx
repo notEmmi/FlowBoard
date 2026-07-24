@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './Landing.css';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
@@ -84,7 +83,6 @@ export default function Landing ({ onAuthSuccess }) {
 	return (
 		<div className="page-container landing">
 				<Section1 onAuthSuccess={onAuthSuccess} openLoginOnLoad={openLoginOnLoad} />
-				<p className='link' onClick={() => navigate('/styleguide')}>Style Guide</p>
 		</div>
 	)
 

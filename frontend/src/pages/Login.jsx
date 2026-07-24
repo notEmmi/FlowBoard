@@ -1,4 +1,3 @@
-import './Auth.css';
 import Modal from '../components/Modal.jsx';
 import Divider from '../components/Divider.jsx';
 import ForgotPassword from './ForgotPassword.jsx';

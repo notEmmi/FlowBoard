@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import './Project.css'
 import SecondaryNav from '../components/SecondaryNav.jsx';
 import { getProjectById } from '../api.jsx';
 

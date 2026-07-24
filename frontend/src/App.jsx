@@ -12,7 +12,6 @@ import Project from "./pages/Project";
 import Backlog from "./pages/Backlog";
 import Timeline from "./pages/Timeline";
 import Settings from "./pages/Settings";
-import StyleGuide from './pages/StyleGuide';
 import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
@@ -91,7 +90,6 @@ export default function App() {
           <Route path="/project/:projectId/backlog" element={<Backlog />} />
           <Route path="/project/:projectId/timeline" element={<Timeline />} />
           <Route path="/project/:projectId/settings" element={<Settings />} />
-          <Route path='/styleguide' element={<StyleGuide />} />
         </Routes>
       </div>
     </Router>
