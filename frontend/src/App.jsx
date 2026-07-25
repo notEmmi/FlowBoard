@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { api, clearAccessToken, getAccessToken, onAuthExpired } from "./api";
 
-import TopNav from './components/TopNav';
 import SessionManager from './components/SessionManager';
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
@@ -54,25 +53,6 @@ export default function App() {
   }, []);
 
 
-  /* Dynamically get Top Nav's height */
-  useEffect(() => {
-    function updateTopbarHeight() {
-      if (topbarRef.current) {
-        const height = topbarRef.current.offsetHeight;
-        document.documentElement.style.setProperty(
-          "--top-nav-height",
-          `${height}px`
-        );
-      }
-    }
-
-    // Call on mount
-    updateTopbarHeight();
-
-    // Listen for resize events
-    window.addEventListener('resize', updateTopbarHeight);
-    return () => window.removeEventListener('resize', updateTopbarHeight);
-  }, []);
 
   return (
     <Router>
