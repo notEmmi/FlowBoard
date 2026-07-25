@@ -77,10 +77,7 @@ export default function App() {
   return (
     <Router>
       <div className='app'>
-        <div ref={topbarRef}>
-          <TopNav isLoggedIn={isLoggedIn} onAuthSuccess={handleAuthSuccess} onLogout={handleLogout} />
-        </div>
-        {isLoggedIn && <SessionManager onLogout={handleLogout} />}
+
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
           <Route path="/landing" element={<Landing onAuthSuccess={handleAuthSuccess} />} />

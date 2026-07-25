@@ -1,1 +1,80 @@
 /* App styles */
+/* FlowBoard — visual reference / design tokens
+   NOTE: the actual pages are built as inline-styled Design Components (no stylesheet is
+   loaded at runtime). This file is a handoff reference for values used consistently
+   across every screen — copy these into your own stylesheet/theme when you build the app. */
+
+:root {
+  /* Surfaces */
+  --color-bg:            #F5F2FB;  /* page background */
+  --color-surface:       #FFFFFF;  /* cards, inputs, panels */
+  --color-border:        #E5E0F0;  /* input/card borders */
+
+  /* Brand / text */
+  --color-ink:           #453D57;  /* primary text, primary buttons, headlines */
+  --color-ink-soft:      #7A7189;  /* secondary text, labels */
+  --color-ink-faint:     #B4ABC4;  /* placeholder / disabled text */
+
+  /* Accents */
+  --color-mint:          #9ADBC7;  /* logo mark, in-progress, primary accent */
+  --color-mint-deep:     #7FBFA4;  /* complete state */
+  --color-gold:          #DDAE6B;  /* review state, secondary accent */
+  --color-danger:        #C0645C;  /* destructive actions (delete, sign out) */
+
+  /* Dark mode (sidebar + cards get the darkest tone; page bg one step lighter) */
+  --color-dark-sidebar:  #332C40;
+  --color-dark-card:     #332C40;
+  --color-dark-bg:       #524A66;
+  --color-dark-text:     #F0ECF8;
+
+  /* Type */
+  --font-display: 'Caveat', cursive;   /* headlines only — 700 weight */
+  --font-body: 'Poppins', system-ui, sans-serif;
+
+  /* Radii */
+  --radius-sm: 6px;   /* nav icons */
+  --radius-md: 9px;   /* inputs, tab corners */
+  --radius-lg: 12px;  /* cards, panels */
+  --radius-xl: 16px;  /* hero panels, auth cards */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 10px rgba(69,61,87,.06);
+  --shadow-panel: 0 6px 20px rgba(69,61,87,.08);
+
+  /* Layout */
+  --sidebar-width: 64px;
+}
+
+/* Sidebar: var(--color-dark-sidebar) equivalent, always dark regardless of light/dark mode:
+   #453D57 in light mode / #332C40 in dark mode */
+
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+p {
+  margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-body);
+}
